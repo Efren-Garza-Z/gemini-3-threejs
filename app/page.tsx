@@ -1,65 +1,93 @@
-import Image from "next/image";
+"use client"
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import { useState, useEffect } from "react"
+import Navbar from "@/components/Navbar"
+// @ts-ignore
+import FloatingInput from "@/components/FloatingInput"
+import AuthModal from "./../components/Auth"
+import {apiService} from "@/services/api";
+import dynamic from "next/dynamic";
+
+const Scene = dynamic(() => import("@/components/Scene"), { ssr: false })
 
 export default function Home() {
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+    const [token, setToken] = useState<string | null>(null);
+    const [displayText, setDisplayText] = useState("")
+    const [isTyping, setIsTyping] = useState(false)
+
+    useEffect(() => {
+        const savedToken = localStorage.getItem("token");
+        if (savedToken) setToken(savedToken);
+    }, []);
+
+    const handleLogout = () => {
+        localStorage.removeItem("token")
+        setToken(null)
+        setDisplayText("")
+    }
+
+    const handleNewSearch = async (query: string) => {
+        if (!token) return;
+        setIsTyping(true);
+
+        // 1. Enviar prompt
+        await apiService.sendChat(query, token);
+
+        // 2. Polling: Revisar historial hasta que aparezca la respuesta
+        const checkResponse = setInterval(async () => {
+            const history = await apiService.getHistory(token);
+            const lastInteraction = history[0]; // Asumiendo que el más reciente es el primero
+
+            if (lastInteraction && lastInteraction.prompt === query && lastInteraction.response) {
+                clearInterval(checkResponse);
+                renderTypingEffect(lastInteraction.response);
+            }
+        }, 3000); // Revisa cada 3 segundos
+    };
+
+    const renderTypingEffect = async (text: string) => {
+        const words = text.split(" ");
+        let currentText = "";
+        for (let i = 0; i < words.length; i++) {
+            currentText += words[i] + " ";
+            setDisplayText(currentText);
+            await new Promise(res => setTimeout(res, 70));
+        }
+        setIsTyping(false);
+    };
+
+    if (!token) return <AuthModal onLoginSuccess={setToken} />;
+
+    return (
+        <main className="relative h-screen w-screen overflow-hidden bg-gradient-to-br from-[#ffecd2] via-[#fcb69f] to-[#ff9a9e]">
+            <Navbar onLogout={handleLogout} />
+
+            <div className="flex flex-col md:flex-row h-full w-full pt-32 pb-10 px-10 md:px-24 gap-4">
+                {/* LADO IZQUIERDO: Texto con scroll minimalista */}
+                <section className="w-full md:w-3/5 h-[60vh] md:h-full flex flex-col justify-center">
+                    <div className="overflow-y-auto pr-6 max-h-[75vh] custom-scrollbar prose prose-zinc prose-lg">
+                        {displayText ? (
+                            <div className="text-zinc-800 leading-relaxed">
+                                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                                    {displayText}
+                                </ReactMarkdown>
+                            </div>
+                        ) : (
+                            <p className="text-4xl font-bold text-zinc-800/40">¿En qué puedo ayudarte hoy?</p>
+                        )}
+                    </div>
+                </section>
+
+                {/* LADO DERECHO: Modelo centrado */}
+                <section className="w-full md:w-2/5 h-[40vh] md:h-full flex items-center justify-center">
+                    <div className="w-full h-full max-w-[450px] pointer-events-none">
+                        <Scene isTyping={isTyping} />
+                    </div>
+                </section>
+            </div>
+
+            <FloatingInput onSearch={handleNewSearch} />
+        </main>
+    )
 }
