@@ -2,23 +2,26 @@
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { useState, useEffect } from "react"
-import Navbar from "@/components/Navbar"
-// @ts-ignore
-import FloatingInput from "@/components/FloatingInput"
-import AuthModal from "./../components/Auth"
+import Navbar from "@/components/layout/Navbar"
+import FloatingInput from "@/components/chat/FloatingInput"
 import {apiService} from "@/services/api";
 import dynamic from "next/dynamic";
+import LandingPage from "@/app/landing/page";
 
-const Scene = dynamic(() => import("@/components/Scene"), { ssr: false })
+const Scene = dynamic(() => import("@/components/scene/Scene"), { ssr: false })
 
 export default function Home() {
     const [token, setToken] = useState<string | null>(null);
+    const [showLanding, setShowLanding] = useState(true)
     const [displayText, setDisplayText] = useState("")
     const [isTyping, setIsTyping] = useState(false)
 
     useEffect(() => {
         const savedToken = localStorage.getItem("token");
-        if (savedToken) setToken(savedToken);
+        if (savedToken) {
+            setToken(savedToken);
+            setShowLanding(false);
+        }
     }, []);
 
     const handleLogout = () => {
@@ -57,8 +60,9 @@ export default function Home() {
         setIsTyping(false);
     };
 
-    if (!token) return <AuthModal onLoginSuccess={setToken} />;
-
+    if (showLanding && !token) {
+        return <LandingPage />
+    }
     return (
         <main className="relative h-screen w-screen overflow-hidden bg-gradient-to-br from-[#ffecd2] via-[#fcb69f] to-[#ff9a9e]">
             <Navbar onLogout={handleLogout} />

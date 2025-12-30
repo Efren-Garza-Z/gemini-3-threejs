@@ -18,7 +18,7 @@ export default function Model({ isTyping }: ModelProps) {
 
   useEffect(() => {
     // Usamos "Chat3" que es la animación que mencionaste anteriormente
-    const action = actions["Chat3"]
+    const action = actions["Chat2"]
 
     if (action) {
       if (isTyping) {

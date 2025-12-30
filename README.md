@@ -34,3 +34,52 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+- **Diseño Responsivo**: Experiencia optimizada para escritorio y dispositivos móviles con estética pastel.
+
+## 🛠️ Stack Tecnológico
+- **Frontend**: Next.js 14 (App Router), React, Tailwind CSS.
+- **3D Engine**: React Three Fiber / Drei (Three.js).
+- **Backend**: Go (API REST desplegada en Google Cloud Run).
+- **Autenticación**: JWT (Bearer Token).
+
+## 🏗️ Arquitectura del Proyecto
+
+```mermaid
+graph TD
+    subgraph Cliente_NextJS [Client Side - Next.js]
+        A[UI Components] --> B[Custom Hooks]
+        B --> C[API Services]
+        D[Three.js Scene] --> E[3D Model]
+        B --> F[Global State - Token]
+    end
+
+    subgraph Backend_Cloud [Google Cloud Run]
+        C --> G[Auth API]
+        C --> H[Learning API]
+    end
+
+    subgraph Database [PostgreSQL]
+        G --> I[(Users)]
+        H --> J[(History)]
+    end
+```
+
+### La estructura sigue los principios de **Clean Architecture**:
+1. **Components**: UI reutilizable y desacoplada.
+2. **Hooks**: Lógica de estado y efectos (Application Rules).
+3. **Services**: Comunicación con agentes externos (API).
+4. **App**: Enrutamiento y configuración de Next.js.
+
+## 📄 Documentación de la API
+La aplicación consume los siguientes servicios:
+
+- POST /auth/login: Autenticación de usuario.
+
+- POST /users: Registro de nuevos estudiantes.
+
+- POST /learning/chat: Envío de prompts (Requiere Auth).
+
+- GET /learning/history: Recuperación de respuestas procesadas.
+
