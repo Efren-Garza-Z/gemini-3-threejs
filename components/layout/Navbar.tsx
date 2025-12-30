@@ -19,6 +19,16 @@ export default function Navbar({ onLogout }: NavbarProps) {
         </button>
     )
 
+    const handleLogoutAndReload = () => {
+        // 1. Ejecuta la lógica de logout del componente padre (elimina el token de localStorage)
+        onLogout();
+
+        // 2. Ejecuta la recarga completa del navegador
+        if (typeof window !== 'undefined') {
+            window.location.reload();
+        }
+    };
+
     return (
         <nav className="fixed top-0 w-full z-[150] flex justify-between items-center px-12 py-8 bg-transparent">
             <div className="bg-white/20 backdrop-blur-md p-3 rounded-xl shadow-sm">
@@ -31,7 +41,7 @@ export default function Navbar({ onLogout }: NavbarProps) {
                 {navItem("Projects")}
                 {/* Botón de Logout */}
                 <button
-                    onClick={onLogout}
+                    onClick={handleLogoutAndReload}
                     className="text-red-500 font-bold hover:text-red-700 ml-4 transition-colors"
                 >
                     Logout

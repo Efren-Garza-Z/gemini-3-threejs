@@ -12,11 +12,6 @@ export default function LandingPage() {
             {/* NAVBAR VANGUARDISTA */}
             <nav className="fixed top-0 w-full z-[100] flex justify-between items-center px-8 py-6 mix-blend-difference">
                 <div className="text-white font-black text-2xl tracking-tighter">ICB</div>
-                <div className="hidden md:flex gap-10 text-white/80 text-sm font-bold uppercase tracking-widest">
-                    <a href="#why" className="hover:text-white transition-colors">Why us</a>
-                    <a href="#method" className="hover:text-white transition-colors">Methodology</a>
-                    <a href="#impact" className="hover:text-white transition-colors">Impact</a>
-                </div>
                 <Link href="../auth">
                     <button className="bg-white text-black px-6 py-2 rounded-full font-bold text-sm hover:invert transition-all">
                         GET STARTED

@@ -28,6 +28,7 @@ export default function Home() {
         localStorage.removeItem("token")
         setToken(null)
         setDisplayText("")
+
     }
 
     const handleNewSearch = async (query: string) => {
