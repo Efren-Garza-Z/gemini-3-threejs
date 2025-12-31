@@ -45,9 +45,9 @@ export default function LandingPage() {
             </section>
 
             {/* SECCIÓN 2: THE WHY (100vh - White Minimalist) */}
-            <section id="why" className="h-screen w-full bg-white flex items-center px-10 md:px-24 relative">
+            <section id="why" className="h-screen w-full bg-white flex items-center px-10 md:px-24 mi-clase-personalizada relative">
                 <div className="grid md:grid-cols-2 gap-20 items-center max-w-7xl mx-auto">
-                    <div>
+                    <div className="mi-clase-personalizada">
                         <span className="text-sm font-bold tracking-[0.3em] text-zinc-400 uppercase">The Opportunity</span>
                         <h2 className="text-5xl md:text-7xl font-bold mt-6 mb-8 tracking-tight">
                             ¿Por qué el <span className="text-[#fcb69f]">Inglés</span> ahora?

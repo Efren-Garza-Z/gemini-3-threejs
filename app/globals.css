@@ -80,3 +80,9 @@ body {
   color: #1a1a1a;
   font-weight: 800;
 }
+
+@media (min-height: 768px) {
+  .mi-clase-personalizada {
+    padding-top: 6rem; /* 96px */
+  }
+}
