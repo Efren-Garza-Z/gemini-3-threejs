@@ -8,7 +8,7 @@ export default function AuthPage() {
 
     const handleSuccess = (token: string) => {
         // Redirigir al home donde se cargará el chat
-        router.push("/chat");
+        router.push("/home");
         router.refresh();
     };
 

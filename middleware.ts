@@ -6,6 +6,8 @@ export function middleware(request: NextRequest) {
 
     const isAppRoute = request.nextUrl.pathname.startsWith("/chat")
         || request.nextUrl.pathname.startsWith("/projects")
+        || request.nextUrl.pathname.startsWith("/pruebas")
+        || request.nextUrl.pathname.startsWith("/home")
         || request.nextUrl.pathname.startsWith("/about")
 
     if (isAppRoute && !token) {
