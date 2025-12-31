@@ -14,3 +14,7 @@ export function middleware(request: NextRequest) {
 
     return NextResponse.next()
 }
+
+export const config = {
+    matcher: ["/chat/:path*", "/projects/:path*", "/about/:path*"],
+}
