@@ -3,10 +3,10 @@ import { useState, useEffect } from "react";
 import Navbar from "@/app/navbar/Navbar";
 import getTokenFromCookie, { apiService } from "@/services/api";
 
-import {Loader2, CheckCircle2, AlertCircle, BookOpen} from "lucide-react";
+import { Loader2, CheckCircle2, BookOpen } from "lucide-react";
 import ReactMarkdown from 'react-markdown';
 
-// 1. DEFINICIÓN DEL COMPONENTE AUXILIAR (Fuera de PruebasPage)
+// 1. DEFINICIÓN DEL COMPONENTE AUXILIAR
 function CustomInput({ id, value, onChange }: { id: string, value: string, onChange: (id: string, v: string) => void }) {
     return (
         <input
@@ -23,9 +23,8 @@ export default function PruebasPage() {
     const [answers, setAnswers] = useState<{ [key: string]: string }>({});
     const [token, setToken] = useState<string | null>(null)
     const [taskId, setTaskId] = useState<string | null>(null);
-    const [status, setStatus] = useState<string>(""); // pendiente, en_proceso, finalizado, error
+    const [status, setStatus] = useState<string>("");
     const [result, setResult] = useState<string | null>(null);
-
 
     const handleInputChange = (id: string, value: string) => {
         setAnswers(prev => ({ ...prev, [id]: value }));
@@ -38,11 +37,9 @@ export default function PruebasPage() {
         }
     }, [])
 
-
-    // Lógica de Polling
+    // Lógica de Polling corregida con dependencias
     useEffect(() => {
         let interval: NodeJS.Timeout;
-
 
         if (taskId && (status === "pendiente" || status === "en_proceso")) {
             interval = setInterval(async () => {
@@ -58,25 +55,21 @@ export default function PruebasPage() {
                     setStatus("error");
                     clearInterval(interval);
                 }
-            }, 3000); // Consulta cada 3 segundos
+            }, 3000);
         }
 
         return () => clearInterval(interval);
-    }, [taskId, status]);
+    }, [taskId, status, token]); // <--- Agregado 'token' aquí
 
     const handleEvaluate = async () => {
-
         setStatus("pendiente");
         setResult(null);
 
-        // Construimos un texto legible para Gemini basado en las respuestas
         const userResponses = Object.entries(answers)
             .map(([id, val]) => `Space ${id}: ${val}`)
             .join(", ");
 
-
         try {
-            // Construimos el prompt con la respuesta del usuario
             if (!token) return
             const fullPrompt = `Evaluate the following English exercise in Simple Present. The student provided these answers: ${userResponses}. Check for correct third-person conjugation (-s/-es) and general grammar.. Al final da una explicacion breve en español de porque esta bien.`;
             const data = await apiService.processExercise(fullPrompt, token);
@@ -91,7 +84,6 @@ export default function PruebasPage() {
             <Navbar />
 
             <div className="max-w-4xl mx-auto w-full space-y-6">
-                {/* --- CARD INFORMATIVA --- */}
                 <section className="bg-white/40 backdrop-blur-md rounded-[32px] p-6 border border-white/40 shadow-xl flex gap-6 items-start">
                     <div className="bg-zinc-900 p-4 rounded-2xl text-white hidden md:block">
                         <BookOpen size={32} />
@@ -106,14 +98,14 @@ export default function PruebasPage() {
                             </div>
                             <div className="bg-white/30 p-3 rounded-xl border border-white/20">
                                 <p className="font-bold text-zinc-900">Ejemplo:</p>
-                                <p>"I **work** every day"</p>
-                                <p>"She **works** every day"</p>
+                                {/* Reemplazo de comillas por entidades HTML */}
+                                <p>&quot;I **work** every day&quot;</p>
+                                <p>&quot;She **works** every day&quot;</p>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                {/* EJERCICIO DE 10 PÁRRAFOS (Resumido para el ejemplo) */}
                 <section className="bg-white/20 backdrop-blur-xl rounded-[40px] p-8 md:p-12 border border-white/30 shadow-2xl">
                     <h3 className="text-3xl font-black text-zinc-800 mb-8 tracking-tight">Daily Routine Story</h3>
 
@@ -121,7 +113,8 @@ export default function PruebasPage() {
                         <p>1. Every day, Mark <CustomInput id="1" value={answers["1"]} onChange={handleInputChange} /> (wake) up early.</p>
                         <p>2. He <CustomInput id="2" value={answers["2"]} onChange={handleInputChange} /> (brush) his teeth and goes to the kitchen.</p>
                         <p>3. His parents <CustomInput id="3" value={answers["3"]} onChange={handleInputChange} /> (cook) breakfast for the whole family.</p>
-                        <p>4. "I <CustomInput id="4" value={answers["4"]} onChange={handleInputChange} /> (love) fresh coffee," Mark says.</p>
+                        {/* Reemplazo de comillas en el texto del ejercicio */}
+                        <p>4. &quot;I <CustomInput id="4" value={answers["4"]} onChange={handleInputChange} /> (love) fresh coffee,&quot; Mark says.</p>
                         <p>5. After breakfast, he <CustomInput id="5" value={answers["5"]} onChange={handleInputChange} /> (walk) to the bus station.</p>
                         <p>6. The bus <CustomInput id="6" value={answers["6"]} onChange={handleInputChange} /> (arrive) at exactly 8:00 AM.</p>
                         <p>7. At work, he <CustomInput id="7" value={answers["7"]} onChange={handleInputChange} /> (write) many emails.</p>
@@ -139,7 +132,6 @@ export default function PruebasPage() {
                     </button>
                 </section>
 
-                {/* Feedback de la Evaluación */}
                 {status !== "" && (
                     <section className="animate-in slide-in-from-top-4 duration-500">
                         <div className="bg-white/60 backdrop-blur-lg rounded-[32px] p-8 border border-white/50 shadow-2xl">
