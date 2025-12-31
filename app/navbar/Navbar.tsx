@@ -44,7 +44,7 @@ export default function Navbar() {
             </button>
 
             {open && (
-                <div className="absolute w-40 top-full right-6 mt-4 bg-white rounded-xl shadow-lg p-4 flex flex-col gap-4 md:hidden">
+                <div className="absolute top-full right-6 mt-4 text-gray-900 bg-white rounded-xl shadow-lg p-4 flex flex-col gap-4 md:hidden">
                     <button onClick={() => go("/chat")}>Chat</button>
                     <button onClick={() => go("/projects")}>Projects</button>
                     <button onClick={() => go("/about")}>About</button>

@@ -9,6 +9,8 @@ import dynamic from "next/dynamic";
 import {ArrowUp, Loader2} from "lucide-react";
 import LandingPage from "@/app/landing/page";
 import Navbar from "@/app/navbar/Navbar";
+import type { NextRequest } from "next/server"
+
 
 export default function ChatPage() {
     const [token, setToken] = useState<string | null>(null)
@@ -18,9 +20,16 @@ export default function ChatPage() {
     const [isWaitingResponse, setIsWaitingResponse] = useState(false) // Controla el estado "Pensando"
     const scrollRef = useRef<HTMLDivElement>(null)
 
+    function getTokenFromCookie() {
+        return document.cookie
+            .split("; ")
+            .find(row => row.startsWith("token="))
+            ?.split("=")[1]
+    }
+
     // 1. Manejo de Sesión (Login / Logout)
     useEffect(() => {
-        const savedToken = localStorage.getItem("token")
+        const savedToken = getTokenFromCookie()
         if (savedToken) {
             setToken(savedToken)
             fetchTodayHistory(savedToken)
@@ -127,7 +136,7 @@ export default function ChatPage() {
                                     {/* Respuesta de la IA */}
                                     {(msg.response || msg.isLocal) && (
                                         <div className="flex justify-start">
-                                            <div className="prose prose-zinc max-w-[90%] bg-white/60 p-6 rounded-3xl rounded-tl-none border border-white/40 shadow-sm text-zinc-800">
+                                            <div className="prose prose-zinc max-w-[100%] bg-white/60 p-6 rounded-3xl rounded-tl-none border border-white/40 shadow-sm text-zinc-800">
                                                 <ReactMarkdown remarkPlugins={[remarkGfm]}>
                                                     {msg.response}
                                                 </ReactMarkdown>
