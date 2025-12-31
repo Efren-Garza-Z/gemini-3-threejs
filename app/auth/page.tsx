@@ -1,4 +1,4 @@
-// Archivo: app/auth/page.tsx
+// Archivo: app/auth/layout.tsx
 "use client"
 import { useRouter } from "next/navigation";
 import AuthForm from "@/app/auth/auth";
@@ -8,7 +8,7 @@ export default function AuthPage() {
 
     const handleSuccess = (token: string) => {
         // Redirigir al home donde se cargará el chat
-        router.push("/");
+        router.push("/chat");
         router.refresh();
     };
 

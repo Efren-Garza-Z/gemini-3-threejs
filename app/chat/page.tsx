@@ -1,14 +1,14 @@
-// app/page.tsx
+// app/layout.tsx
 "use client"
 import { useState, useEffect, useRef } from "react"
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-import Navbar from "@/app/Navbar"
 const Scene = dynamic(() => import("@/components/scene/Scene"), { ssr: false })
 import { apiService } from "@/services/api"
 import dynamic from "next/dynamic";
 import {ArrowUp, Loader2} from "lucide-react";
 import LandingPage from "@/app/landing/page";
+import Navbar from "@/app/navbar/Navbar";
 
 export default function ChatPage() {
     const [token, setToken] = useState<string | null>(null)
@@ -27,12 +27,6 @@ export default function ChatPage() {
         }
     }, [])
 
-    const handleLogout = () => {
-        localStorage.removeItem("token")
-        setToken(null)
-        setHistory([])
-        setIsTyping(false)
-    }
 
     // 2. Cargar Historial del día
     const fetchTodayHistory = async (activeToken: string) => {
@@ -106,7 +100,8 @@ export default function ChatPage() {
         return <LandingPage />
     }
     return (
-
+        <main className="h-screen w-screen bg-gradient-to-br from-[#ffecd2] via-[#fcb69f] to-[#ff9a9e] overflow-hidden flex flex-col">
+            <Navbar/>
             <div className="flex flex-col md:flex-row flex-1 pt-24 pb-6 px-4 md:px-12 gap-6 overflow-hidden">
                 {/* COLUMNA 3: Modelo 3D (1/3) */}
                 <section className="w-full md:w-1/3 h-[30vh] md:h-full relative bg-white/10 rounded-[32px] border border-white/20">
@@ -187,8 +182,7 @@ export default function ChatPage() {
                         </div>
                     </div>
                 </section>
-
-
             </div>
+        </main>
     )
 }

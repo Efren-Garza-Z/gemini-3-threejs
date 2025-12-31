@@ -15,7 +15,7 @@ export default function AuthForm({ onLoginSuccess }: { onLoginSuccess: (token: s
             if (isLogin) {
                 const res = await apiService.login({ email: formData.email, password: formData.password });
                 if (res.token) {
-                    localStorage.setItem("token", res.token);
+                    document.cookie = `token=${res.token}; path=/; SameSite=Lax`;
                     onLoginSuccess(res.token);
                 }
             } else {
