@@ -83,6 +83,6 @@ body {
 
 @media (min-height: 768px) {
   .mi-clase-personalizada {
-    padding-top: 6rem; /* 96px */
+    padding-top: 12rem; /* 96px */
   }
 }

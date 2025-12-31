@@ -45,7 +45,7 @@ export default function LandingPage() {
             </section>
 
             {/* SECCIÓN 2: THE WHY (100vh - White Minimalist) */}
-            <section id="why" className="h-screen w-full bg-white flex items-center px-10 md:px-24 mi-clase-personalizada relative">
+            <section id="why" className="h-screen w-full bg-white flex items-center px-10 md:px-24 relative">
                 <div className="grid md:grid-cols-2 gap-20 items-center max-w-7xl mx-auto">
                     <div className="mi-clase-personalizada">
                         <span className="text-sm font-bold tracking-[0.3em] text-zinc-400 uppercase">The Opportunity</span>
@@ -83,7 +83,7 @@ export default function LandingPage() {
             </section>
 
             {/* SECCIÓN 3: METODOLOGÍA (Cards en Colores Pastel) */}
-            <section id="method" className="py-32 px-10 bg-zinc-50">
+            <section id="method" className="mi-clase-personalizada py-32 px-10 bg-zinc-50 ">
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-20">
                         <h2 className="text-5xl font-black mb-4 uppercase tracking-tighter">Nuestro Método</h2>
