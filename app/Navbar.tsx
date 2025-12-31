@@ -1,5 +1,7 @@
 "use client"
 import { useState } from "react"
+import Link from "next/link";
+import {useRouter} from "next/navigation";
 
 interface NavbarProps {
     onLogout: () => void;
@@ -8,12 +10,14 @@ interface NavbarProps {
 export default function Navbar({ onLogout }: NavbarProps) {
     const [active, setActive] = useState("Home")
 
-    const navItem = (label: string) => (
+    const router = useRouter();
+
+    const navItem = (label: string, path?: string) => (
         <button
-            onClick={() => setActive(label)}
-            className={`transition-all duration-300 text-lg font-semibold px-4 ${
-                active === label ? 'text-[#f5c518] scale-110' : 'text-zinc-800 hover:text-zinc-600'
-            }`}
+            onClick={() => {
+                setActive(label)
+                if (path) router.push(path)
+            }}
         >
             {label}
         </button>
@@ -36,8 +40,8 @@ export default function Navbar({ onLogout }: NavbarProps) {
             </div>
 
             <div className="flex gap-4 md:gap-8 items-center bg-white/10 px-8 py-3 rounded-full backdrop-blur-sm border border-white/20">
-                {navItem("Home")}
-                {navItem("About")}
+                {navItem("Home", "/chat")}
+                {navItem("About", "/chat")}
                 {navItem("Projects")}
                 {/* Botón de Logout */}
                 <button
