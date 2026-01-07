@@ -9,6 +9,7 @@ export default function Navbar() {
 
     const handleLogout = () => {
         document.cookie = "token=; Max-Age=0; path=/"
+        localStorage.removeItem("user_session");
         router.push("/")
     }
 
@@ -28,8 +29,9 @@ export default function Navbar() {
             {/* Desktop */}
             <div className="hidden md:flex gap-6 ">
                 <button onClick={() => go("/chat")} className="hover:text-white/60 font-bold transition-colors">Chat</button>
-                <button className="hover:text-white/60 font-bold transition-colors" onClick={() => go("/pruebas")}>Pruebas</button>
-                <button className="hover:text-white/60 font-bold transition-colors" onClick={() => go("/about")}>About</button>
+                <button className="hover:text-white/60 font-bold transition-colors" onClick={() => go("/activities")}>Actividades</button>
+                <button className="hover:text-white/60 font-bold transition-colors" onClick={() => go("/test-nivelacion")}>Test</button>
+                <button className="hover:text-white/60 font-bold transition-colors" onClick={() => go("/profile")}>Perfil</button>
                 <button
                     onClick={handleLogout}
                     className="text-red-500 font-bold hover:text-red-700 ml-4 transition-colors"
@@ -46,8 +48,9 @@ export default function Navbar() {
             {open && (
                 <div className="absolute top-full right-6 mt-4 text-gray-900 bg-white rounded-xl shadow-lg p-4 flex flex-col gap-4 md:hidden">
                     <button onClick={() => go("/chat")}>Chat</button>
-                    <button onClick={() => go("/pruebas")}>Pruebas</button>
-                    <button onClick={() => go("/about")}>About</button>
+                    <button onClick={() => go("/activities")}>Actividades</button>
+                    <button onClick={() => go("/test-nivelacion")}>Test</button>
+                    <button onClick={() => go("/profile")}>perfil</button>
                     <button
                         onClick={handleLogout}
                         className="text-red-500 font-bold hover:text-red-700 ml-4 transition-colors"

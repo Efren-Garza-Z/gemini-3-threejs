@@ -6,9 +6,12 @@ import AuthForm from "@/app/auth/auth";
 export default function AuthPage() {
     const router = useRouter();
 
-    const handleSuccess = (token: string) => {
-        // Redirigir al home donde se cargará el chat
-        router.push("/home");
+    const handleSuccess = (token: string, needsTest: boolean = false) => {
+        if (needsTest) {
+            router.push("/test-nivelacion");
+        } else {
+            router.push("/home");
+        }
         router.refresh();
     };
 

@@ -13,7 +13,7 @@ export default function HomePage() {
                 <p className="text-zinc-700 mb-8 font-medium">Domina el idioma con ejercicios inteligentes potenciados por IA.</p>
 
                 <button
-                    onClick={() => router.push("/pruebas")}
+                    onClick={() => router.push("/activities")}
                     className="w-full bg-zinc-900 text-white py-4 rounded-2xl font-bold text-xl hover:bg-zinc-800 transition-all hover:scale-105 active:scale-95 shadow-lg"
                 >
                     ¡Practica tu Inglés!

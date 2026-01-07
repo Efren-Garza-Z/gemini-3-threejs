@@ -24,7 +24,10 @@ export const apiService = {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             },
-            body: JSON.stringify({ prompt })
+            body: JSON.stringify({
+                prompt: prompt,
+                model: "gemini-3-flash-preview",
+            })
         }).then(res => res.json()),
 
     // Historial (Para obtener la respuesta procesada)
@@ -45,7 +48,10 @@ export const apiService = {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             },
-            body: JSON.stringify({ prompt })
+            body: JSON.stringify({
+                prompt: prompt,
+                model: "gemini-3-flash-preview",
+            })
         }).then(res => res.json()),
 
     // Consultar estado de la tarea
@@ -56,7 +62,32 @@ export const apiService = {
                 'Authorization': `Bearer ${token}`,
                 'accept': 'application/json'
             }
-        }).then(res => res.json())
+        }).then(res => res.json()),
+
+    updateUserLanguage: async (email: string, data: { language_level: string, target_language: string }, token: string) => {
+        const response = await fetch(`${BASE_URL}/users/email/${encodeURIComponent(email)}/language`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+                'accept': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+        return response.json();
+    },
+
+    getUserByEmail: async (email: string, token: string) => {
+        const response = await fetch(`${BASE_URL}/users/email/${encodeURIComponent(email)}`, {
+            method: 'GET',
+            headers: {
+                'accept': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        if (!response.ok) throw new Error("No se pudo obtener la información del usuario");
+        return await response.json();
+    }
 };
 
 export default function getTokenFromCookie() {
