@@ -8,7 +8,8 @@ export function middleware(request: NextRequest) {
         || request.nextUrl.pathname.startsWith("/projects")
         || request.nextUrl.pathname.startsWith("/activities")
         || request.nextUrl.pathname.startsWith("/home")
-        || request.nextUrl.pathname.startsWith("/about")
+        || request.nextUrl.pathname.startsWith("/profile")
+        || request.nextUrl.pathname.startsWith("/test-nivelacion")
 
     if (isAppRoute && !token) {
         return NextResponse.redirect(new URL("/", request.url))
@@ -18,5 +19,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-    matcher: ["/chat/:path*", "/projects/:path*", "/about/:path*"],
+    matcher: ["/chat/:path*", "/projects/:path*", "/activities/:path*", "/test-nivelacion/:path*", "/home/:path*", "/profile/:path*"],
 }
