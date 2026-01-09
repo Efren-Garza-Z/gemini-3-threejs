@@ -32,6 +32,8 @@ export default function Navbar() {
                 <button className="hover:text-white/60 font-bold transition-colors" onClick={() => go("/activities")}>Actividades</button>
                 <button className="hover:text-white/60 font-bold transition-colors" onClick={() => go("/test-nivelacion")}>Test</button>
                 <button className="hover:text-white/60 font-bold transition-colors" onClick={() => go("/profile")}>Perfil</button>
+                <button className="hover:text-white/60 font-bold transition-colors" onClick={() => go("/tech")}>Tech</button>
+
                 <button
                     onClick={handleLogout}
                     className="text-red-500 font-bold hover:text-red-700 ml-4 transition-colors"
@@ -51,6 +53,8 @@ export default function Navbar() {
                     <button onClick={() => go("/activities")}>Actividades</button>
                     <button onClick={() => go("/test-nivelacion")}>Test</button>
                     <button onClick={() => go("/profile")}>perfil</button>
+                    <button onClick={() => go("/tech")}>Tech</button>
+
                     <button
                         onClick={handleLogout}
                         className="text-red-500 font-bold hover:text-red-700 ml-4 transition-colors"
