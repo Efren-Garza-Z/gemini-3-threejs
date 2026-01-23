@@ -33,6 +33,7 @@ export default function Navbar() {
                 <button className="hover:text-white/60 font-bold transition-colors" onClick={() => go("/test-nivelacion")}>Test</button>
                 <button className="hover:text-white/60 font-bold transition-colors" onClick={() => go("/profile")}>Perfil</button>
                 <button className="hover:text-white/60 font-bold transition-colors" onClick={() => go("/tech")}>Tech</button>
+                <button className="hover:text-white/60 font-bold transition-colors" onClick={() => go("/ielts")}>IELTS</button>
 
                 <button
                     onClick={handleLogout}
@@ -54,6 +55,7 @@ export default function Navbar() {
                     <button onClick={() => go("/test-nivelacion")}>Test</button>
                     <button onClick={() => go("/profile")}>perfil</button>
                     <button onClick={() => go("/tech")}>Tech</button>
+                    <button onClick={() => go("/ielts")}>IELTS</button>
 
                     <button
                         onClick={handleLogout}
