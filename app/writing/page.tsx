@@ -93,7 +93,7 @@ export default function IeltsWritingPage() {
     // --- VISTA 1: SELECTOR DE CARDS ---
     if (!isStarted) {
         return (
-            <main className="min-h-screen bg-slate-50 pt-24 px-6 pb-20">
+            <main className="min-h-screen bg-gradient-to-br from-[#e0eafc] to-[#cfdef3] pt-24 px-6 pb-20">
                 <Navbar />
                 <div className="max-w-6xl mx-auto">
                     <h1 className="text-4xl font-black text-slate-900 mb-2">Writing Practice</h1>
@@ -128,7 +128,7 @@ export default function IeltsWritingPage() {
 
     // --- VISTA 2: ENTORNO DE PRÁCTICA ---
     return (
-        <main className="min-h-screen bg-slate-50 pt-24 px-4 pb-20">
+        <main className="min-h-screen bg-gradient-to-br from-[#e0eafc] to-[#cfdef3] pt-24 px-4 pb-20">
             <Navbar />
             <div className="max-w-7xl mx-auto flex flex-col gap-6 mt-6">
                 <button
