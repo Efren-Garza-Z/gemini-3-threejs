@@ -192,7 +192,7 @@ export default function IeltsWritingPage() {
                             value={text}
                             onChange={(e) => setText(e.target.value)}
                             placeholder="Write your essay here..."
-                            className="w-full h-[500px] p-8 rounded-[2rem] border-2 border-slate-200 focus:border-indigo-500 outline-none shadow-inner resize-none text-lg leading-relaxed"
+                            className="w-full h-[500px] p-8 rounded-[2rem] border-2 border-slate-200 focus:border-indigo-500 outline-none shadow-inner resize-none text-lg text-gray-900 leading-relaxed"
                         />
 
                         <button

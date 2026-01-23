@@ -11,6 +11,9 @@ export function middleware(request: NextRequest) {
         || request.nextUrl.pathname.startsWith("/profile")
         || request.nextUrl.pathname.startsWith("/tech")
         || request.nextUrl.pathname.startsWith("/test-nivelacion")
+        || request.nextUrl.pathname.startsWith("/ielts")
+        || request.nextUrl.pathname.startsWith("/writing")
+
 
     if (isAppRoute && !token) {
         return NextResponse.redirect(new URL("/", request.url))
@@ -20,5 +23,14 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-    matcher: ["/chat/:path*", "/projects/:path*", "/activities/:path*", "/test-nivelacion/:path*", "/home/:path*", "/profile/:path*", "/tech/:path*"],
+    matcher: [
+        "/chat/:path*",
+        "/projects/:path*",
+        "/activities/:path*",
+        "/test-nivelacion/:path*",
+        "/home/:path*",
+        "/profile/:path*",
+        "/ielts/:path*",
+        "/writing/:path*",
+        "/tech/:path*"],
 }
