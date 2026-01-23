@@ -87,7 +87,46 @@ export const apiService = {
         });
         if (!response.ok) throw new Error("No se pudo obtener la información del usuario");
         return await response.json();
+    },
+
+    // MÉTODO PARA PROCESAR IMAGEN + TEXTO (Multipart)
+    processFile: async (prompt: string, imagePath: string, token: string) => {
+        // 1. Convertimos la ruta de la imagen en un archivo real (Blob)
+        const imageResponse = await fetch(imagePath);
+        const imageBlob = await imageResponse.blob();
+
+        const formData = new FormData();
+        formData.append('prompt', prompt);
+        // 'file' es el nombre del campo que espera tu backend según el CURL
+        formData.append('file', imageBlob, 'task_image.png');
+
+        const response = await fetch(`${BASE_URL}/gemini/process-file`, {
+            method: 'POST',
+            headers: {
+                'accept': 'application/json',
+                'Authorization': `Bearer ${token}`
+                // Nota: No poner Content-Type manual, el navegador lo hace con el boundary correcto
+            },
+            body: formData
+        });
+
+        if (!response.ok) throw new Error("Error al procesar el archivo");
+        return await response.json(); // Retorna { task_id: "..." }
+    },
+
+    // MÉTODO PARA CONSULTAR STATUS DE ARCHIVO
+    checkFileStatus: async (taskId: string, token: string) => {
+        const response = await fetch(`${BASE_URL}/gemini/status-file/${taskId}`, {
+            method: 'GET',
+            headers: {
+                'accept': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        if (!response.ok) throw new Error("Error al consultar el estado del archivo");
+        return await response.json(); // Retorna { status: "finalizado", result: "..." }
     }
+
 };
 
 export default function getTokenFromCookie() {
