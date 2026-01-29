@@ -13,6 +13,8 @@ export function middleware(request: NextRequest) {
         || request.nextUrl.pathname.startsWith("/test-nivelacion")
         || request.nextUrl.pathname.startsWith("/ielts")
         || request.nextUrl.pathname.startsWith("/writing")
+        || request.nextUrl.pathname.startsWith("/reading")
+
 
 
     if (isAppRoute && !token) {
@@ -32,5 +34,6 @@ export const config = {
         "/profile/:path*",
         "/ielts/:path*",
         "/writing/:path*",
+        "/reading/:path*",
         "/tech/:path*"],
 }

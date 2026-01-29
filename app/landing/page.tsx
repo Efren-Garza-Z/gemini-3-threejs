@@ -140,25 +140,9 @@ export default function LandingPage() {
                         <h5 className="font-bold mb-6 text-zinc-500 uppercase text-xs tracking-widest">Company</h5>
                         <ul className="space-y-4 font-medium text-zinc-300">
                             <li><a href="#">About</a></li>
-                            <li><a href="#">Careers</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li><a href="mailto:cornbread.institute@gmail.com">Contact</a></li>
+                            <li><a href="https://www.instagram.com/web_gz?igsh=OHd0OTZ1MGN6Y3dz">Instagram</a></li>
                         </ul>
-                    </div>
-                    <div>
-                        <h5 className="font-bold mb-6 text-zinc-500 uppercase text-xs tracking-widest">Connect</h5>
-                        <ul className="space-y-4 font-medium text-zinc-300">
-                            <li><a href="#">Instagram</a></li>
-                            <li><a href="#">LinkedIn</a></li>
-                            <li><a href="#">Twitter</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-white/10 flex justify-between items-center text-zinc-500 text-sm">
-                    <p>© 2025 INSTITUTE CORN BREAD. ALL RIGHTS RESERVED.</p>
-                    <div className="flex gap-8 italic font-bold">
-                        <span>LOGO 1</span>
-                        <span>LOGO 2</span>
-                        <span>LOGO 3</span>
                     </div>
                 </div>
             </footer>

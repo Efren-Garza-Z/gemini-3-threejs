@@ -2,6 +2,54 @@
 import { useState, useEffect } from "react";
 import Navbar from "@/app/navbar/Navbar";
 import { User, Mail, Globe, Award, Settings, LogOut, ChevronRight } from "lucide-react";
+import getTokenFromCookie, { apiService } from "@/services/api";
+import {Toast} from "@/app/util/notice";
+
+const ChangePasswordModal = ({ isOpen, onClose, onConfirm }: {
+    isOpen: boolean;
+    onClose: () => void;
+    onConfirm: (password: string) => void
+}) => {
+    const [newPassword, setNewPassword] = useState("");
+
+    if (!isOpen) return null;
+
+    return (
+        <div className="fixed inset-0 bg-zinc-900/40 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+            <div className="bg-white/80 backdrop-blur-xl rounded-[2.5rem] p-8 border border-white shadow-2xl max-w-md w-full animate-in fade-in zoom-in duration-200">
+                <h3 className="text-2xl font-black text-zinc-900 mb-2">Cambiar Contraseña</h3>
+                <p className="text-zinc-600 mb-6 font-medium">Introduce tu nueva clave de acceso.</p>
+
+                <input
+                    type="password"
+                    autoFocus
+                    placeholder="Nueva contraseña"
+                    className="w-full p-4 bg-white/50 border-2 border-zinc-200 rounded-2xl focus:border-orange-400 outline-none transition-all mb-6 text-zinc-800 font-bold"
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                />
+
+                <div className="flex flex-col gap-3">
+                    <button
+                        onClick={() => {
+                            onConfirm(newPassword);
+                            setNewPassword("");
+                        }}
+                        className="w-full py-4 bg-zinc-900 text-white rounded-2xl font-black hover:bg-zinc-800 transition-all shadow-lg"
+                    >
+                        Actualizar Contraseña
+                    </button>
+                    <button
+                        onClick={onClose}
+                        className="w-full py-4 bg-transparent text-zinc-500 rounded-2xl font-bold hover:bg-zinc-100 transition-all"
+                    >
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
+};
 
 export default function ProfilePage() {
     const [user, setUser] = useState<{
@@ -10,6 +58,9 @@ export default function ProfilePage() {
         language_level: string;
         target_language: string;
     } | null>(null);
+    const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
+    const [toast, setToast] = useState<{ message: string, type: 'success' | 'error' } | null>(null);
+
 
     useEffect(() => {
         // Recuperamos la sesión que guardamos durante el login y el test
@@ -27,9 +78,38 @@ export default function ProfilePage() {
 
     if (!user) return null;
 
+    const handleConfirmPasswordChange = async (newPassword: string) => {
+        if (!newPassword || newPassword.length < 4) {
+            setToast({ message: "La contraseña es muy corta (mínimo 4)", type: 'error' });
+            return;
+        }
+
+        try {
+            const token = getTokenFromCookie();
+            if (!token || !user) return;
+
+            await apiService.updateUserPassword(user.email, newPassword, token);
+
+            // Cerramos el modal tras el éxito
+            setIsPasswordModalOpen(false);
+            setToast({ message: "¡Contraseña actualizada con éxito!", type: 'success' });
+        } catch (error) {
+            setToast({ message: "Error al actualizar la contraseña", type: 'error' });
+        }
+    };
+
+
     return (
         <main className="min-h-screen bg-gradient-to-br from-[#ffecd2] via-[#fcb69f] to-[#ff9a9e] pt-28 pb-12 px-4">
             <Navbar />
+            {/* Renderizar el Toast si existe */}
+            {toast && (
+                <Toast
+                    message={toast.message}
+                    type={toast.type}
+                    onClose={() => setToast(null)}
+                />
+            )}
 
             <div className="max-w-4xl mx-auto space-y-6">
                 {/* Cabecera de Perfil */}
@@ -61,12 +141,11 @@ export default function ProfilePage() {
                             <Settings size={20} /> Ajustes de Cuenta
                         </h3>
                         <div className="space-y-4">
-                            <button className="w-full flex items-center justify-between p-4 bg-white/40 rounded-2xl hover:bg-white/60 transition-all group">
+                            <button
+                                onClick={() => setIsPasswordModalOpen(true)}
+                                className="w-full flex items-center justify-between p-4 bg-white/40 rounded-2xl hover:bg-white/60 transition-all group"
+                            >
                                 <span className="font-bold text-zinc-700">Cambiar Contraseña</span>
-                                <ChevronRight size={18} className="text-zinc-400 group-hover:translate-x-1 transition-transform" />
-                            </button>
-                            <button className="w-full flex items-center justify-between p-4 bg-white/40 rounded-2xl hover:bg-white/60 transition-all group">
-                                <span className="font-bold text-zinc-700">Notificaciones</span>
                                 <ChevronRight size={18} className="text-zinc-400 group-hover:translate-x-1 transition-transform" />
                             </button>
                         </div>
@@ -96,6 +175,12 @@ export default function ProfilePage() {
                     Cerrar Sesión
                 </button>
             </div>
+
+            <ChangePasswordModal
+                isOpen={isPasswordModalOpen}
+                onClose={() => setIsPasswordModalOpen(false)}
+                onConfirm={handleConfirmPasswordChange}
+            />
         </main>
     );
 }

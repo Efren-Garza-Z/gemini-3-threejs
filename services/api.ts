@@ -125,7 +125,36 @@ export const apiService = {
         });
         if (!response.ok) throw new Error("Error al consultar el estado del archivo");
         return await response.json(); // Retorna { status: "finalizado", result: "..." }
-    }
+    },
+    updateUserPassword: async (email: string, newPassword: string, token: string) => {
+        // 1. Obtenemos los datos actuales del localStorage para no perder información
+        const session = localStorage.getItem("user_session");
+        if (!session) throw new Error("No hay sesión activa");
+
+        const currentUserData = JSON.parse(session);
+
+        // 2. Construimos el body tal como lo pide tu cURL
+        const updateData = {
+            email: currentUserData.email,
+            full_name: currentUserData.full_name,
+            language_level: currentUserData.language_level,
+            password: newPassword, // La nueva contraseña
+            target_language: currentUserData.target_language
+        };
+
+        const response = await fetch(`${BASE_URL}/users/email/${encodeURIComponent(email)}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'accept': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(updateData)
+        });
+
+        if (!response.ok) throw new Error("Error al actualizar la contraseña");
+        return response.json();
+    },
 
 };
 

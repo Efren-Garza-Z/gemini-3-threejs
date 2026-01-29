@@ -31,9 +31,8 @@ export default function Navbar() {
                 <button onClick={() => go("/chat")} className="hover:text-white/60 font-bold transition-colors">Chat</button>
                 <button className="hover:text-white/60 font-bold transition-colors" onClick={() => go("/activities")}>Actividades</button>
                 <button className="hover:text-white/60 font-bold transition-colors" onClick={() => go("/test-nivelacion")}>Test</button>
-                <button className="hover:text-white/60 font-bold transition-colors" onClick={() => go("/profile")}>Perfil</button>
-                <button className="hover:text-white/60 font-bold transition-colors" onClick={() => go("/tech")}>Tech</button>
                 <button className="hover:text-white/60 font-bold transition-colors" onClick={() => go("/ielts")}>IELTS</button>
+                <button className="hover:text-white/60 font-bold transition-colors" onClick={() => go("/profile")}>Perfil</button>
 
                 <button
                     onClick={handleLogout}
@@ -53,9 +52,8 @@ export default function Navbar() {
                     <button onClick={() => go("/chat")}>Chat</button>
                     <button onClick={() => go("/activities")}>Actividades</button>
                     <button onClick={() => go("/test-nivelacion")}>Test</button>
-                    <button onClick={() => go("/profile")}>perfil</button>
-                    <button onClick={() => go("/tech")}>Tech</button>
                     <button onClick={() => go("/ielts")}>IELTS</button>
+                    <button onClick={() => go("/profile")}>perfil</button>
 
                     <button
                         onClick={handleLogout}
