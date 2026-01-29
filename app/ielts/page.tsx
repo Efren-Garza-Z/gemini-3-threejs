@@ -13,7 +13,7 @@ export default function IELTSPage() {
             description: "Mejora tu comprensión lectora con textos académicos y ejercicios tipo examen.",
             icon: <BookOpen className="text-blue-500" />,
             status: "Disponible",
-            path: "/ielts/reading"
+            path: "/reading"
         },
         {
             id: "writing",

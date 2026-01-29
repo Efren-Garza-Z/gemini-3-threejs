@@ -1,7 +1,7 @@
 "use client"
 import { useState, useEffect } from "react";
 import getTokenFromCookie, { apiService } from "@/services/api";
-import { Loader2, Clock, Send, AlertCircle, BookOpen, ChevronLeft, Lightbulb } from "lucide-react";
+import { Loader2, Clock, BookOpen, ChevronLeft, Lightbulb } from "lucide-react";
 import ReactMarkdown from 'react-markdown';
 import { ieltsWritingData, WritingTask } from "@/app/ielts/data/writingTasks";
 import Navbar from "@/app/navbar/Navbar";
@@ -130,7 +130,7 @@ export default function IeltsWritingPage() {
     return (
         <main className="min-h-screen bg-gradient-to-br from-[#e0eafc] to-[#cfdef3] pt-24 px-4 pb-20">
             <Navbar />
-            <div className="max-w-7xl mx-auto flex flex-col gap-6 mt-6">
+            <div className="max-w-7xl mx-auto flex flex-col gap-6 mt-6 mt-9">
                 <button
                     onClick={() => setIsStarted(false)}
                     className="flex items-center gap-2 text-slate-500 font-bold hover:text-slate-900 transition-colors w-fit"
