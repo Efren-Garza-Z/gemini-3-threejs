@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { apiService } from "@/services/api";
 import getTokenFromCookie from "@/services/api";
 import { Loader2, Award, Terminal, Database } from "lucide-react";
-import Navbar from "@/app/navbar/Navbar";
+import Navbar from "@/components/Navbar";
 
 interface Question {
     id: number;

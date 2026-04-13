@@ -1,12 +1,12 @@
 "use client"
 import { useState, useEffect } from "react";
-import Navbar from "@/app/navbar/Navbar";
+import Navbar from "@/components/Navbar";
 import getTokenFromCookie from "@/services/api";
 import { Star } from "lucide-react";
 
 // Importamos el motor y los datos
 import { exercisesData } from "./data/exercises";
-import ExerciseEngine from "@/app/activities/ExerciseEngine";
+import ExerciseEngine from "@/components/ExerciseEngine";
 
 
 export default function ActivitiesPage() {
@@ -22,7 +22,7 @@ export default function ActivitiesPage() {
     const selectedExercise = exercisesData.find(ex => ex.id === activeTab);
 
     return (
-        <main className="min-h-screen mx-auto w-full bg-gradient-to-br from-[#ffecd2] via-[#fcb69f] to-[#ff9a9e] flex flex-col pt-24 px-4 pb-10 overflow-x-hidden">
+        <main className="min-h-screen mx-auto w-full bg-gradient-to-br from-blue-100 via-teal-50 to-green-100 flex flex-col pt-24 px-4 pb-10 overflow-x-hidden">
             <Navbar />
 
             <div className="w-full max-w-5xl mx-auto flex flex-col items-center">
@@ -43,7 +43,7 @@ export default function ActivitiesPage() {
                                     onClick={() => setActiveTab(activity.id)}
                                     className="bg-white/40 backdrop-blur-md p-8 rounded-[2.5rem] border border-white/50 shadow-xl hover:shadow-2xl hover:scale-[1.03] transition-all text-left group flex flex-col h-full"
                                 >
-                                    <div className={`bg-white/60 p-4 rounded-2xl w-fit mb-6 shadow-sm group-hover:bg-zinc-900 group-hover:text-white transition-colors`}>
+                                    <div className={`bg-white/60 p-4 rounded-2xl w-fit mb-6 shadow-sm group-hover:bg-orange-200 group-hover:text-orange-950 group-hover:text-white transition-colors`}>
                                         {/* Renderizamos el icono que viene en el objeto */}
                                         <activity.icon size={24} />
                                     </div>

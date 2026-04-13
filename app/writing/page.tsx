@@ -4,7 +4,7 @@ import getTokenFromCookie, { apiService } from "@/services/api";
 import { Loader2, Clock, BookOpen, ChevronLeft, Lightbulb } from "lucide-react";
 import ReactMarkdown from 'react-markdown';
 import { ieltsWritingData, WritingTask } from "@/app/ielts/data/writingTasks";
-import Navbar from "@/app/navbar/Navbar";
+import Navbar from "@/components/Navbar";
 
 export default function IeltsWritingPage() {
     // ESTADOS DE NAVEGACIÓN
@@ -198,7 +198,7 @@ export default function IeltsWritingPage() {
                         <button
                             onClick={handleEvaluate}
                             disabled={loading || wordCount < 10}
-                            className="w-full py-5 bg-zinc-900 text-white rounded-2xl font-black text-xl hover:bg-zinc-800 transition-all flex items-center justify-center gap-3"
+                            className="w-full py-5 bg-orange-200 text-orange-950 rounded-2xl font-black text-xl hover:bg-orange-300 transition-all flex items-center justify-center gap-3"
                         >
                             {loading ? <Loader2 className="animate-spin" /> : "Submit for Evaluation"}
                         </button>

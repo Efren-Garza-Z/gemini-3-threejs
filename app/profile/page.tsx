@@ -1,9 +1,9 @@
 "use client"
 import { useState, useEffect } from "react";
-import Navbar from "@/app/navbar/Navbar";
+import Navbar from "@/components/Navbar";
 import { User, Mail, Globe, Award, Settings, LogOut, ChevronRight } from "lucide-react";
 import getTokenFromCookie, { apiService } from "@/services/api";
-import {Toast} from "@/app/util/notice";
+import {Toast} from "@/components/Notice";
 
 const ChangePasswordModal = ({ isOpen, onClose, onConfirm }: {
     isOpen: boolean;
@@ -35,7 +35,7 @@ const ChangePasswordModal = ({ isOpen, onClose, onConfirm }: {
                             onConfirm(newPassword);
                             setNewPassword("");
                         }}
-                        className="w-full py-4 bg-zinc-900 text-white rounded-2xl font-black hover:bg-zinc-800 transition-all shadow-lg"
+                        className="w-full py-4 bg-orange-200 text-orange-950 rounded-2xl font-black hover:bg-orange-300 transition-all shadow-lg"
                     >
                         Actualizar Contraseña
                     </button>
@@ -76,7 +76,28 @@ export default function ProfilePage() {
         window.location.href = "/auth";
     };
 
-    if (!user) return null;
+    if (!user) {
+        return (
+            <main className="min-h-screen bg-gradient-to-br from-blue-100 via-teal-50 to-green-100 pt-28 pb-12 px-4 flex flex-col">
+                <Navbar />
+                <div className="flex-1 flex flex-col items-center justify-center">
+                    <div className="bg-white/40 backdrop-blur-md rounded-[3rem] p-12 text-center shadow-xl max-w-lg border border-white/50 animate-in fade-in zoom-in duration-500">
+                        <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center text-orange-400 shadow-lg mx-auto mb-6">
+                            <User size={40} />
+                        </div>
+                        <h2 className="text-3xl font-black text-zinc-900 mb-4 tracking-tight">Casi lo logras...</h2>
+                        <p className="text-zinc-600 mb-8 font-medium">Aún no accedes a tu cuenta. Entra ahora para ver tu progreso educativo.</p>
+                        <button
+                            onClick={() => window.location.href = '/auth'}
+                            className="bg-orange-200 text-orange-950 px-8 py-4 rounded-2xl font-black hover:bg-orange-300 transition-all shadow-lg w-full flex items-center justify-center gap-2"
+                        >
+                            Iniciar Sesión o Registrarse <ChevronRight size={18} />
+                        </button>
+                    </div>
+                </div>
+            </main>
+        );
+    }
 
     const handleConfirmPasswordChange = async (newPassword: string) => {
         if (!newPassword || newPassword.length < 4) {
@@ -100,7 +121,7 @@ export default function ProfilePage() {
 
 
     return (
-        <main className="min-h-screen bg-gradient-to-br from-[#ffecd2] via-[#fcb69f] to-[#ff9a9e] pt-28 pb-12 px-4">
+        <main className="min-h-screen bg-gradient-to-br from-blue-100 via-teal-50 to-green-100 pt-28 pb-12 px-4">
             <Navbar />
             {/* Renderizar el Toast si existe */}
             {toast && (
@@ -114,7 +135,7 @@ export default function ProfilePage() {
             <div className="max-w-4xl mx-auto space-y-6">
                 {/* Cabecera de Perfil */}
                 <div className="bg-white/40 backdrop-blur-md rounded-[3rem] p-8 md:p-12 border border-white/50 shadow-xl flex flex-col md:flex-row items-center gap-8">
-                    <div className="w-32 h-32 bg-zinc-900 rounded-full flex items-center justify-center text-white shadow-2xl">
+                    <div className="w-32 h-32 bg-white rounded-full flex items-center justify-center text-orange-400 shadow-2xl">
                         <User size={60} />
                     </div>
                     <div className="text-center md:text-left flex-1">

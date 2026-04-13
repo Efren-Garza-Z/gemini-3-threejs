@@ -75,7 +75,7 @@ cd gemini-3-threejs
 ```bash
 npm install
 # or
-yarn install
+bun install
 ```
 
 3. Set up environment variables:
@@ -85,7 +85,7 @@ Create a `.env.local` file in the root directory with required API endpoints.
 ```bash
 npm run dev
 # or
-yarn dev
+bun dev
 ```
 
 5. Open [http://localhost:3000](http://localhost:3000) in your browser

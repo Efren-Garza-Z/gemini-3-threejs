@@ -16,7 +16,7 @@ export default function AuthPage() {
     };
 
     return (
-        <main className="min-h-screen bg-gradient-to-br from-[#ffecd2] via-[#fcb69f] to-[#ff9a9e] flex items-center justify-center p-6">
+        <main className="min-h-screen bg-gradient-to-br from-blue-100 via-teal-50 to-green-100 flex items-center justify-center p-6">
             {/* Aquí llamamos al componente */}
             <AuthForm onLoginSuccess={handleSuccess} />
         </main>

@@ -1,0 +1,23 @@
+[
+  { "english": "accept", "spanish": "aceptar", "past": "accepted", "participle": "accepted", "type": "regular" },
+  { "english": "act", "spanish": "actuar", "past": "acted", "participle": "acted", "type": "regular" },
+  { "english": "bake", "spanish": "hornear", "past": "baked", "participle": "baked", "type": "regular" },
+  { "english": "call", "spanish": "llamar", "past": "called", "participle": "called", "type": "regular" },
+  { "english": "decide", "spanish": "decidir", "past": "decided", "participle": "decided", "type": "regular" },
+  { "english": "earn", "spanish": "ganar", "past": "earned", "participle": "earned", "type": "regular" },
+  { "english": "fix", "spanish": "arreglar", "past": "fixed", "participle": "fixed", "type": "regular" },
+  { "english": "guess", "spanish": "adivinar", "past": "guessed", "participle": "guessed", "type": "regular" },
+  { "english": "happen", "spanish": "suceder", "past": "happened", "participle": "happened", "type": "regular" },
+  { "english": "jump", "spanish": "saltar", "past": "jumped", "participle": "jumped", "type": "regular" },
+  
+  { "english": "be", "spanish": "ser/estar", "past": "was/were", "participle": "been", "type": "irregular" },
+  { "english": "begin", "spanish": "empezar", "past": "began", "participle": "begun", "type": "irregular" },
+  { "english": "break", "spanish": "romper", "past": "broke", "participle": "broken", "type": "irregular" },
+  { "english": "choose", "spanish": "elegir", "past": "chose", "participle": "chosen", "type": "irregular" },
+  { "english": "do", "spanish": "hacer", "past": "did", "participle": "done", "type": "irregular" },
+  { "english": "eat", "spanish": "comer", "past": "ate", "participle": "eaten", "type": "irregular" },
+  { "english": "fall", "spanish": "caer", "past": "fell", "participle": "fallen", "type": "irregular" },
+  { "english": "give", "spanish": "dar", "past": "gave", "participle": "given", "type": "irregular" },
+  { "english": "know", "spanish": "saber/conocer", "past": "knew", "participle": "known", "type": "irregular" },
+  { "english": "see", "spanish": "ver", "past": "saw", "participle": "seen", "type": "irregular" }
+]

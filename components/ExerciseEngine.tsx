@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { apiService } from "@/services/api";
 import { Loader2, CheckCircle2, ArrowLeft, BookOpen } from "lucide-react";
 import ReactMarkdown from 'react-markdown';
-import { ExerciseData } from "./data/exercises";
+import { ExerciseData } from "@/app/activities/data/exercises";
 
 interface Props {
     data: ExerciseData;
@@ -40,7 +40,7 @@ export default function ExerciseEngine({ data, token, onBack }: Props) {
             border: "focus:border-purple-400"
         },
         zinc: {
-            bg: "bg-zinc-900",
+            bg: "bg-orange-200 text-orange-950",
             text: "text-zinc-900",
             border: "focus:border-zinc-400"
         },
@@ -162,18 +162,21 @@ export default function ExerciseEngine({ data, token, onBack }: Props) {
                     <h2 className="text-2xl font-black text-zinc-800">Lección: {data.grammarTip.title}</h2>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="bg-white/30 p-5 rounded-2xl border border-white/20">
-                        <p className={`font-bold ${theme.text} mb-1 italic`}>Estructura:</p>
-                        <p className="text-sm text-zinc-800 font-bold">{data.grammarTip.structure}</p>
-                        {data.grammarTip.extraNote && <p className="text-xs text-zinc-600 mt-2 italic">* {data.grammarTip.extraNote}</p>}
-                    </div>
-                    <div className="bg-white/30 p-5 rounded-2xl border border-white/20">
-                        <p className={`font-bold ${theme.text} mb-1 italic`}>Ejemplos:</p>
-                        {data.grammarTip.examples.map((ex, i) => (
-                            <p key={i} className="text-sm text-zinc-700">"{ex}"</p>
-                        ))}
-                    </div>
+                {/* Contenedor principal de la Guía */}
+                <div className="prose prose-lg prose-zinc max-w-none bg-white/30 p-6 md:p-8 rounded-[2rem] border border-white/20 shadow-sm">
+                    <ReactMarkdown>
+                        {data.grammarTip.markdownGuide || `
+El **${data.grammarTip.title}** ${data.grammarTip.description.toLowerCase()}
+
+### 🧩 Estructura
+\`${data.grammarTip.structure}\`
+
+${data.grammarTip.extraNote ? `> 💡 **Nota especial:** ${data.grammarTip.extraNote}` : ""}
+
+### 📝 Ejemplos de Uso
+${data.grammarTip.examples.map(ex => `- *${ex}*`).join('\n')}
+                        `}
+                    </ReactMarkdown>
                 </div>
             </section>
 
