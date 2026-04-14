@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import getTokenFromCookie from "@/services/api";
-import { Star } from "lucide-react";
+import {CheckCircle, Star} from "lucide-react";
 
 // Importamos el motor y los datos
 import { exercisesData } from "./data/exercises";
@@ -12,10 +12,14 @@ import ExerciseEngine from "@/components/ExerciseEngine";
 export default function ActivitiesPage() {
     const [activeTab, setActiveTab] = useState<string | null>(null);
     const [token, setToken] = useState<string | null>(null);
+    const [history, setHistory] = useState<Record<string, any>>({});
+
 
     useEffect(() => {
         const savedToken: string | undefined = getTokenFromCookie();
         setToken(savedToken ?? null);
+        const savedHistory = localStorage.getItem("activities_history");
+        if (savedHistory) setHistory(JSON.parse(savedHistory));
     }, []);
 
     // Buscamos los datos del ejercicio seleccionado
@@ -37,30 +41,40 @@ export default function ActivitiesPage() {
                         </header>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-4">
-                            {exercisesData.map((activity) => (
-                                <button
-                                    key={activity.id}
-                                    onClick={() => setActiveTab(activity.id)}
-                                    className="bg-white/40 backdrop-blur-md p-8 rounded-[2.5rem] border border-white/50 shadow-xl hover:shadow-2xl hover:scale-[1.03] transition-all text-left group flex flex-col h-full"
-                                >
-                                    <div className={`bg-white/60 p-4 rounded-2xl w-fit mb-6 shadow-sm group-hover:bg-orange-200 group-hover:text-orange-950 group-hover:text-white transition-colors`}>
-                                        {/* Renderizamos el icono que viene en el objeto */}
-                                        <activity.icon size={24} />
-                                    </div>
-                                    <div className="mb-4">
-                                        <span className="text-xs font-black uppercase tracking-widest text-orange-600 bg-orange-100 px-3 py-1 rounded-full">
+                            {exercisesData.map((activity) => {
+                                const userStats = history[activity.id];
+                                return (
+                                    <button
+                                        key={activity.id}
+                                        onClick={() => setActiveTab(activity.id)}
+                                        className="bg-white/40 backdrop-blur-md p-8 rounded-[2.5rem] border border-white/50 shadow-xl hover:shadow-2xl hover:scale-[1.03] transition-all text-left group flex flex-col h-full"
+                                    >
+                                        <div
+                                            className={`bg-white/60 p-4 rounded-2xl w-fit mb-6 shadow-sm group-hover:bg-orange-200 group-hover:text-orange-950 group-hover:text-white transition-colors`}>
+                                            {/* Renderizamos el icono que viene en el objeto */}
+                                            <activity.icon size={24}/>
+                                        </div>
+                                        <div className="mb-4">
+                                        <span
+                                            className="text-xs font-black uppercase tracking-widest text-orange-600 bg-orange-100 px-3 py-1 rounded-full">
                                             {activity.level}
                                         </span>
-                                    </div>
-                                    <h3 className="text-2xl font-black text-zinc-900 mb-2">{activity.title}</h3>
-                                    <p className="text-zinc-600 font-medium leading-tight mb-6 flex-1">
-                                        {activity.description}
-                                    </p>
-                                    <div className="flex items-center gap-2 font-bold text-zinc-800">
-                                        Empezar ahora <Star size={16} className="fill-current" />
-                                    </div>
-                                </button>
-                            ))}
+                                        </div>
+                                        {userStats && (
+                                            <div className="mb-2 flex items-center gap-1 text-sm font-bold text-teal-600">
+                                                <CheckCircle size={14} />
+                                                Último puntaje: {userStats.score}/10
+                                            </div>
+                                        )}
+                                        <h3 className="text-2xl font-black text-zinc-900 mb-2">{activity.title}</h3>
+                                        <p className="text-zinc-600 font-medium leading-tight mb-6 flex-1">
+                                            {activity.description}
+                                        </p>
+                                        <div className="flex items-center gap-2 font-bold text-zinc-800">
+                                            Empezar ahora <Star size={16} className="fill-current"/>
+                                        </div>
+                                    </button>)
+                            })}
                         </div>
                     </div>
                 ) : (
