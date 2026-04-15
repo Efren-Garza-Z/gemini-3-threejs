@@ -2,21 +2,57 @@
 "use client"
 import { useState, useEffect } from "react";
 import { apiService } from "@/services/api";
-import { Loader2, CheckCircle2, ArrowLeft, BookOpen } from "lucide-react";
+import {Loader2, CheckCircle2, ArrowLeft, BookOpen, Sparkles} from "lucide-react";
 import ReactMarkdown from 'react-markdown';
-import { ExerciseData } from "./data/exercises";
+import { ExerciseData } from "@/app/activities/data/exercises";
 
 interface Props {
     data: ExerciseData;
-    token: string | null;
     onBack: () => void;
 }
 
-export default function ExerciseEngine({ data, token, onBack }: Props) {
+export default function ExerciseEngine({ data, onBack }: Props) {
     const [answers, setAnswers] = useState<{ [key: string]: string }>({});
     const [taskId, setTaskId] = useState<string | null>(null);
     const [status, setStatus] = useState<string>("");
     const [result, setResult] = useState<string | null>(null);
+    const [localResults, setLocalResults] = useState<{id: string, isCorrect: boolean}[] | null>(null);
+    const [showAI, setShowAI] = useState(false);
+
+    const handleLocalValidation = () => {
+        const results = data.sentences.map(s => {
+            const userAns = (answers[s.id] || "").trim().toLowerCase();
+            const correctAns = s.correctAnswer.toLowerCase();
+
+            // Validación simple: ¿Es igual?
+            // Para un 90% de similitud podrías usar algoritmos como Levenshtein
+            return {
+                id: s.id,
+                isCorrect: userAns === correctAns
+            };
+        });
+
+        setLocalResults(results);
+
+        // Gamificación: Guardar score en localStorage
+        const score = results.filter(r => r.isCorrect).length;
+        const history = JSON.parse(localStorage.getItem("activities_history") || "{}");
+        history[data.id] = {
+            score,
+            date: new Date().toISOString(),
+            completed: true
+        };
+        localStorage.setItem("activities_history", JSON.stringify(history));
+    };
+
+    function isSimilar(str1: string, str2: string): boolean {
+        // Implementación rápida de distancia simplificada
+        const s1 = str1.toLowerCase().trim();
+        const s2 = str2.toLowerCase().trim();
+        if (s1 === s2) return true;
+        // Aquí puedes agregar lógica para permitir 1 caracter de diferencia
+        return false;
+    }
 
     const colorMap: Record<string, { bg: string, text: string, border: string }> = {
         orange: {
@@ -40,7 +76,7 @@ export default function ExerciseEngine({ data, token, onBack }: Props) {
             border: "focus:border-purple-400"
         },
         zinc: {
-            bg: "bg-zinc-900",
+            bg: "bg-orange-200 text-orange-950",
             text: "text-zinc-900",
             border: "focus:border-zinc-400"
         },
@@ -103,8 +139,7 @@ export default function ExerciseEngine({ data, token, onBack }: Props) {
         if (taskId && (status === "pendiente" || status === "en_proceso")) {
             interval = setInterval(async () => {
                 try {
-                    if (!token) return;
-                    const res = await apiService.checkStatus(taskId, token);
+                    const res = await apiService.checkStatus(taskId);
                     setStatus(res.status);
                     if (res.status === "finalizado") {
                         setResult(res.result);
@@ -117,7 +152,7 @@ export default function ExerciseEngine({ data, token, onBack }: Props) {
             }, 3000);
         }
         return () => clearInterval(interval);
-    }, [taskId, status, token]);
+    }, [taskId, status]);
 
     const handleEvaluate = async () => {
         setStatus("pendiente");
@@ -131,7 +166,6 @@ export default function ExerciseEngine({ data, token, onBack }: Props) {
         //const userResponses = Object.entries(answers).map(([id, val]) => `Space ${id}: ${val}`).join(", ");
 
         try {
-            if (!token) return;
             const fullPrompt = `
             ${data.aiPrompt}
             
@@ -142,7 +176,7 @@ export default function ExerciseEngine({ data, token, onBack }: Props) {
             1. Check if the answer in brackets [] is grammatically correct for the context.
             2. Provide a brief explanation in Spanish about any mistakes or why it is correct.
         `.trim();
-            const res = await apiService.processExercise(fullPrompt, token);
+            const res = await apiService.processExercise(fullPrompt);
             setTaskId(res.task_id);
         } catch (error) { setStatus("error"); }
     };
@@ -162,18 +196,22 @@ export default function ExerciseEngine({ data, token, onBack }: Props) {
                     <h2 className="text-2xl font-black text-zinc-800">Lección: {data.grammarTip.title}</h2>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="bg-white/30 p-5 rounded-2xl border border-white/20">
-                        <p className={`font-bold ${theme.text} mb-1 italic`}>Estructura:</p>
-                        <p className="text-sm text-zinc-800 font-bold">{data.grammarTip.structure}</p>
-                        {data.grammarTip.extraNote && <p className="text-xs text-zinc-600 mt-2 italic">* {data.grammarTip.extraNote}</p>}
-                    </div>
-                    <div className="bg-white/30 p-5 rounded-2xl border border-white/20">
-                        <p className={`font-bold ${theme.text} mb-1 italic`}>Ejemplos:</p>
-                        {data.grammarTip.examples.map((ex, i) => (
-                            <p key={i} className="text-sm text-zinc-700">"{ex}"</p>
-                        ))}
-                    </div>
+                {/* Contenedor principal de la Guía */}
+                {/* Contenedor principal de la Guía */}
+                <div className="prose prose-lg prose-zinc max-w-none bg-white/30 p-6 md:p-8 rounded-[2rem] border border-white/20 shadow-sm w-full">
+                    <ReactMarkdown>
+                        {data.grammarTip.markdownGuide || `
+El **${data.grammarTip.title}** ${data.grammarTip.description.toLowerCase()}
+
+### **🧩 Estructura**
+\`${data.grammarTip.structure}\`
+
+${data.grammarTip.extraNote ? `> 💡 **Nota especial:** ${data.grammarTip.extraNote}` : ""}
+
+### **📝 Ejemplos de Uso**
+${data.grammarTip.examples.map(ex => `* ${ex}`).join('\n')}
+        `}
+                    </ReactMarkdown>
                 </div>
             </section>
 
@@ -182,31 +220,67 @@ export default function ExerciseEngine({ data, token, onBack }: Props) {
                 <h3 className="text-3xl font-black text-zinc-800 mb-8 tracking-tight text-center italic">{data.description}</h3>
 
                 <div className="space-y-6 text-lg text-zinc-800 leading-relaxed bg-white/10 p-6 rounded-3xl">
-                    {data.sentences.map((s) => (
-                        <p key={s.id}>
-                            {s.textBefore}
-                            <input
-                                type="text"
-                                onChange={(e) => handleInputChange(s.id, e.target.value)}
-                                placeholder={`(${s.id})`}
-                                className={`mx-2 bg-white/60 border-b-2 border-zinc-400 outline-none px-2 w-36 text-center ${theme.border} focus:bg-white transition-all rounded-t-lg text-base font-bold text-zinc-900`}
-                            />
-                            {s.textAfter} <span className="text-zinc-500 text-sm italic">({s.hint})</span>
-                        </p>
-                    ))}
+                    {data.sentences.map((s) => {
+                        const result = localResults?.find(r => r.id === s.id);
+                        return (
+                            <div key={s.id} className="flex flex-wrap items-baseline gap-1">
+                                <p>
+                                    {s.textBefore}
+                                    <input
+                                        type="text"
+                                        onChange={(e) => handleInputChange(s.id, e.target.value)}
+                                        placeholder={`(${s.id})`}
+                                        className={`mx-2 bg-white/60 border-b-2 outline-none px-2 w-36 text-center transition-all rounded-t-lg text-base font-bold text-zinc-900 
+                            ${localResults
+                                            ? (result?.isCorrect ? 'border-green-500 bg-green-50' : 'border-red-500 bg-red-50')
+                                            : `border-zinc-400 ${theme.border} focus:bg-white`
+                                        }`}
+                                    />
+                                    {s.textAfter}
+                                    <span className="text-zinc-500 text-sm italic ml-1">({s.hint})</span>
+                                </p>
+                                {/* Feedback de respuesta correcta abajo si falló */}
+                                {localResults && !result?.isCorrect && (
+                                    <span className="w-full text-xs text-red-600 font-bold ml-2 animate-in fade-in slide-in-from-left-2">
+                        Correct: {s.correctAnswer}
+                    </span>
+                                )}
+                            </div>
+                        );
+                    })}
                 </div>
 
-                <button
-                    onClick={handleEvaluate}
-                    disabled={status === "pendiente" || status === "en_proceso"}
-                    className={`mt-12  md:w-auto ${theme.bg} text-white px-12 py-4 rounded-2xl font-black  transition-all flex items-center justify-center gap-3 shadow-lg hover:scale-105 active:scale-95`}
-                >
-                    {status === "pendiente" || status === "en_proceso" ? <Loader2 className="animate-spin" /> : "Verificar Respuestas"}
-                </button>
+                <div className="flex flex-col md:flex-row gap-4 mt-8">
+                    {/* Botón de Validar Local - Recuperamos el color del tema */}
+                    <button
+                        onClick={handleLocalValidation}
+                        className={`${theme.bg} text-white px-8 py-4 rounded-2xl font-black flex items-center justify-center gap-3 shadow-lg hover:scale-105 active:scale-95 transition-all`}
+                    >
+                        Validar mis respuestas
+                    </button>
+
+                    {/* Botón de IA - Forzamos la ejecución de handleEvaluate */}
+                    {localResults && (
+                        <button
+                            onClick={() => {
+                                setShowAI(true);
+                                handleEvaluate(); // Quitamos el 'if (status === "")' para asegurar que se ejecute
+                            }}
+                            disabled={status === "pendiente" || status === "en_proceso"}
+                            className="bg-zinc-800 text-white px-8 py-4 rounded-2xl font-black flex items-center justify-center gap-3 shadow-lg hover:scale-105 active:scale-95 transition-all"
+                        >
+                            {status === "pendiente" || status === "en_proceso"
+                                ? <Loader2 className="animate-spin" />
+                                : <><Sparkles size={18} /> Obtener Feedback IA</>
+                            }
+                        </button>
+                    )}
+                </div>
             </section>
 
             {/* Result Section */}
-            {status !== "" && (
+
+            {status !== "" && showAI &&(
                 <section className="animate-in slide-in-from-top-4 duration-500">
                     <div className="bg-white/60 backdrop-blur-lg rounded-[32px] p-8 border border-white/50 shadow-2xl">
                         <div className="flex items-center gap-3 mb-4">

@@ -4,7 +4,7 @@ import getTokenFromCookie, { apiService } from "@/services/api";
 import { Loader2, Clock, BookOpen, ChevronLeft, Lightbulb } from "lucide-react";
 import ReactMarkdown from 'react-markdown';
 import { ieltsWritingData, WritingTask } from "@/app/ielts/data/writingTasks";
-import Navbar from "@/app/navbar/Navbar";
+import Navbar from "@/components/Navbar";
 
 export default function IeltsWritingPage() {
     // ESTADOS DE NAVEGACIÓN
@@ -63,7 +63,7 @@ export default function IeltsWritingPage() {
                 res = await apiService.processFile(prompt, selectedTask.image, token);
                 setIsFileType(true);
             } else {
-                res = await apiService.processExercise(prompt, token);
+                res = await apiService.processExercise(prompt);
                 setIsFileType(false);
             }
             if (res.task_id) setTaskId(res.task_id);
@@ -78,7 +78,7 @@ export default function IeltsWritingPage() {
         let interval: any;
         if (taskId && (status === "pendiente" || status === "en_proceso")) {
             interval = setInterval(async () => {
-                const res = isFileType ? await apiService.checkFileStatus(taskId, token!) : await apiService.checkStatus(taskId, token!);
+                const res = isFileType ? await apiService.checkFileStatus(taskId, token!) : await apiService.checkStatus(taskId);
                 setStatus(res.status);
                 if (res.status === "finalizado") {
                     setResult(res.result);
@@ -198,7 +198,7 @@ export default function IeltsWritingPage() {
                         <button
                             onClick={handleEvaluate}
                             disabled={loading || wordCount < 10}
-                            className="w-full py-5 bg-zinc-900 text-white rounded-2xl font-black text-xl hover:bg-zinc-800 transition-all flex items-center justify-center gap-3"
+                            className="w-full py-5 bg-orange-200 text-orange-950 rounded-2xl font-black text-xl hover:bg-orange-300 transition-all flex items-center justify-center gap-3"
                         >
                             {loading ? <Loader2 className="animate-spin" /> : "Submit for Evaluation"}
                         </button>

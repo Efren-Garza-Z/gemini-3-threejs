@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { apiService } from "@/services/api";
 import getTokenFromCookie from "@/services/api";
 import { Loader2, CheckCircle2, Award, Sparkles } from "lucide-react";
-import Navbar from "@/app/navbar/Navbar";
+import Navbar from "@/components/Navbar";
 
 interface Question {
     id: number;
@@ -24,15 +24,15 @@ export default function LevelTestPage() {
         const t = getTokenFromCookie();
         if (t) {
             setToken(t);
-            generateTest(t);
+            generateTest();
         }
     }, []);
 
     // 1. GENERAR EL TEST
-    const generateTest = async (t: string) => {
+    const generateTest = async () => {
         const prompt = `Generate a 48-question English placement test. 8 questions each for A1, A2, B1, B2, C1. Return ONLY a JSON object: { "questions": [{ "id": 1, "level": "A1", "question": "...", "options": ["...", "..."], "correct_index": 0 }] }`;
         try {
-            const data = await apiService.processExercise(prompt, t);
+            const data = await apiService.processExercise(prompt);
             setTaskId(data.task_id);
             setStatus("pendiente_preguntas");
         } catch (err) { setStatus("error"); }
@@ -46,7 +46,7 @@ export default function LevelTestPage() {
             interval = setInterval(async () => {
                 if (!token) return;
                 try {
-                    const data = await apiService.checkStatus(taskId, token);
+                    const data = await apiService.checkStatus(taskId);
 
                     if (data.status === "finalizado") {
                         // Limpieza robusta con Regex para extraer solo el contenido entre llaves
@@ -125,7 +125,7 @@ export default function LevelTestPage() {
 
         try {
             if (!token) return;
-            const data = await apiService.processExercise(promptEval, token);
+            const data = await apiService.processExercise(promptEval);
             setTaskId(data.task_id);
         } catch (err) { setStatus("error"); }
     };
@@ -134,7 +134,7 @@ export default function LevelTestPage() {
 
     if (status === "generando" || status === "pendiente_preguntas") {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-[#ffecd2] via-[#fcb69f] to-[#ff9a9e] flex flex-col items-center justify-center p-6 text-center">
+            <div className="min-h-screen bg-gradient-to-br from-blue-100 via-teal-50 to-green-100 flex flex-col items-center justify-center p-6 text-center">
                 <Navbar/>
                 <Loader2 size={48} className="text-white animate-spin mb-4" />
                 <h2 className="text-3xl font-black text-white">IA creando tu examen...</h2>
@@ -145,7 +145,7 @@ export default function LevelTestPage() {
 
     if (status === "finalizado") {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-[#ffecd2] via-[#fcb69f] to-[#ff9a9e] flex items-center justify-center p-4">
+            <div className="min-h-screen bg-gradient-to-br from-blue-100 via-teal-50 to-green-100 flex items-center justify-center p-4">
                 <Navbar/>
                 <div className="max-w-xl w-full bg-white rounded-[3rem] p-12 shadow-2xl text-center border-t-8 border-orange-400 animate-in zoom-in duration-300">
                     <Award size={80} className="mx-auto text-orange-400 mb-6" />
@@ -157,7 +157,7 @@ export default function LevelTestPage() {
                     <p className="text-zinc-700 leading-relaxed mb-8 font-medium italic">"{finalResult.feedback}"</p>
                     <button
                         onClick={() => window.location.href = "/home"}
-                        className="w-full bg-zinc-900 text-white py-5 rounded-2xl font-black text-lg hover:bg-zinc-800 transition-all shadow-lg active:scale-95"
+                        className="w-full bg-orange-200 text-orange-950 py-5 rounded-2xl font-black text-lg hover:bg-orange-300 transition-all shadow-lg active:scale-95"
                     >
                         Comenzar mi viaje
                     </button>
@@ -169,7 +169,7 @@ export default function LevelTestPage() {
     const isTestIncomplete = Object.keys(userAnswers).length < 48;
 
     return (
-        <main className="min-h-screen bg-gradient-to-br from-[#ffecd2] via-[#fcb69f] to-[#ff9a9e] pt-24 pb-20 px-4">
+        <main className="min-h-screen bg-gradient-to-br from-blue-100 via-teal-50 to-green-100 pt-24 pb-20 px-4">
             <Navbar/>
             <div className="max-w-3xl mx-auto space-y-8">
                 <div className="flex justify-between items-center bg-white/80 backdrop-blur-md p-6 rounded-3xl shadow-xl sticky top-24 z-10 border border-white/50">
@@ -194,7 +194,7 @@ export default function LevelTestPage() {
                                         onClick={() => setUserAnswers({ ...userAnswers, [q.id]: i })}
                                         className={`w-full text-left p-5 rounded-2xl border-2 transition-all font-bold ${
                                             userAnswers[q.id] === i
-                                                ? 'border-zinc-900 bg-zinc-900 text-white shadow-lg'
+                                                ? 'border-orange-400 bg-orange-200 text-orange-950 shadow-lg'
                                                 : 'border-zinc-100 bg-white/50 hover:border-orange-200 text-zinc-700'
                                         }`}
                                     >
@@ -212,7 +212,7 @@ export default function LevelTestPage() {
                     className={`w-full font-black py-6 rounded-[2rem] shadow-2xl transition-all text-xl active:scale-95 ${
                         isTestIncomplete
                             ? 'bg-zinc-300 cursor-not-allowed text-zinc-500'
-                            : 'bg-zinc-900 text-white hover:bg-zinc-800'
+                            : 'bg-orange-200 text-orange-950 hover:bg-orange-300'
                     }`}
                 >
                     {status === "evaluando" ? <Loader2 className="animate-spin mx-auto" /> :

@@ -10,7 +10,7 @@ import {
     RefreshCw,
     Layers,
     Activity,
-    Shuffle, Sparkles, Calendar, GitBranch, TrendingUp
+    Shuffle, Sparkles, Calendar, GitBranch, TrendingUp, MessageSquare
 } from "lucide-react";
 
 export interface ExerciseData {
@@ -26,12 +26,14 @@ export interface ExerciseData {
         structure: string;
         examples: string[];
         extraNote?: string;
+        markdownGuide?: string;
     };
     sentences: {
         id: string;
         textBefore: string;
         textAfter: string;
         hint: string;
+        correctAnswer: string;
     }[];
     aiPrompt: string;
 }
@@ -52,16 +54,16 @@ export const exercisesData: ExerciseData[] = [
             extraNote: "Añade -s/es para He, She, It."
         },
         sentences: [
-            { id: "1", textBefore: "Every day, Mark", textAfter: "up early.", hint: "wake" },
-            { id: "2", textBefore: "He", textAfter: "his teeth and goes to the kitchen.", hint: "brush" },
-            { id: "3", textBefore: "His parents", textAfter: "breakfast for the whole family.", hint: "cook" },
-            { id: "4", textBefore: "I", textAfter: "fresh coffee, Mark says.", hint: "love" },
-            { id: "5", textBefore: "After breakfast, he", textAfter: "to the bus station.", hint: "walk" },
-            { id: "6", textBefore: "The bus", textAfter: "at exactly 8:00 AM.", hint: "arrive" },
-            { id: "7", textBefore: "At work, he", textAfter: "many emails.", hint: "write" },
-            { id: "8", textBefore: "His colleagues", textAfter: "him with difficult tasks.", hint: "help" },
-            { id: "9", textBefore: "In the evening, they", textAfter: "soccer in the park.", hint: "play" },
-            { id: "10", textBefore: "Finally, Mark", textAfter: "to bed at 10:00 PM.", hint: "go" }
+            { id: "1", textBefore: "Every day, Mark", textAfter: "up early.", hint: "wake", correctAnswer: "wakes" },
+            { id: "2", textBefore: "He", textAfter: "his teeth and goes to the kitchen.", hint: "brush", correctAnswer: "brushes" },
+            { id: "3", textBefore: "His parents", textAfter: "breakfast for the whole family.", hint: "cook", correctAnswer: "cook" },
+            { id: "4", textBefore: "I", textAfter: "fresh coffee, Mark says.", hint: "love", correctAnswer: "love" },
+            { id: "5", textBefore: "After breakfast, he", textAfter: "to the bus station.", hint: "walk", correctAnswer: "walks" },
+            { id: "6", textBefore: "The bus", textAfter: "at exactly 8:00 AM.", hint: "arrive", correctAnswer: "arrives" },
+            { id: "7", textBefore: "At work, he", textAfter: "many emails.", hint: "write", correctAnswer: "writes" },
+            { id: "8", textBefore: "His colleagues", textAfter: "him with difficult tasks.", hint: "help", correctAnswer: "help" },
+            { id: "9", textBefore: "In the evening, they", textAfter: "soccer in the park.", hint: "play", correctAnswer: "play" },
+            { id: "10", textBefore: "Finally, Mark", textAfter: "to bed at 10:00 PM.", hint: "go", correctAnswer: "goes" }
         ],
         aiPrompt: "Evaluate the following English exercise in Simple Present. Check for correct third-person conjugation (-s/-es)."
     },
@@ -76,21 +78,25 @@ export const exercisesData: ExerciseData[] = [
             title: "Present Continuous",
             description: "Para acciones que ocurren en este preciso instante.",
             structure: "Subject + am/is/are + verb-ING",
-            examples: ["I am eating an apple", "They are playing"],
+            examples: [
+                "I am eating an apple right now",
+                "They are playing soccer in the park",
+                "She is not listening to music",
+                "Are you working at the moment?"
+            ],
         },
         sentences: [
-            { id: "1", textBefore: "Right now, Mark", textAfter: "TV in the living room.", hint: "watch" },
-            { id: "2", textBefore: "He", textAfter: "a cup of coffee.", hint: "drink" },
-            { id: "3", textBefore: "His parents", textAfter: "breakfast in the kitchen.", hint: "prepare" },
-            { id: "4", textBefore: "Mark", textAfter: "to his best friend on the phone.", hint: "talk" },
-            { id: "5", textBefore: "Outside, people", textAfter: "for the bus.", hint: "wait" },
-            { id: "6", textBefore: "The dog", textAfter: "in the garden.", hint: "run" },
-            { id: "7", textBefore: "At work, his colleagues", textAfter: "on a new project.", hint: "work" },
-            { id: "8", textBefore: "Right now, the children", textAfter: "soccer in the park.", hint: "play" },
-            { id: "9", textBefore: "Mark", textAfter: "an important email.", hint: "write" },
-            { id: "10", textBefore: "At the moment, he", textAfter: "about his next vacation.", hint: "think" }
-        ]
-        ,
+            { id: "1", textBefore: "Right now, Mark", textAfter: "TV in the living room.", hint: "watch", correctAnswer: "is watching" },
+            { id: "2", textBefore: "He", textAfter: "a cup of coffee.", hint: "drink", correctAnswer: "is drinking" },
+            { id: "3", textBefore: "His parents", textAfter: "breakfast in the kitchen.", hint: "prepare", correctAnswer: "are preparing" },
+            { id: "4", textBefore: "Mark", textAfter: "to his best friend on the phone.", hint: "talk", correctAnswer: "is talking" },
+            { id: "5", textBefore: "Outside, people", textAfter: "for the bus.", hint: "wait", correctAnswer: "are waiting" },
+            { id: "6", textBefore: "The dog", textAfter: "in the garden.", hint: "run", correctAnswer: "is running" },
+            { id: "7", textBefore: "At work, his colleagues", textAfter: "on a new project.", hint: "work", correctAnswer: "are working" },
+            { id: "8", textBefore: "Right now, the children", textAfter: "soccer in the park.", hint: "play", correctAnswer: "are playing" },
+            { id: "9", textBefore: "Mark", textAfter: "an important email.", hint: "write", correctAnswer: "is writing" },
+            { id: "10", textBefore: "At the moment, he", textAfter: "about his next vacation.", hint: "think", correctAnswer: "is thinking" }
+        ],
         aiPrompt: "Evaluate the following English exercise in Present Continuous. Check for correct use of auxiliary verb (am/is/are) and -ing suffix."
     },
     {
@@ -104,19 +110,24 @@ export const exercisesData: ExerciseData[] = [
             title: "Present Perfect",
             description: "Para acciones que ocurrieron en el pasado pero son relevantes ahora.",
             structure: "Subject + have/has + past participle",
-            examples: ["I have visited Paris", "She has finished her homework"],
+            examples: [
+                "I have visited Paris twice",
+                "She has already finished her homework",
+                "We haven't seen that movie yet",
+                "Have you ever eaten sushi?"
+            ],
         },
         sentences: [
-            { id: "1", textBefore: "Mark", textAfter: "his homework already.", hint: "finish" },
-            { id: "2", textBefore: "He", textAfter: "to that restaurant before.", hint: "be" },
-            { id: "3", textBefore: "His parents", textAfter: "three movies this week.", hint: "watch" },
-            { id: "4", textBefore: "Mark", textAfter: "never", hint: "travel" },
-            { id: "5", textBefore: "They", textAfter: "their keys.", hint: "lose" },
-            { id: "6", textBefore: "She", textAfter: "the email yet.", hint: "send" },
-            { id: "7", textBefore: "We", textAfter: "a lot from this course.", hint: "learn" },
-            { id: "8", textBefore: "Mark", textAfter: "his boss today.", hint: "call" },
-            { id: "9", textBefore: "The team", textAfter: "the project successfully.", hint: "complete" },
-            { id: "10", textBefore: "I", textAfter: "this song many times.", hint: "hear" }
+            { id: "1", textBefore: "Mark", textAfter: "his homework already.", hint: "finish", correctAnswer: "has finished" },
+            { id: "2", textBefore: "He", textAfter: "to that restaurant before.", hint: "be", correctAnswer: "has been" },
+            { id: "3", textBefore: "His parents", textAfter: "three movies this week.", hint: "watch", correctAnswer: "have watched" },
+            { id: "4", textBefore: "Mark", textAfter: "abroad before.", hint: "travel", correctAnswer: "has never traveled" },
+            { id: "5", textBefore: "They", textAfter: "their keys.", hint: "lose", correctAnswer: "have lost" },
+            { id: "6", textBefore: "She", textAfter: "the email yet.", hint: "send", correctAnswer: "hasn't sent" },
+            { id: "7", textBefore: "We", textAfter: "a lot from this course.", hint: "learn", correctAnswer: "have learned" },
+            { id: "8", textBefore: "Mark", textAfter: "his boss today.", hint: "call", correctAnswer: "has called" },
+            { id: "9", textBefore: "The team", textAfter: "the project successfully.", hint: "complete", correctAnswer: "has completed" },
+            { id: "10", textBefore: "I", textAfter: "this song many times.", hint: "hear", correctAnswer: "have heard" }
         ],
         aiPrompt: "Evaluate the following English exercise in Present Perfect. Check correct use of have/has and past participle form."
     },
@@ -129,21 +140,27 @@ export const exercisesData: ExerciseData[] = [
         icon: RefreshCw,
         grammarTip: {
             title: "Present Perfect Continuous",
-            description: "Para enfatizar la duración de una acción que aún continúa.",
+            description: "Para enfatizar la duración de una acción que aún continúa o acaba de parar.",
             structure: "Subject + have/has + been + verb-ING",
-            examples: ["I have been studying all day", "They have been working here for years"],
+            examples: [
+                "I have been studying all day",
+                "They have been working here for years",
+                "She has been reading that book since this morning",
+                "We have been waiting for the bus for 30 minutes",
+                "Have you been exercising lately?"
+            ],
         },
         sentences: [
-            { id: "1", textBefore: "Mark", textAfter: "English for two years.", hint: "study" },
-            { id: "2", textBefore: "He", textAfter: "since early morning.", hint: "work" },
-            { id: "3", textBefore: "His parents", textAfter: "all afternoon.", hint: "cook" },
-            { id: "4", textBefore: "She", textAfter: "for the bus for 20 minutes.", hint: "wait" },
-            { id: "5", textBefore: "They", textAfter: "about moving to another city.", hint: "talk" },
-            { id: "6", textBefore: "Mark", textAfter: "a lot lately.", hint: "travel" },
-            { id: "7", textBefore: "We", textAfter: "this problem for hours.", hint: "solve" },
-            { id: "8", textBefore: "The children", textAfter: "video games all day.", hint: "play" },
-            { id: "9", textBefore: "I", textAfter: "to call you all morning.", hint: "try" },
-            { id: "10", textBefore: "She", textAfter: "at this company since 2020.", hint: "work" }
+            { id: "1", textBefore: "Mark", textAfter: "English for two years.", hint: "study", correctAnswer: "has been studying" },
+            { id: "2", textBefore: "He", textAfter: "since early morning.", hint: "work", correctAnswer: "has been working" },
+            { id: "3", textBefore: "His parents", textAfter: "all afternoon.", hint: "cook", correctAnswer: "have been cooking" },
+            { id: "4", textBefore: "She", textAfter: "for the bus for 20 minutes.", hint: "wait", correctAnswer: "has been waiting" },
+            { id: "5", textBefore: "They", textAfter: "about moving to another city.", hint: "talk", correctAnswer: "have been talking" },
+            { id: "6", textBefore: "Mark", textAfter: "a lot lately.", hint: "travel", correctAnswer: "has been traveling" },
+            { id: "7", textBefore: "We", textAfter: "this problem for hours.", hint: "solve", correctAnswer: "have been solving" },
+            { id: "8", textBefore: "The children", textAfter: "video games all day.", hint: "play", correctAnswer: "have been playing" },
+            { id: "9", textBefore: "I", textAfter: "to call you all morning.", hint: "try", correctAnswer: "have been trying" },
+            { id: "10", textBefore: "She", textAfter: "at this company since 2020.", hint: "work", correctAnswer: "has been working" }
         ],
         aiPrompt: "Evaluate the following English exercise in Present Perfect Continuous. Check correct use of have/has been and verb-ing."
     },
@@ -167,16 +184,16 @@ export const exercisesData: ExerciseData[] = [
             ],
         },
         sentences: [
-            { id: "1", textBefore: "Do you", textAfter: "coffee?", hint: "like" },
-            { id: "2", textBefore: "Does Mark", textAfter: "to work every day?", hint: "go" },
-            { id: "3", textBefore: "Are they", textAfter: "TV right now?", hint: "watch" },
-            { id: "4", textBefore: "Is she", textAfter: "at the moment?", hint: "work" },
-            { id: "5", textBefore: "Do we", textAfter: "English here?", hint: "study" },
-            { id: "6", textBefore: "Does he", textAfter: "soccer?", hint: "play" },
-            { id: "7", textBefore: "Are you", textAfter: "to music?", hint: "listen" },
-            { id: "8", textBefore: "Is Mark", textAfter: "an email?", hint: "write" },
-            { id: "9", textBefore: "Do they", textAfter: "near here?", hint: "live" },
-            { id: "10", textBefore: "Are the children", textAfter: "in the park?", hint: "play" }
+            { id: "1", textBefore: "Do you", textAfter: "coffee?", hint: "like", correctAnswer: "like" },
+            { id: "2", textBefore: "Does Mark", textAfter: "to work every day?", hint: "go", correctAnswer: "go" },
+            { id: "3", textBefore: "Are they", textAfter: "TV right now?", hint: "watch", correctAnswer: "watching" },
+            { id: "4", textBefore: "Is she", textAfter: "at the moment?", hint: "work", correctAnswer: "working" },
+            { id: "5", textBefore: "Do we", textAfter: "English here?", hint: "study", correctAnswer: "study" },
+            { id: "6", textBefore: "Does he", textAfter: "soccer?", hint: "play", correctAnswer: "play" },
+            { id: "7", textBefore: "Are you", textAfter: "to music?", hint: "listen", correctAnswer: "listening" },
+            { id: "8", textBefore: "Is Mark", textAfter: "an email?", hint: "write", correctAnswer: "writing" },
+            { id: "9", textBefore: "Do they", textAfter: "near here?", hint: "live", correctAnswer: "live" },
+            { id: "10", textBefore: "Are the children", textAfter: "in the park?", hint: "play", correctAnswer: "playing" }
         ],
         aiPrompt: "Evaluate the present tense questions. Identify correct auxiliary usage and verb form."
     },
@@ -204,16 +221,16 @@ export const exercisesData: ExerciseData[] = [
             ],
         },
         sentences: [
-            { id: "1", textBefore: "Mark", textAfter: "coffee in the morning.", hint: "drink" }, // Present Simple
-            { id: "2", textBefore: "He", textAfter: "TV right now.", hint: "watch" }, // Present Continuous
-            { id: "3", textBefore: "His parents", textAfter: "meat.", hint: "eat" }, // Present Simple
-            { id: "4", textBefore: "Mark", textAfter: "to music at the moment.", hint: "listen" }, // Present Continuous
-            { id: "5", textBefore: "They", textAfter: "the project yet.", hint: "finish" }, // Present Perfect
-            { id: "6", textBefore: "She", textAfter: "here before.", hint: "be" }, // Present Perfect
-            { id: "7", textBefore: "Mark", textAfter: "English very long.", hint: "study" }, // Present Perfect Continuous
-            { id: "8", textBefore: "We", textAfter: "for the bus for hours.", hint: "wait" }, // Present Perfect Continuous
-            { id: "9", textBefore: "The children", textAfter: "soccer today.", hint: "play" }, // Present Simple
-            { id: "10", textBefore: "He", textAfter: "an email right now.", hint: "write" } // Present Continuous
+            { id: "1", textBefore: "Mark", textAfter: "coffee in the morning.", hint: "drink", correctAnswer: "does not drink" },
+            { id: "2", textBefore: "He", textAfter: "TV right now.", hint: "watch", correctAnswer: "is not watching" },
+            { id: "3", textBefore: "His parents", textAfter: "meat.", hint: "eat", correctAnswer: "do not eat" },
+            { id: "4", textBefore: "Mark", textAfter: "to music at the moment.", hint: "listen", correctAnswer: "is not listening" },
+            { id: "5", textBefore: "They", textAfter: "the project yet.", hint: "finish", correctAnswer: "have not finished" },
+            { id: "6", textBefore: "She", textAfter: "here before.", hint: "be", correctAnswer: "has not been" },
+            { id: "7", textBefore: "Mark", textAfter: "English very long.", hint: "study", correctAnswer: "has not been studying" },
+            { id: "8", textBefore: "We", textAfter: "for the bus for hours.", hint: "wait", correctAnswer: "have not been waiting" },
+            { id: "9", textBefore: "The children", textAfter: "soccer today.", hint: "play", correctAnswer: "do not play" },
+            { id: "10", textBefore: "He", textAfter: "an email right now.", hint: "write", correctAnswer: "is not writing" }
         ],
         aiPrompt: "Evaluate the following English exercise focusing on negative forms in the present. Identify the correct auxiliary (do/does, am/is/are, have/has), correct placement of 'not', and proper verb form."
     },
@@ -234,16 +251,16 @@ export const exercisesData: ExerciseData[] = [
             ],
         },
         sentences: [
-            { id: "1", textBefore: "Yesterday, Mark", textAfter: "up early.", hint: "wake" },
-            { id: "2", textBefore: "He", textAfter: "his teeth and had breakfast.", hint: "brush" },
-            { id: "3", textBefore: "Mark", textAfter: "to work by bus.", hint: "go" },
-            { id: "4", textBefore: "He", textAfter: "an important email.", hint: "write" },
-            { id: "5", textBefore: "His parents", textAfter: "dinner together.", hint: "cook" },
-            { id: "6", textBefore: "Mark", textAfter: "his friends after work.", hint: "meet" },
-            { id: "7", textBefore: "They", textAfter: "soccer in the park.", hint: "play" },
-            { id: "8", textBefore: "Mark", textAfter: "very tired last night.", hint: "be" },
-            { id: "9", textBefore: "He", textAfter: "to bed at 11 PM.", hint: "go" },
-            { id: "10", textBefore: "They", textAfter: "a great time.", hint: "have" }
+            { id: "1", textBefore: "Yesterday, Mark", textAfter: "up early.", hint: "wake", correctAnswer: "woke" },
+            { id: "2", textBefore: "He", textAfter: "his teeth and had breakfast.", hint: "brush", correctAnswer: "brushed" },
+            { id: "3", textBefore: "Mark", textAfter: "to work by bus.", hint: "go", correctAnswer: "went" },
+            { id: "4", textBefore: "He", textAfter: "an important email.", hint: "write", correctAnswer: "wrote" },
+            { id: "5", textBefore: "His parents", textAfter: "dinner together.", hint: "cook", correctAnswer: "cooked" },
+            { id: "6", textBefore: "Mark", textAfter: "his friends after work.", hint: "meet", correctAnswer: "met" },
+            { id: "7", textBefore: "They", textAfter: "soccer in the park.", hint: "play", correctAnswer: "played" },
+            { id: "8", textBefore: "Mark", textAfter: "very tired last night.", hint: "be", correctAnswer: "was" },
+            { id: "9", textBefore: "He", textAfter: "to bed at 11 PM.", hint: "go", correctAnswer: "went" },
+            { id: "10", textBefore: "They", textAfter: "a great time.", hint: "have", correctAnswer: "had" }
         ],
         aiPrompt: "Evaluate the following English exercise in Past Simple. Check correct use of past tense verbs, including irregular forms."
     },
@@ -264,16 +281,16 @@ export const exercisesData: ExerciseData[] = [
             ],
         },
         sentences: [
-            { id: "1", textBefore: "At 8 PM, Mark", textAfter: "TV.", hint: "watch" },
-            { id: "2", textBefore: "He", textAfter: "dinner when the phone rang.", hint: "eat" },
-            { id: "3", textBefore: "His parents", textAfter: "in the kitchen.", hint: "cook" },
-            { id: "4", textBefore: "Mark", textAfter: "to music while working.", hint: "listen" },
-            { id: "5", textBefore: "They", textAfter: "soccer when it started to rain.", hint: "play" },
-            { id: "6", textBefore: "The dog", textAfter: "in the garden.", hint: "run" },
-            { id: "7", textBefore: "We", textAfter: "for the bus.", hint: "wait" },
-            { id: "8", textBefore: "She", textAfter: "an email at that moment.", hint: "write" },
-            { id: "9", textBefore: "The children", textAfter: "a movie.", hint: "watch" },
-            { id: "10", textBefore: "I", textAfter: "home when I saw him.", hint: "walk" }
+            { id: "1", textBefore: "At 8 PM, Mark", textAfter: "TV.", hint: "watch", correctAnswer: "was watching" },
+            { id: "2", textBefore: "He", textAfter: "dinner when the phone rang.", hint: "eat", correctAnswer: "was eating" },
+            { id: "3", textBefore: "His parents", textAfter: "in the kitchen.", hint: "cook", correctAnswer: "were cooking" },
+            { id: "4", textBefore: "Mark", textAfter: "to music while working.", hint: "listen", correctAnswer: "was listening" },
+            { id: "5", textBefore: "They", textAfter: "soccer when it started to rain.", hint: "play", correctAnswer: "were playing" },
+            { id: "6", textBefore: "The dog", textAfter: "in the garden.", hint: "run", correctAnswer: "was running" },
+            { id: "7", textBefore: "We", textAfter: "for the bus.", hint: "wait", correctAnswer: "were waiting" },
+            { id: "8", textBefore: "She", textAfter: "an email at that moment.", hint: "write", correctAnswer: "was writing" },
+            { id: "9", textBefore: "The children", textAfter: "a movie.", hint: "watch", correctAnswer: "were watching" },
+            { id: "10", textBefore: "I", textAfter: "home when I saw him.", hint: "walk", correctAnswer: "was walking" }
         ],
         aiPrompt: "Evaluate the following English exercise in Past Continuous. Check correct use of was/were and verb-ing form."
     },
@@ -290,20 +307,22 @@ export const exercisesData: ExerciseData[] = [
             structure: "Subject + had + past participle",
             examples: [
                 "I had finished my homework before dinner",
-                "They had left when we arrived"
+                "They had already left when we arrived",
+                "She realized she had lost her keys",
+                "Had he ever travelled to Europe before 2020?"
             ],
         },
         sentences: [
-            { id: "1", textBefore: "Mark", textAfter: "his homework before dinner.", hint: "finish" },
-            { id: "2", textBefore: "He", textAfter: "already", hint: "leave" },
-            { id: "3", textBefore: "They", textAfter: "the movie before we arrived.", hint: "watch" },
-            { id: "4", textBefore: "She", textAfter: "the email before the meeting.", hint: "send" },
-            { id: "5", textBefore: "Mark", textAfter: "never there before.", hint: "be" },
-            { id: "6", textBefore: "We", textAfter: "everything when he called.", hint: "prepare" },
-            { id: "7", textBefore: "The train", textAfter: "when we got to the station.", hint: "leave" },
-            { id: "8", textBefore: "They", textAfter: "dinner already.", hint: "eat" },
-            { id: "9", textBefore: "She", textAfter: "the book before the exam.", hint: "read" },
-            { id: "10", textBefore: "I", textAfter: "my keys at home.", hint: "forget" }
+            { id: "1", textBefore: "Mark", textAfter: "his homework before dinner.", hint: "finish", correctAnswer: "had finished" },
+            { id: "2", textBefore: "He", textAfter: "by the time we arrived.", hint: "leave", correctAnswer: "had already left" },
+            { id: "3", textBefore: "They", textAfter: "the movie before we arrived.", hint: "watch", correctAnswer: "had watched" },
+            { id: "4", textBefore: "She", textAfter: "the email before the meeting.", hint: "send", correctAnswer: "had sent" },
+            { id: "5", textBefore: "Mark", textAfter: "to that city before.", hint: "be", correctAnswer: "had never been" },
+            { id: "6", textBefore: "We", textAfter: "everything when he called.", hint: "prepare", correctAnswer: "had prepared" },
+            { id: "7", textBefore: "The train", textAfter: "when we got to the station.", hint: "leave", correctAnswer: "had left" },
+            { id: "8", textBefore: "They", textAfter: "dinner by the time we arrived.", hint: "eat", correctAnswer: "had already eaten" },
+            { id: "9", textBefore: "She", textAfter: "the book before the exam.", hint: "read", correctAnswer: "had read" },
+            { id: "10", textBefore: "I", textAfter: "my keys at home.", hint: "forget", correctAnswer: "had forgotten" }
         ],
         aiPrompt: "Evaluate the following English exercise in Past Perfect. Check correct use of 'had' and past participle."
     },
@@ -327,16 +346,16 @@ export const exercisesData: ExerciseData[] = [
             ],
         },
         sentences: [
-            { id: "1", textBefore: "Mark", textAfter: "TV when the phone rang.", hint: "watch" },
-            { id: "2", textBefore: "They", textAfter: "dinner when we arrived.", hint: "have" },
-            { id: "3", textBefore: "She", textAfter: "home when it started to rain.", hint: "walk" },
-            { id: "4", textBefore: "We", textAfter: "soccer when the lights went out.", hint: "play" },
-            { id: "5", textBefore: "Mark", textAfter: "a shower when the doorbell rang.", hint: "take" },
-            { id: "6", textBefore: "The children", textAfter: "outside when it got dark.", hint: "play" },
-            { id: "7", textBefore: "I", textAfter: "to music when she called me.", hint: "listen" },
-            { id: "8", textBefore: "They", textAfter: "a movie when the power went out.", hint: "watch" },
-            { id: "9", textBefore: "He", textAfter: "to work when he saw the accident.", hint: "drive" },
-            { id: "10", textBefore: "We", textAfter: "when the teacher arrived.", hint: "talk" }
+            { id: "1", textBefore: "Mark", textAfter: "TV when the phone rang.", hint: "watch", correctAnswer: "was watching" },
+            { id: "2", textBefore: "They", textAfter: "dinner when we arrived.", hint: "have", correctAnswer: "were having" },
+            { id: "3", textBefore: "She", textAfter: "home when it started to rain.", hint: "walk", correctAnswer: "was walking" },
+            { id: "4", textBefore: "We", textAfter: "soccer when the lights went out.", hint: "play", correctAnswer: "were playing" },
+            { id: "5", textBefore: "Mark", textAfter: "a shower when the doorbell rang.", hint: "take", correctAnswer: "was taking" },
+            { id: "6", textBefore: "The children", textAfter: "outside when it got dark.", hint: "play", correctAnswer: "were playing" },
+            { id: "7", textBefore: "I", textAfter: "to music when she called me.", hint: "listen", correctAnswer: "was listening" },
+            { id: "8", textBefore: "They", textAfter: "a movie when the power went out.", hint: "watch", correctAnswer: "were watching" },
+            { id: "9", textBefore: "He", textAfter: "to work when he saw the accident.", hint: "drive", correctAnswer: "was driving" },
+            { id: "10", textBefore: "We", textAfter: "when the teacher arrived.", hint: "talk", correctAnswer: "were talking" }
         ],
         aiPrompt: "Evaluate the exercise comparing Past Simple and Past Continuous. Check correct tense selection and verb form."
     },
@@ -357,16 +376,16 @@ export const exercisesData: ExerciseData[] = [
             ],
         },
         sentences: [
-            { id: "1", textBefore: "Mark", textAfter: "to work yesterday.", hint: "go" },
-            { id: "2", textBefore: "He", textAfter: "TV last night.", hint: "watch" },
-            { id: "3", textBefore: "They", textAfter: "the meeting.", hint: "attend" },
-            { id: "4", textBefore: "She", textAfter: "the email.", hint: "send" },
-            { id: "5", textBefore: "We", textAfter: "dinner at home.", hint: "have" },
-            { id: "6", textBefore: "Mark", textAfter: "his homework.", hint: "finish" },
-            { id: "7", textBefore: "They", textAfter: "the movie.", hint: "like" },
-            { id: "8", textBefore: "I", textAfter: "your message.", hint: "see" },
-            { id: "9", textBefore: "She", textAfter: "the answer.", hint: "know" },
-            { id: "10", textBefore: "We", textAfter: "late.", hint: "arrive" }
+            { id: "1", textBefore: "Mark", textAfter: "to work yesterday.", hint: "go", correctAnswer: "did not go" },
+            { id: "2", textBefore: "He", textAfter: "TV last night.", hint: "watch", correctAnswer: "did not watch" },
+            { id: "3", textBefore: "They", textAfter: "the meeting.", hint: "attend", correctAnswer: "did not attend" },
+            { id: "4", textBefore: "She", textAfter: "the email.", hint: "send", correctAnswer: "did not send" },
+            { id: "5", textBefore: "We", textAfter: "dinner at home.", hint: "have", correctAnswer: "did not have" },
+            { id: "6", textBefore: "Mark", textAfter: "his homework.", hint: "finish", correctAnswer: "did not finish" },
+            { id: "7", textBefore: "They", textAfter: "the movie.", hint: "like", correctAnswer: "did not like" },
+            { id: "8", textBefore: "I", textAfter: "your message.", hint: "see", correctAnswer: "did not see" },
+            { id: "9", textBefore: "She", textAfter: "the answer.", hint: "know", correctAnswer: "did not know" },
+            { id: "10", textBefore: "We", textAfter: "late.", hint: "arrive", correctAnswer: "did not arrive" }
         ],
         aiPrompt: "Evaluate the exercise focusing on negative forms in the Past Simple. Ensure correct use of 'did not' and base verb."
     },
@@ -387,16 +406,16 @@ export const exercisesData: ExerciseData[] = [
             ],
         },
         sentences: [
-            { id: "1", textBefore: "Did Mark", textAfter: "to work yesterday?", hint: "go" },
-            { id: "2", textBefore: "Did he", textAfter: "TV last night?", hint: "watch" },
-            { id: "3", textBefore: "Did they", textAfter: "dinner together?", hint: "have" },
-            { id: "4", textBefore: "Did she", textAfter: "the email?", hint: "send" },
-            { id: "5", textBefore: "Did you", textAfter: "the movie?", hint: "like" },
-            { id: "6", textBefore: "Did Mark", textAfter: "late?", hint: "arrive" },
-            { id: "7", textBefore: "Did they", textAfter: "soccer?", hint: "play" },
-            { id: "8", textBefore: "Did we", textAfter: "the answer?", hint: "know" },
-            { id: "9", textBefore: "Did she", textAfter: "him?", hint: "call" },
-            { id: "10", textBefore: "Did you", textAfter: "your keys?", hint: "find" }
+            { id: "1", textBefore: "Did Mark", textAfter: "to work yesterday?", hint: "go", correctAnswer: "go" },
+            { id: "2", textBefore: "Did he", textAfter: "TV last night?", hint: "watch", correctAnswer: "watch" },
+            { id: "3", textBefore: "Did they", textAfter: "dinner together?", hint: "have", correctAnswer: "have" },
+            { id: "4", textBefore: "Did she", textAfter: "the email?", hint: "send", correctAnswer: "send" },
+            { id: "5", textBefore: "Did you", textAfter: "the movie?", hint: "like", correctAnswer: "like" },
+            { id: "6", textBefore: "Did Mark", textAfter: "late?", hint: "arrive", correctAnswer: "arrive" },
+            { id: "7", textBefore: "Did they", textAfter: "soccer?", hint: "play", correctAnswer: "play" },
+            { id: "8", textBefore: "Did we", textAfter: "the answer?", hint: "know", correctAnswer: "know" },
+            { id: "9", textBefore: "Did she", textAfter: "him?", hint: "call", correctAnswer: "call" },
+            { id: "10", textBefore: "Did you", textAfter: "your keys?", hint: "find", correctAnswer: "find" }
         ],
         aiPrompt: "Evaluate the following Past Simple questions. Check correct use of 'did' and base verb."
     },
@@ -417,16 +436,16 @@ export const exercisesData: ExerciseData[] = [
             ],
         },
         sentences: [
-            { id: "1", textBefore: "Yesterday, Mark", textAfter: "up early.", hint: "wake" },
-            { id: "2", textBefore: "He", textAfter: "breakfast when the phone rang.", hint: "eat" },
-            { id: "3", textBefore: "His friend", textAfter: "him some bad news.", hint: "tell" },
-            { id: "4", textBefore: "Mark", textAfter: "very worried.", hint: "feel" },
-            { id: "5", textBefore: "He", textAfter: "to work immediately.", hint: "go" },
-            { id: "6", textBefore: "While he", textAfter: "to work, it started to rain.", hint: "drive" },
-            { id: "7", textBefore: "He", textAfter: "late to the office.", hint: "arrive" },
-            { id: "8", textBefore: "His boss", textAfter: "understanding.", hint: "be" },
-            { id: "9", textBefore: "They", textAfter: "the problem together.", hint: "solve" },
-            { id: "10", textBefore: "At the end of the day, Mark", textAfter: "relieved.", hint: "feel" }
+            { id: "1", textBefore: "Yesterday, Mark", textAfter: "up early.", hint: "wake", correctAnswer: "woke" },
+            { id: "2", textBefore: "He", textAfter: "breakfast when the phone rang.", hint: "eat", correctAnswer: "was eating" },
+            { id: "3", textBefore: "His friend", textAfter: "him some bad news.", hint: "tell", correctAnswer: "told" },
+            { id: "4", textBefore: "Mark", textAfter: "very worried.", hint: "feel", correctAnswer: "felt" },
+            { id: "5", textBefore: "He", textAfter: "to work immediately.", hint: "go", correctAnswer: "went" },
+            { id: "6", textBefore: "While he", textAfter: "to work, it started to rain.", hint: "drive", correctAnswer: "was driving" },
+            { id: "7", textBefore: "He", textAfter: "late to the office.", hint: "arrive", correctAnswer: "arrived" },
+            { id: "8", textBefore: "His boss", textAfter: "understanding.", hint: "be", correctAnswer: "was" },
+            { id: "9", textBefore: "They", textAfter: "the problem together.", hint: "solve", correctAnswer: "solved" },
+            { id: "10", textBefore: "At the end of the day, Mark", textAfter: "relieved.", hint: "feel", correctAnswer: "felt" }
         ],
         aiPrompt: "Evaluate the story-based exercise. Check correct use of past tenses and consistency within the narrative."
     },
@@ -447,16 +466,16 @@ export const exercisesData: ExerciseData[] = [
             ],
         },
         sentences: [
-            { id: "1", textBefore: "I", textAfter: "you with your homework.", hint: "help" },
-            { id: "2", textBefore: "Mark", textAfter: "you later.", hint: "call" },
-            { id: "3", textBefore: "They", textAfter: "the problem soon.", hint: "solve" },
-            { id: "4", textBefore: "I think it", textAfter: "tomorrow.", hint: "rain" },
-            { id: "5", textBefore: "She", textAfter: "a doctor one day.", hint: "be" },
-            { id: "6", textBefore: "We", textAfter: "our best.", hint: "do" },
-            { id: "7", textBefore: "He", textAfter: "late today.", hint: "arrive" },
-            { id: "8", textBefore: "Don’t worry, I", textAfter: "it.", hint: "fix" },
-            { id: "9", textBefore: "They", textAfter: "the match.", hint: "win" },
-            { id: "10", textBefore: "I", textAfter: "you tomorrow.", hint: "see" }
+            { id: "1", textBefore: "I", textAfter: "you with your homework.", hint: "help", correctAnswer: "will help" },
+            { id: "2", textBefore: "Mark", textAfter: "you later.", hint: "call", correctAnswer: "will call" },
+            { id: "3", textBefore: "They", textAfter: "the problem soon.", hint: "solve", correctAnswer: "will solve" },
+            { id: "4", textBefore: "I think it", textAfter: "tomorrow.", hint: "rain", correctAnswer: "will rain" },
+            { id: "5", textBefore: "She", textAfter: "a doctor one day.", hint: "be", correctAnswer: "will be" },
+            { id: "6", textBefore: "We", textAfter: "our best.", hint: "do", correctAnswer: "will do" },
+            { id: "7", textBefore: "He", textAfter: "late today.", hint: "arrive", correctAnswer: "will arrive" },
+            { id: "8", textBefore: "Don't worry, I", textAfter: "it.", hint: "fix", correctAnswer: "will fix" },
+            { id: "9", textBefore: "They", textAfter: "the match.", hint: "win", correctAnswer: "will win" },
+            { id: "10", textBefore: "I", textAfter: "you tomorrow.", hint: "see", correctAnswer: "will see" }
         ],
         aiPrompt: "Evaluate the exercise in Future with 'will'. Check correct use of 'will' and base verb."
     },
@@ -477,16 +496,16 @@ export const exercisesData: ExerciseData[] = [
             ],
         },
         sentences: [
-            { id: "1", textBefore: "Mark", textAfter: "study English tonight.", hint: "going to" },
-            { id: "2", textBefore: "They", textAfter: "travel next weekend.", hint: "going to" },
-            { id: "3", textBefore: "She", textAfter: "start a new job.", hint: "going to" },
-            { id: "4", textBefore: "We", textAfter: "watch a movie.", hint: "going to" },
-            { id: "5", textBefore: "I", textAfter: "cook dinner today.", hint: "going to" },
-            { id: "6", textBefore: "He", textAfter: "buy a new car.", hint: "going to" },
-            { id: "7", textBefore: "They", textAfter: "move to another city.", hint: "going to" },
-            { id: "8", textBefore: "Mark", textAfter: "call his parents.", hint: "going to" },
-            { id: "9", textBefore: "She", textAfter: "learn French.", hint: "going to" },
-            { id: "10", textBefore: "We", textAfter: "have a meeting tomorrow.", hint: "going to" }
+            { id: "1", textBefore: "Mark", textAfter: "study English tonight.", hint: "going to", correctAnswer: "is going to" },
+            { id: "2", textBefore: "They", textAfter: "travel next weekend.", hint: "going to", correctAnswer: "are going to" },
+            { id: "3", textBefore: "She", textAfter: "start a new job.", hint: "going to", correctAnswer: "is going to" },
+            { id: "4", textBefore: "We", textAfter: "watch a movie.", hint: "going to", correctAnswer: "are going to" },
+            { id: "5", textBefore: "I", textAfter: "cook dinner today.", hint: "going to", correctAnswer: "am going to" },
+            { id: "6", textBefore: "He", textAfter: "buy a new car.", hint: "going to", correctAnswer: "is going to" },
+            { id: "7", textBefore: "They", textAfter: "move to another city.", hint: "going to", correctAnswer: "are going to" },
+            { id: "8", textBefore: "Mark", textAfter: "call his parents.", hint: "going to", correctAnswer: "is going to" },
+            { id: "9", textBefore: "She", textAfter: "learn French.", hint: "going to", correctAnswer: "is going to" },
+            { id: "10", textBefore: "We", textAfter: "have a meeting tomorrow.", hint: "going to", correctAnswer: "are going to" }
         ],
         aiPrompt: "Evaluate the exercise in Future with 'going to'. Check correct auxiliary (am/is/are) and structure."
     },
@@ -507,16 +526,16 @@ export const exercisesData: ExerciseData[] = [
             ],
         },
         sentences: [
-            { id: "1", textBefore: "Mark", textAfter: "his friend tonight.", hint: "meet" },
-            { id: "2", textBefore: "They", textAfter: "tomorrow morning.", hint: "leave" },
-            { id: "3", textBefore: "She", textAfter: "a new course next week.", hint: "start" },
-            { id: "4", textBefore: "We", textAfter: "dinner with them tonight.", hint: "have" },
-            { id: "5", textBefore: "I", textAfter: "the doctor this afternoon.", hint: "see" },
-            { id: "6", textBefore: "He", textAfter: "to Madrid on Friday.", hint: "travel" },
-            { id: "7", textBefore: "They", textAfter: "married next year.", hint: "get" },
-            { id: "8", textBefore: "Mark", textAfter: "home late today.", hint: "arrive" },
-            { id: "9", textBefore: "We", textAfter: "a test tomorrow.", hint: "take" },
-            { id: "10", textBefore: "She", textAfter: "her family this weekend.", hint: "visit" }
+            { id: "1", textBefore: "Mark", textAfter: "his friend tonight.", hint: "meet", correctAnswer: "is meeting" },
+            { id: "2", textBefore: "They", textAfter: "tomorrow morning.", hint: "leave", correctAnswer: "are leaving" },
+            { id: "3", textBefore: "She", textAfter: "a new course next week.", hint: "start", correctAnswer: "is starting" },
+            { id: "4", textBefore: "We", textAfter: "dinner with them tonight.", hint: "have", correctAnswer: "are having" },
+            { id: "5", textBefore: "I", textAfter: "the doctor this afternoon.", hint: "see", correctAnswer: "am seeing" },
+            { id: "6", textBefore: "He", textAfter: "to Madrid on Friday.", hint: "travel", correctAnswer: "is traveling" },
+            { id: "7", textBefore: "They", textAfter: "married next year.", hint: "get", correctAnswer: "are getting" },
+            { id: "8", textBefore: "Mark", textAfter: "home late today.", hint: "arrive", correctAnswer: "is arriving" },
+            { id: "9", textBefore: "We", textAfter: "a test tomorrow.", hint: "take", correctAnswer: "are taking" },
+            { id: "10", textBefore: "She", textAfter: "her family this weekend.", hint: "visit", correctAnswer: "is visiting" }
         ],
         aiPrompt: "Evaluate the exercise using Present Continuous for future meaning. Check correct auxiliary and verb-ing form."
     },
@@ -540,16 +559,16 @@ export const exercisesData: ExerciseData[] = [
             ],
         },
         sentences: [
-            { id: "1", textBefore: "Look at the sky! It", textAfter: ".", hint: "rain" },
-            { id: "2", textBefore: "I forgot my wallet. I", textAfter: "back.", hint: "go" },
-            { id: "3", textBefore: "Mark", textAfter: "start a new job next month.", hint: "going to" },
-            { id: "4", textBefore: "Don’t worry, I", textAfter: "you.", hint: "help" },
-            { id: "5", textBefore: "They", textAfter: "move to Canada.", hint: "going to" },
-            { id: "6", textBefore: "I think she", textAfter: "love this gift.", hint: "love" },
-            { id: "7", textBefore: "We", textAfter: "visit our grandparents.", hint: "going to" },
-            { id: "8", textBefore: "The phone is ringing. I", textAfter: "it.", hint: "answer" },
-            { id: "9", textBefore: "He", textAfter: "study medicine.", hint: "going to" },
-            { id: "10", textBefore: "I promise I", textAfter: "late.", hint: "be" }
+            { id: "1", textBefore: "Look at the sky! It", textAfter: ".", hint: "rain", correctAnswer: "is going to rain" },
+            { id: "2", textBefore: "I forgot my wallet. I", textAfter: "back.", hint: "go", correctAnswer: "will go" },
+            { id: "3", textBefore: "Mark", textAfter: "start a new job next month.", hint: "going to", correctAnswer: "is going to" },
+            { id: "4", textBefore: "Don't worry, I", textAfter: "you.", hint: "help", correctAnswer: "will help" },
+            { id: "5", textBefore: "They", textAfter: "move to Canada.", hint: "going to", correctAnswer: "are going to" },
+            { id: "6", textBefore: "I think she", textAfter: "love this gift.", hint: "love", correctAnswer: "will" },
+            { id: "7", textBefore: "We", textAfter: "visit our grandparents.", hint: "going to", correctAnswer: "are going to" },
+            { id: "8", textBefore: "The phone is ringing. I", textAfter: "it.", hint: "answer", correctAnswer: "will answer" },
+            { id: "9", textBefore: "He", textAfter: "study medicine.", hint: "going to", correctAnswer: "is going to" },
+            { id: "10", textBefore: "I promise I", textAfter: "late.", hint: "be", correctAnswer: "won't be" }
         ],
         aiPrompt: "Evaluate the future tense exercise. Check correct choice between 'will' and 'going to' based on context."
     },
@@ -575,16 +594,16 @@ export const exercisesData: ExerciseData[] = [
             ],
         },
         sentences: [
-            { id: "1", textBefore: "I", textAfter: "help you today.", hint: "will not" },
-            { id: "2", textBefore: "Mark", textAfter: "work tomorrow.", hint: "is not going to" },
-            { id: "3", textBefore: "They", textAfter: "travel this weekend.", hint: "are not going to" },
-            { id: "4", textBefore: "She", textAfter: "call him tonight.", hint: "will not" },
-            { id: "5", textBefore: "We", textAfter: "have a meeting today.", hint: "are not having" },
-            { id: "6", textBefore: "He", textAfter: "buy that car.", hint: "is not going to" },
-            { id: "7", textBefore: "I", textAfter: "be late.", hint: "will not" },
-            { id: "8", textBefore: "They", textAfter: "start the project now.", hint: "are not starting" },
-            { id: "9", textBefore: "Mark", textAfter: "study tonight.", hint: "is not going to" },
-            { id: "10", textBefore: "She", textAfter: "forget your birthday.", hint: "will not" }
+            { id: "1", textBefore: "I", textAfter: "help you today.", hint: "will not", correctAnswer: "will not" },
+            { id: "2", textBefore: "Mark", textAfter: "work tomorrow.", hint: "is not going to", correctAnswer: "is not going to" },
+            { id: "3", textBefore: "They", textAfter: "travel this weekend.", hint: "are not going to", correctAnswer: "are not going to" },
+            { id: "4", textBefore: "She", textAfter: "call him tonight.", hint: "will not", correctAnswer: "will not" },
+            { id: "5", textBefore: "We", textAfter: "have a meeting today.", hint: "are not having", correctAnswer: "are not having" },
+            { id: "6", textBefore: "He", textAfter: "buy that car.", hint: "is not going to", correctAnswer: "is not going to" },
+            { id: "7", textBefore: "I", textAfter: "be late.", hint: "will not", correctAnswer: "will not" },
+            { id: "8", textBefore: "They", textAfter: "start the project now.", hint: "are not starting", correctAnswer: "are not starting" },
+            { id: "9", textBefore: "Mark", textAfter: "study tonight.", hint: "is not going to", correctAnswer: "is not going to" },
+            { id: "10", textBefore: "She", textAfter: "forget your birthday.", hint: "will not", correctAnswer: "will not" }
         ],
         aiPrompt: "Evaluate the future negative forms exercise. Check correct auxiliary usage and placement of 'not'."
     },
@@ -610,16 +629,16 @@ export const exercisesData: ExerciseData[] = [
             ],
         },
         sentences: [
-            { id: "1", textBefore: "Will you", textAfter: "me later?", hint: "help" },
-            { id: "2", textBefore: "Is Mark", textAfter: "travel next week?", hint: "going to" },
-            { id: "3", textBefore: "Are they", textAfter: "tonight?", hint: "leaving" },
-            { id: "4", textBefore: "Will she", textAfter: "the exam?", hint: "pass" },
-            { id: "5", textBefore: "Are you", textAfter: "dinner with us?", hint: "having" },
-            { id: "6", textBefore: "Is he", textAfter: "buy a new phone?", hint: "going to" },
-            { id: "7", textBefore: "Will they", textAfter: "on time?", hint: "arrive" },
-            { id: "8", textBefore: "Are we", textAfter: "tomorrow?", hint: "meeting" },
-            { id: "9", textBefore: "Is she", textAfter: "start a new job?", hint: "going to" },
-            { id: "10", textBefore: "Will you", textAfter: "me the truth?", hint: "tell" }
+            { id: "1", textBefore: "Will you", textAfter: "me later?", hint: "help", correctAnswer: "help" },
+            { id: "2", textBefore: "Is Mark", textAfter: "travel next week?", hint: "going to", correctAnswer: "going to" },
+            { id: "3", textBefore: "Are they", textAfter: "tonight?", hint: "leaving", correctAnswer: "leaving" },
+            { id: "4", textBefore: "Will she", textAfter: "the exam?", hint: "pass", correctAnswer: "pass" },
+            { id: "5", textBefore: "Are you", textAfter: "dinner with us?", hint: "having", correctAnswer: "having" },
+            { id: "6", textBefore: "Is he", textAfter: "buy a new phone?", hint: "going to", correctAnswer: "going to" },
+            { id: "7", textBefore: "Will they", textAfter: "on time?", hint: "arrive", correctAnswer: "arrive" },
+            { id: "8", textBefore: "Are we", textAfter: "tomorrow?", hint: "meeting", correctAnswer: "meeting" },
+            { id: "9", textBefore: "Is she", textAfter: "start a new job?", hint: "going to", correctAnswer: "going to" },
+            { id: "10", textBefore: "Will you", textAfter: "me the truth?", hint: "tell", correctAnswer: "tell" }
         ],
         aiPrompt: "Evaluate the future tense questions. Check correct auxiliary selection and verb form."
     },
@@ -645,16 +664,16 @@ export const exercisesData: ExerciseData[] = [
             ],
         },
         sentences: [
-            { id: "1", textBefore: "Yesterday, Mark", textAfter: "to work late.", hint: "go" },
-            { id: "2", textBefore: "Right now, he", textAfter: "an email.", hint: "write" },
-            { id: "3", textBefore: "Every morning, he", textAfter: "coffee.", hint: "drink" },
-            { id: "4", textBefore: "Tomorrow, Mark", textAfter: "his parents.", hint: "visit" },
-            { id: "5", textBefore: "Last night, they", textAfter: "a movie.", hint: "watch" },
-            { id: "6", textBefore: "At the moment, she", textAfter: "for the bus.", hint: "wait" },
-            { id: "7", textBefore: "Next week, we", textAfter: "a test.", hint: "have" },
-            { id: "8", textBefore: "Usually, Mark", textAfter: "early.", hint: "wake" },
-            { id: "9", textBefore: "While he", textAfter: "home, it started to rain.", hint: "walk" },
-            { id: "10", textBefore: "I promise I", textAfter: "you later.", hint: "call" }
+            { id: "1", textBefore: "Yesterday, Mark", textAfter: "to work late.", hint: "go", correctAnswer: "went" },
+            { id: "2", textBefore: "Right now, he", textAfter: "an email.", hint: "write", correctAnswer: "is writing" },
+            { id: "3", textBefore: "Every morning, he", textAfter: "coffee.", hint: "drink", correctAnswer: "drinks" },
+            { id: "4", textBefore: "Tomorrow, Mark", textAfter: "his parents.", hint: "visit", correctAnswer: "will visit" },
+            { id: "5", textBefore: "Last night, they", textAfter: "a movie.", hint: "watch", correctAnswer: "watched" },
+            { id: "6", textBefore: "At the moment, she", textAfter: "for the bus.", hint: "wait", correctAnswer: "is waiting" },
+            { id: "7", textBefore: "Next week, we", textAfter: "a test.", hint: "have", correctAnswer: "are having" },
+            { id: "8", textBefore: "Usually, Mark", textAfter: "early.", hint: "wake", correctAnswer: "wakes" },
+            { id: "9", textBefore: "While he", textAfter: "home, it started to rain.", hint: "walk", correctAnswer: "was walking" },
+            { id: "10", textBefore: "I promise I", textAfter: "you later.", hint: "call", correctAnswer: "will call" }
         ],
         aiPrompt: "Evaluate the mixed tense exercise. Identify correct tense usage based on time expressions and context."
     },
@@ -680,16 +699,16 @@ export const exercisesData: ExerciseData[] = [
             ],
         },
         sentences: [
-            { id: "1", textBefore: "Mark", textAfter: "here since 2020.", hint: "work" },
-            { id: "2", textBefore: "He", textAfter: "TV when she arrived.", hint: "watch" },
-            { id: "3", textBefore: "They", textAfter: "already finished the project.", hint: "have" },
-            { id: "4", textBefore: "I think it", textAfter: "rain later.", hint: "will" },
-            { id: "5", textBefore: "She", textAfter: "never been to London.", hint: "have" },
-            { id: "6", textBefore: "While we", textAfter: "dinner, the lights went out.", hint: "have" },
-            { id: "7", textBefore: "Mark", textAfter: "studying English a lot lately.", hint: "be" },
-            { id: "8", textBefore: "They", textAfter: "going to move next year.", hint: "are" },
-            { id: "9", textBefore: "I", textAfter: "this movie before.", hint: "see" },
-            { id: "10", textBefore: "If you ask him, he", textAfter: "help you.", hint: "will" }
+            { id: "1", textBefore: "Mark", textAfter: "here since 2020.", hint: "work", correctAnswer: "has been working" },
+            { id: "2", textBefore: "He", textAfter: "TV when she arrived.", hint: "watch", correctAnswer: "was watching" },
+            { id: "3", textBefore: "They", textAfter: "the project.", hint: "finish (present perfect)", correctAnswer: "have already finished" },
+            { id: "4", textBefore: "I think it", textAfter: "rain later.", hint: "will", correctAnswer: "will" },
+            { id: "5", textBefore: "She", textAfter: "to London.", hint: "be (present perfect negative)", correctAnswer: "has never been" },
+            { id: "6", textBefore: "While we", textAfter: "dinner, the lights went out.", hint: "have", correctAnswer: "were having" },
+            { id: "7", textBefore: "Mark", textAfter: "studying English a lot lately.", hint: "be", correctAnswer: "has been" },
+            { id: "8", textBefore: "They", textAfter: "going to move next year.", hint: "are", correctAnswer: "are" },
+            { id: "9", textBefore: "I", textAfter: "this movie before.", hint: "see", correctAnswer: "have seen" },
+            { id: "10", textBefore: "If you ask him, he", textAfter: "help you.", hint: "will", correctAnswer: "will" }
         ],
         aiPrompt: "Evaluate the level-up quiz. Focus on tense accuracy, auxiliary selection, and contextual meaning."
     },
@@ -716,18 +735,608 @@ export const exercisesData: ExerciseData[] = [
             ],
         },
         sentences: [
-            { id: "1", textBefore: "If you heat ice, it", textAfter: ".", hint: "melt" }, // Zero
-            { id: "2", textBefore: "If it rains, we", textAfter: "at home.", hint: "stay" }, // Zero
-            { id: "3", textBefore: "If you study, you", textAfter: "the exam.", hint: "pass" }, // First
-            { id: "4", textBefore: "If Mark is late, he", textAfter: "call us.", hint: "will" }, // First
-            { id: "5", textBefore: "If you don’t eat, you", textAfter: "hungry.", hint: "get" }, // Zero
-            { id: "6", textBefore: "If it stops raining, we", textAfter: "outside.", hint: "go" }, // First
-            { id: "7", textBefore: "If you mix red and blue, you", textAfter: "purple.", hint: "get" }, // Zero
-            { id: "8", textBefore: "If she finishes early, she", textAfter: "home.", hint: "go" }, // First
-            { id: "9", textBefore: "If you press this button, the machine", textAfter: ".", hint: "start" }, // Zero
-            { id: "10", textBefore: "If they arrive late, they", textAfter: "miss the bus.", hint: "will" } // First
+            { id: "1", textBefore: "If you heat ice, it", textAfter: ".", hint: "melt", correctAnswer: "melts" },
+            { id: "2", textBefore: "If it rains, we", textAfter: "at home.", hint: "stay", correctAnswer: "stay" },
+            { id: "3", textBefore: "If you study, you", textAfter: "the exam.", hint: "pass", correctAnswer: "will pass" },
+            { id: "4", textBefore: "If Mark is late, he", textAfter: "call us.", hint: "will", correctAnswer: "will" },
+            { id: "5", textBefore: "If you don't eat, you", textAfter: "hungry.", hint: "get", correctAnswer: "get" },
+            { id: "6", textBefore: "If it stops raining, we", textAfter: "outside.", hint: "go", correctAnswer: "will go" },
+            { id: "7", textBefore: "If you mix red and blue, you", textAfter: "purple.", hint: "get", correctAnswer: "get" },
+            { id: "8", textBefore: "If she finishes early, she", textAfter: "home.", hint: "go", correctAnswer: "will go" },
+            { id: "9", textBefore: "If you press this button, the machine", textAfter: ".", hint: "start", correctAnswer: "starts" },
+            { id: "10", textBefore: "If they arrive late, they", textAfter: "miss the bus.", hint: "will", correctAnswer: "will" }
         ],
         aiPrompt: "Evaluate the conditional exercise. Check correct conditional type and verb tense in both clauses."
     },
+    {
+        id: "passive-voice",
+        title: "Passive Voice",
+        description: "Enfatiza el objeto que recibe la acción en lugar de quién la realiza.",
+        level: "B2",
+        colorTheme: "rose",
+        icon: RefreshCw,
+        grammarTip: {
+            title: "Passive Voice",
+            description: "Para cambiar el enfoque de quién hace la acción a quién la recibe.",
+            structure: "Subject + verb to be + Past participle",
+            examples: [],
+            markdownGuide: `
+La **Voz Pasiva** se utiliza cuando queremos enfatizar la **acción o el objeto** afectado, en lugar de quién realiza la acción.
 
+### 🧩 Estructura General
+\`Subject + verb to be (en el tiempo adecuado) + Past participle\`
+
+### 📝 Comparación de Usos
+
+#### 1. Pasado Simple
+- **Active voice:** *He didn't wash the car*
+- **Passive voice:** *The car was not washed by him*
+
+#### 2. Presente Continuo
+- **Active:** *They are building a new house*
+- **Passive:** *A new house is being built by them*
+
+#### 3. Presente Perfecto
+- **Active:** *He has finished the work*
+- **Passive:** *The work has been finished by him*
+
+#### 4. Pasado Continuo
+- **Active:** *She was writing a novel*
+- **Passive:** *A novel was being written by her*
+
+> 💡 **Nota especial:** Solo se puede usar voz pasiva con verbos transitivos (los que recaen sobre un objeto). "By" se usa para introducir quién realizó la acción original si es relevante.
+`
+        },
+        sentences: [
+            { id: "1", textBefore: "The car", textAfter: "by him yesterday.", hint: "wash (negative past)", correctAnswer: "was not washed" },
+            { id: "2", textBefore: "A new house", textAfter: "by them right now.", hint: "build (present continuous)", correctAnswer: "is being built" },
+            { id: "3", textBefore: "The work", textAfter: "by him.", hint: "finish (present perfect)", correctAnswer: "has already been finished" },
+            { id: "4", textBefore: "A novel", textAfter: "by her at that moment.", hint: "write (past continuous)", correctAnswer: "was being written" },
+            { id: "5", textBefore: "The cake", textAfter: "by my mother every Sunday.", hint: "make (present simple)", correctAnswer: "is made" },
+            { id: "6", textBefore: "The match", textAfter: "by our team next week.", hint: "win (future will)", correctAnswer: "will be won" },
+            { id: "7", textBefore: "The letters", textAfter: ".", hint: "send (negative present perfect)", correctAnswer: "have not been sent yet" },
+            { id: "8", textBefore: "The problem", textAfter: "tomorrow.", hint: "solve (future going to)", correctAnswer: "is going to be solved" },
+            { id: "9", textBefore: "My wallet", textAfter: "yesterday.", hint: "steal (past simple)", correctAnswer: "was stolen" },
+            { id: "10", textBefore: "A lot of coffee", textAfter: "in this office every day.", hint: "drink (present simple)", correctAnswer: "is drunk" }
+        ],
+        aiPrompt: "Evaluate the exercise focusing on Passive Voice. Check correct use of the verb 'to be' in different tenses combined with the past participle."
+    },
+    {
+        id: "conditionals-second-third",
+        title: "Second & Third Conditionals",
+        description: "Aprende a hablar de situaciones hipotéticas en el presente y arrepentimientos en el pasado.",
+        level: "B2",
+        colorTheme: "amber",
+        icon: GitBranch,
+        grammarTip: {
+            title: "Second & Third Conditionals",
+            description: "Para situaciones irreales, hipotéticas o imaginarias.",
+            structure: "Variada (ver detalles)",
+            examples: [],
+            markdownGuide: `
+A diferencia el Zero/First conditional (que tratan cosas muy reales y probables), el **Second y Third Conditional** tratan de mundos **hipotéticos o imaginarios**.
+
+### 🧩 Second Conditional (Situaciones hipotéticas en el PRESENTE)
+Usamos el Segundo Condicional para hablar de cosas imposibles o altamente improbables *ahora*.
+
+**Estructura:** \`If + Past Simple, would + base verb\`
+
+**Ejemplos detallados:**
+- *If I won the lottery, I would travel the world.* (No he ganado la lotería ahora).
+- *If I had a million dollars, I would buy a big house.*
+- *If she knew his number, she would call him.* (Pero ella no sabe el número).
+
+> 💡 **Nota especial:** Con el verbo To Be en el segundo condicional, se suele usar **"were"** para todas las personas (I, he, she, it) en ambientes formales: *If I were you, I would study more.*
+
+---
+
+### 🧩 Third Conditional (Situaciones irreales en el PASADO / Arrepentimientos)
+Usamos el Tercer Condicional para hablar del pasado imaginando que *hubiera* pasado algo distinto. Ya NO se puede cambiar.
+
+**Estructura:** \`If + Past Perfect, would have + past participle\`
+
+**Ejemplos detallados:**
+- *If I had studied harder, I would have passed the exam.* (No estudié, y reprobé).
+- *If we had left earlier, we wouldn't have missed the train.* (Salimos tarde).
+- *If she hadn't eaten so much, she wouldn't have felt sick.*
+`
+        },
+        sentences: [
+            { id: "1", textBefore: "If I", textAfter: "a lot of money, I would buy an island.", hint: "have (2nd cond)", correctAnswer: "had" },
+            { id: "2", textBefore: "If she had left earlier, she", textAfter: "the accident.", hint: "not/have (3rd cond)", correctAnswer: "would not have had" },
+            { id: "3", textBefore: "If I", textAfter: "you, I would talk to her.", hint: "be (2nd cond)", correctAnswer: "were" },
+            { id: "4", textBefore: "We would have won the match if we", textAfter: "more.", hint: "practice (3rd cond)", correctAnswer: "had practiced" },
+            { id: "5", textBefore: "If he", textAfter: "to me, he wouldn't be in this trouble now.", hint: "listen (3rd cond / mixed)", correctAnswer: "had listened" },
+            { id: "6", textBefore: "What would you do if you", textAfter: "a ghost?", hint: "see (2nd cond)", correctAnswer: "saw" },
+            { id: "7", textBefore: "If they", textAfter: "the map, they wouldn't have gotten lost.", hint: "check (3rd cond)", correctAnswer: "had checked" },
+            { id: "8", textBefore: "I would travel more if I", textAfter: "more free time.", hint: "have (2nd cond)", correctAnswer: "had" },
+            { id: "9", textBefore: "If the weather", textAfter: "better yesterday, we would have gone to the beach.", hint: "be (3rd cond)", correctAnswer: "had been" },
+            { id: "10", textBefore: "If she", textAfter: "the answer, she would tell us.", hint: "know (2nd cond)", correctAnswer: "knew" }
+        ],
+        aiPrompt: "Evaluate the exercise focusing on Second and Third Conditionals. Check correct tense usage (Past Simple vs Past Perfect) and the correct conditional clause (would vs would have)."
+    },
+    {
+        id: "mixed-conditionals",
+        title: "Mixed Conditionals",
+        description: "Conecta arrepentimientos o situaciones pasadas con consecuencias directas en el presente.",
+        level: "C1",
+        colorTheme: "rose",
+        icon: GitBranch,
+        grammarTip: {
+            title: "Mixed Conditionals",
+            description: "Para mezclar el pasado irreal con el presente irreal.",
+            structure: "Past Perfect (pasado) + would (presente)",
+            examples: [],
+            markdownGuide: `
+Los **Mixed Conditionals** (Condicionales Mixtos) ocurren cuando la condición y el resultado están en **diferentes tiempos**. Es como si combinaras la mitad de un Segundo Condicional con la mitad de un Tercer Condicional.
+
+### 🧩 Mezcla 1: Condición Pasada, Resultado Presente
+Algo no ocurrió en el pasado, y eso afecta directamente cómo estamos hoy.
+
+**Estructura:** \`If + Past Perfect (3rd cond), would + base verb (2nd cond)\`
+
+**Ejemplos detallados:**
+- *If I had studied harder at university, I would have a better job now.*
+  *(Si hubiera estudiado en el pasado, hoy tendría un mejor trabajo).*
+- *If she had taken the map, we wouldn't be lost right now.*
+- *If they hadn't spent all their money, they would be able to buy that house.*
+
+### 🧩 Mezcla 2: Condición Presente, Resultado Pasado
+Algo que es permanentemente cierto (o no cierto) ahora, afectó algo en el pasado.
+
+**Estructura:** \`If + Past Simple (2nd cond), would have + past participle (3rd cond)\`
+
+**Ejemplos detallados:**
+- *If I weren't afraid of flying, I would have traveled to Japan last year.*
+  *(Si no le tuviera miedo a volar en general, el año pasado habría viajado).*
+- *If she knew how to speak French, she would have gotten the translation job.*
+`
+        },
+        sentences: [
+            { id: "1", textBefore: "If I had slept better last night, I", textAfter: "so tired right now.", hint: "not/be", correctAnswer: "would not be" },
+            { id: "2", textBefore: "If she", textAfter: "afraid of dogs, she would have gone to the park.", hint: "not/be", correctAnswer: "were not" },
+            { id: "3", textBefore: "If they had invested their money wisely, they", textAfter: "rich today.", hint: "be", correctAnswer: "would be" },
+            { id: "4", textBefore: "I would have called her yesterday if I", textAfter: "her number.", hint: "have (permanent state)", correctAnswer: "had" },
+            { id: "5", textBefore: "If you", textAfter: "the instructions, we wouldn't be lost now.", hint: "read", correctAnswer: "had read" },
+            { id: "6", textBefore: "If he were a better player, he", textAfter: "that easy goal.", hint: "not/miss", correctAnswer: "would not have missed" },
+            { id: "7", textBefore: "We would be at the beach right now if we", textAfter: "our flight.", hint: "not/miss", correctAnswer: "had not missed" },
+            { id: "8", textBefore: "If I", textAfter: "how to swim, I would have joined you in the lake.", hint: "know", correctAnswer: "knew" },
+            { id: "9", textBefore: "If she had won the competition, she", textAfter: "very famous right now.", hint: "be", correctAnswer: "would be" },
+            { id: "10", textBefore: "If he didn't love her so much, he", textAfter: "all those sacrifices.", hint: "not/make", correctAnswer: "would not have made" }
+        ],
+        aiPrompt: "Evaluate the mixed conditional exercise. Ensure the verbs correctly blend past conditions with present results or present conditions with past results."
+    },
+    {
+        id: "passive-voice-advanced",
+        title: "Advanced Passive Voice",
+        description: "Explora usos expertos de la voz pasiva como verbos de reporte (It is said that) y modales.",
+        level: "C1",
+        colorTheme: "red",
+        icon: RefreshCw,
+        grammarTip: {
+            title: "Advanced Passive Voice",
+            description: "Para estructuras impersonales y formales extremas.",
+            structure: "It + is + past participle + that...",
+            examples: [],
+            markdownGuide: `
+Ya vimos la Voz Pasiva básica. Ahora veremos usos **avanzados y formales**, muy comunes en el entorno académico y periodístico.
+
+### 🧩 1. The Impersonal Passive (Verbos de reporte)
+Se usa con verbos de opinión o declaración como: *say, believe, think, consider, know*. Permite ser objetivo sin especificar quién lo dijo.
+
+**Estructura 1 (Con It):** \`It + passive reporting verb + that...\`
+- *It is said that the company is losing money.*
+- *It was believed that the earth was flat.*
+
+**Estructura 2 (Con infinitivo):** \`Subject + passive reporting verb + to + infinitive\`
+- *The company is said to be losing money.*
+- *He is known to have been a great leader.*
+
+### 🧩 2. Passive with Modal Verbs
+Cuando tenemos modales (can, must, should, might), también podemos hacerlos pasivos.
+
+**Estructura:** \`Modal + be + Past participle\`
+- **Active:** *You must finish this work today.*
+- **Passive:** *This work must be finished today.*
+- **Active:** *They should have told me earlier.*
+- **Passive:** *I should have been told earlier.* (Past modal passive)
+
+> 💡 **Nota especial:** La voz pasiva avanzada elimina casi en su totalidad al sujeto activo, ya que la información es general o periodística.
+`
+        },
+        sentences: [
+            { id: "1", textBefore: "It", textAfter: "that an apple a day keeps the doctor away.", hint: "say (present passive)", correctAnswer: "is said" },
+            { id: "2", textBefore: "The suspect is known", textAfter: "the country.", hint: "leave (infinitive)", correctAnswer: "to have left" },
+            { id: "3", textBefore: "The project", textAfter: "by Friday, it's mandatory.", hint: "must / finish", correctAnswer: "must be finished" },
+            { id: "4", textBefore: "I really think I", textAfter: "about the changes sooner.", hint: "should / tell (past modal)", correctAnswer: "should have been told" },
+            { id: "5", textBefore: "It", textAfter: "that the universe is expanding.", hint: "believe (present passive)", correctAnswer: "is believed" },
+            { id: "6", textBefore: "The ancient city is thought", textAfter: "by an earthquake.", hint: "destroy (passive infinitive)", correctAnswer: "to have been destroyed" },
+            { id: "7", textBefore: "The rules", textAfter: "at all times inside the facility.", hint: "must / follow", correctAnswer: "must be followed" },
+            { id: "8", textBefore: "It", textAfter: "that the new policy will improve sales.", hint: "hope (present passive)", correctAnswer: "is hoped" },
+            { id: "9", textBefore: "The application", textAfter: "before the deadline.", hint: "can / submit", correctAnswer: "can be submitted" },
+            { id: "10", textBefore: "The truth", textAfter: "from the public for years.", hint: "might / hide (past modal)", correctAnswer: "might have been hidden" }
+        ],
+        aiPrompt: "Evaluate the advanced passive voice exercise. Look for correct impersonal structures (It is said that), infinitive passives (to be / to have been), and modal passives (must be / should have been)."
+    },
+    {
+        id: "reported-speech-statements",
+        title: "Reported Speech: Statements",
+        description: "Aprende a reportar lo que otras personas dijeron cambiando los tiempos verbales.",
+        level: "B2",
+        colorTheme: "indigo",
+        icon: MessageSquare,
+        grammarTip: {
+            title: "Reported Speech (Statements)",
+            description: "Para citar indirectamente lo que alguien dijo en el pasado.",
+            structure: "Shift tense back (Present -> Past, Past -> Past Perfect)",
+            examples: [],
+            markdownGuide: `
+El **Reported Speech** (o estilo indirecto) se usa para contarle a una tercera persona lo que alguien más dijo.
+
+Cuando el verbo introductorio está en pasado (ej. *He said, She told me*), ocurre un fenómeno llamado **Backshifting** (los tiempos verbales dan un "paso hacia atrás" en el tiempo).
+
+### 🧩 Reglas de Backshifting
+
+#### Present Simple ➡️ Past Simple
+- **Directo:** *"I like coffee."*
+- **Reportado:** *He said that he liked coffee.*
+
+#### Present Continuous ➡️ Past Continuous
+- **Directo:** *"I am working right now."*
+- **Reportado:** *She said that she was working at that moment.*
+
+#### Past Simple ➡️ Past Perfect
+- **Directo:** *"I saw him yesterday."*
+- **Reportado:** *He said that he had seen him the day before.*
+
+#### Modales (will, can, must) ➡️ (would, could, had to)
+- **Directo:** *"I will help you."* -> *She said she would help me.*
+- **Directo:** *"I can do it."* -> *He said he could do it.*
+
+> 💡 **No olvides:** También cambian los pronombres y referencias de tiempo y espacio (today -> that day, tomorrow -> the next day, here -> there).
+`
+        },
+        sentences: [
+            { id: "1", textBefore: "\"I love this book.\" ➡️ She said that she", textAfter: "that book.", hint: "love", correctAnswer: "loved" },
+            { id: "2", textBefore: "\"I am cooking dinner.\" ➡️ He told me that he", textAfter: "dinner.", hint: "cook", correctAnswer: "was cooking" },
+            { id: "3", textBefore: "\"I visited Paris last year.\" ➡️ Mark said that he", textAfter: "Paris the year before.", hint: "visit", correctAnswer: "had visited" },
+            { id: "4", textBefore: "\"I will call you tomorrow.\" ➡️ She said that she", textAfter: "me the next day.", hint: "call", correctAnswer: "would call" },
+            { id: "5", textBefore: "\"I can fix the car.\" ➡️ He told me that he", textAfter: "the car.", hint: "fix", correctAnswer: "could fix" },
+            { id: "6", textBefore: "\"We have finished the project.\" ➡️ They announced that they", textAfter: "the project.", hint: "finish", correctAnswer: "had finished" },
+            { id: "7", textBefore: "\"I don't know the answer.\" ➡️ John stated that he", textAfter: "the answer.", hint: "not/know", correctAnswer: "did not know" },
+            { id: "8", textBefore: "\"I was watching TV.\" ➡️ She explained that she", textAfter: "TV.", hint: "watch", correctAnswer: "had been watching" },
+            { id: "9", textBefore: "\"You must leave now.\" ➡️ The guard told us that we", textAfter: "then.", hint: "leave (must > had to)", correctAnswer: "had to leave" },
+            { id: "10", textBefore: "\"It is raining outside.\" ➡️ He pointed out that it", textAfter: "outside.", hint: "rain", correctAnswer: "was raining" }
+        ],
+        aiPrompt: "Evaluate the reported speech exercise. Ensure correct backshifting of tenses (present to past, past to past perfect) and modal conversions (will to would, can to could)."
+    },
+    {
+        id: "reported-speech-questions-commands",
+        title: "Reported Speech: Questions & Commands",
+        description: "Reporta preguntas e instrucciones de forma fluida y nativa.",
+        level: "B2",
+        colorTheme: "cyan",
+        icon: HelpCircle,
+        grammarTip: {
+            title: "Reported Speech: Questions & Commands",
+            description: "Para reportar órdenes o preguntas indirectamente.",
+            structure: "Questions: if/whether + subject + verb. Commands: tell + object + to + infinitive.",
+            examples: [],
+            markdownGuide: `
+Reportar preguntas y órdenes tiene sus propias reglas especiales, distintas a las oraciones normales.
+
+### 🧩 1. Reportando Preguntas (Reported Questions)
+En el estilo indirecto, las preguntas **pierden su estructura de pregunta** (ya no hay auxiliares do/does/did invertidos) y se vuelven oraciones afirmativas normales (Sujeto + Verbo).
+
+**A. Preguntas de Sí/No (Usamos if / whether):**
+- **Directo:** *"Do you like tea?"*
+- **Reportado:** *He asked me **if I liked** tea.* (Backshifting + sujeto primero).
+
+**B. Preguntas con Wh- (Qué, Dónde, Cuándo):**
+- **Directo:** *"Where do you live?"*
+- **Reportado:** *She asked me **where I lived**.* (Se mantiene 'where', luego sujeto + verbo).
+
+### 🧩 2. Reportando Órdenes (Reported Commands)
+Las órdenes son súper fáciles. Simplemente usamos \`to + verbo\` (o \`not to + verbo\` para negativas). Verbos comunes de mandato: *tell, order, ask, advise*.
+
+- **Directo:** *"Close the door."*
+- **Reportado:** *He told me **to close** the door.*
+- **Directo (Negativo):** *"Don't talk!"*
+- **Reportado:** *The teacher ordered us **not to talk**.*
+`
+        },
+        sentences: [
+            { id: "1", textBefore: "\"Do you speak English?\" ➡️ She asked me", textAfter: "English.", hint: "if...", correctAnswer: "if I spoke" },
+            { id: "2", textBefore: "\"Where did you go yesterday?\" ➡️ He asked me where I", textAfter: "the previous day.", hint: "go", correctAnswer: "had gone" },
+            { id: "3", textBefore: "\"Close the window, please.\" ➡️ My mother asked me", textAfter: "the window.", hint: "close", correctAnswer: "to close" },
+            { id: "4", textBefore: "\"Don't touch that!\" ➡️ The guard ordered me", textAfter: "that.", hint: "not/touch", correctAnswer: "not to touch" },
+            { id: "5", textBefore: "\"Are you coming tonight?\" ➡️ He asked me", textAfter: "that night.", hint: "come", correctAnswer: "if I was coming" },
+            { id: "6", textBefore: "\"What are you doing?\" ➡️ The boss asked her what she", textAfter: ".", hint: "do", correctAnswer: "was doing" },
+            { id: "7", textBefore: "\"Please be quiet.\" ➡️ The librarian told us", textAfter: "quiet.", hint: "be", correctAnswer: "to be" },
+            { id: "8", textBefore: "\"Don't forget your keys.\" ➡️ She reminded him", textAfter: "his keys.", hint: "forget", correctAnswer: "not to forget" },
+            { id: "9", textBefore: "\"Have you seen my dog?\" ➡️ The boy asked if I", textAfter: "his dog.", hint: "see", correctAnswer: "had seen" },
+            { id: "10", textBefore: "\"Why did you call?\" ➡️ She asked me why I", textAfter: ".", hint: "call", correctAnswer: "had called" }
+        ],
+        aiPrompt: "Evaluate reported questions and commands. For questions, look for subject-verb word order (no typical question inversion) and backshifting. For commands, look for correct infinitive usage (to do / not to do)."
+    },
+    {
+        id: "causative-verbs",
+        title: "Causative Verbs",
+        description: "Expresa cuando logras, pagas o convences a alguien más para que haga algo por ti.",
+        level: "B2",
+        colorTheme: "purple",
+        icon: Activity,
+        grammarTip: {
+            title: "Causative Verbs (Have, Get, Make, Let)",
+            description: "Para delegar acciones o forzar a que ocurran.",
+            structure: "Subject + get/have/make/let + person + verb",
+            examples: [],
+            markdownGuide: `
+Los **Causative Verbs** se usan cuando el sujeto *no realiza la acción directamente*, sino que *causa* que alguien más la haga (pagándole, pidiéndole, forzándole o dándole permiso).
+
+### 🧩 1. Have / Get (Servicios Profesionales o Delegación)
+Significa "encargar a alguien que haga algo".
+- **Estructura (Activa):** \`have + person + base verb\` / \`get + person + To verb\`
+  - *I had the mechanic fix my car.* (Le pagué/pedí al mecánico).
+  - *I got the mechanic TO fix my car.* (Convencí al mecánico).
+- **Estructura (Pasiva, muy común!):** \`have / get + object + past participle\`
+  - *I had my car fixed.* / *I got my car fixed.* (Me arreglaron el auto).
+
+### 🧩 2. Make (Forzar / Obligar)
+Significa obligar a alguien a hacer algo que no quiere.
+- **Estructura:** \`make + person + base verb\` (¡Nunca utilices 'to'!)
+  - *My boss made me stay late.* (Mi jefe me obligó a quedarme).
+
+### 🧩 3. Let (Permitir)
+Significa dar permiso a alguien para hacer algo.
+- **Estructura:** \`let + person + base verb\`
+  - *My parents let me go to the party.* (Mis padres me dejaron ir).
+`
+        },
+        sentences: [
+            { id: "1", textBefore: "I didn't cut my hair myself. I", textAfter: "cut at the salon.", hint: "have", correctAnswer: "had my hair" },
+            { id: "2", textBefore: "The teacher", textAfter: "the students write an essay.", hint: "make (past)", correctAnswer: "made" },
+            { id: "3", textBefore: "My mother doesn't", textAfter: "me watch scary movies.", hint: "let", correctAnswer: "let" },
+            { id: "4", textBefore: "We need an expert. We should", textAfter: "a professional to do it.", hint: "get", correctAnswer: "get" },
+            { id: "5", textBefore: "I'm going to", textAfter: "my house painted next week.", hint: "have", correctAnswer: "have" },
+            { id: "6", textBefore: "They", textAfter: "us wait for two hours in the rain!", hint: "make (past)", correctAnswer: "made" },
+            { id: "7", textBefore: "If you ask nicely, she might", textAfter: "you borrow her car.", hint: "let", correctAnswer: "let" },
+            { id: "8", textBefore: "I finally", textAfter: "him to sign the contract.", hint: "get (past)", correctAnswer: "got" },
+            { id: "9", textBefore: "We", textAfter: "the roof repaired after the storm.", hint: "have (past)", correctAnswer: "had" },
+            { id: "10", textBefore: "SAD movies always", textAfter: "me cry.", hint: "make (present)", correctAnswer: "make" }
+        ],
+        aiPrompt: "Evaluate the causative verbs exercise. Ensure correct causative structure: make/let/have + bare infinitive, get + to-infinitive, and have/get + object + past participle for passive causatives."
+    },
+    {
+        id: "verbs-of-movement",
+        title: "Verbs & Prepositions of Movement",
+        description: "Aprende a describir la dirección y el movimiento exacto en el espacio.",
+        level: "B1",
+        colorTheme: "green",
+        icon: Map,
+        grammarTip: {
+            title: "Verbs and Prepositions of Movement",
+            description: "Para describir trayectorias, rumbos y destinos.",
+            structure: "Verb of movement + Preposition of direction + Noun",
+            examples: [],
+            markdownGuide: `
+Describir el movimiento en inglés requiere combinar verbos básicos (go, run, walk, drive, climb) con **Preposiciones de Movimiento** muy específicas.
+
+### 🧩 Preposiciones Principales
+- **Towards:** En dirección a (sin implicar que llegas al destino).
+  - *He is running towards the park.* (Corre en esa dirección).
+- **Through:** A través de (como un túnel o bosque).
+  - *They walked through the dark forest.*
+- **Across:** Cruzando de un lado a otro (en una superficie plana, como una calle o puente).
+  - *She swam across the river.*
+- **Over:** Por encima de un obstáculo (sin tocarlo o cubriéndolo).
+  - *The horse jumped over the fence.*
+- **Along:** A lo largo de (siguiendo una línea, como un río o camino).
+  - *We walked along the beach.*
+- **Into / Out of:** Hacia el interior de / hacia afuera de.
+  - *The cat ran into the box.*
+- **Past:** Pasando de largo un punto.
+  - *Walk past the bank, and turn left.*
+`
+        },
+        sentences: [
+            { id: "1", textBefore: "The dog ran", textAfter: "the street to chase a cat.", hint: "across", correctAnswer: "across" },
+            { id: "2", textBefore: "He is walking", textAfter: "me, but I don't know him.", hint: "towards", correctAnswer: "towards" },
+            { id: "3", textBefore: "We drove", textAfter: "a dark tunnel.", hint: "through", correctAnswer: "through" },
+            { id: "4", textBefore: "The thief climbed", textAfter: "the wall to escape.", hint: "over", correctAnswer: "over" },
+            { id: "5", textBefore: "They walked slowly", textAfter: "the river.", hint: "along", correctAnswer: "along" },
+            { id: "6", textBefore: "Put your hand", textAfter: "your pocket.", hint: "into", correctAnswer: "into" },
+            { id: "7", textBefore: "Go", textAfter: "the supermarket, the pharmacy is next to it.", hint: "past", correctAnswer: "past" },
+            { id: "8", textBefore: "She suddenly turned and ran", textAfter: "of the room.", hint: "out", correctAnswer: "out" },
+            { id: "9", textBefore: "The plane flew", textAfter: "the mountains.", hint: "over", correctAnswer: "over" },
+            { id: "10", textBefore: "He walked", textAfter: "the bridge safely.", hint: "across", correctAnswer: "across" }
+        ],
+        aiPrompt: "Evaluate the exercise on prepositions and verbs of movement. Check that the correct directional preposition (across, through, towards, over, etc.) is used according to the spatial context."
+    },
+    {
+        id: "past-perfect-continuous",
+        title: "Past Perfect Continuous",
+        description: "Narra la duración de acciones que estaban ocurriendo antes de otro momento en el pasado.",
+        level: "B2",
+        colorTheme: "slate",
+        icon: Clock,
+        grammarTip: {
+            title: "Past Perfect Continuous",
+            description: "Para acciones pasadas en progreso que causaron un resultado pasado.",
+            structure: "Subject + had been + verb-ING",
+            examples: [],
+            markdownGuide: `
+El **Past Perfect Continuous** nos dice *cuánto tiempo había estado pasando algo* antes de que ocurriera OTRA cosa en el pasado.
+
+### 🧩 Estructura
+\`Subject + had been + verb-ING\`
+
+### 📝 Casos de Uso
+**1. Acción continua que provocó un resultado visible en el pasado.**
+- *He was exhausted because he **had been working** for 10 hours.*
+  (Estaba cansado en el pasado, porque antes de eso, llevaba 10 horas trabajando).
+- *The streets were entirely wet because it **had been raining** all night.*
+
+**2. Duración antes de un evento pasado.**
+- *We **had been waiting** for 40 minutes when the bus finally arrived.*
+- *She **had been studying** English for five years before she moved to London.*
+
+> 💡 **Tip:** Casi siempre verás indicadores de tiempo con *for* (duración) o *since* (inicio) en estas oraciones, acompañadas por un evento interruptor en Past Simple.
+`
+        },
+        sentences: [
+            { id: "1", textBefore: "I was very tired because I", textAfter: "all day.", hint: "work", correctAnswer: "had been working" },
+            { id: "2", textBefore: "They", textAfter: "for an hour when the doctor finally arrived.", hint: "wait", correctAnswer: "had been waiting" },
+            { id: "3", textBefore: "She felt sick because she", textAfter: "candy all afternoon.", hint: "eat", correctAnswer: "had been eating" },
+            { id: "4", textBefore: "The ground was wet; it", textAfter: ".", hint: "rain", correctAnswer: "had been raining" },
+            { id: "5", textBefore: "How long", textAfter: "before he finally called you?", hint: "you / wait", correctAnswer: "had you been waiting" },
+            { id: "6", textBefore: "We", textAfter: "along the beach for hours before we found the cave.", hint: "walk", correctAnswer: "had been walking" },
+            { id: "7", textBefore: "He", textAfter: "for the test safely so he passed it.", hint: "prepare", correctAnswer: "had been preparing" },
+            { id: "8", textBefore: "I", textAfter: "to reach her all morning, but her phone was dead.", hint: "try", correctAnswer: "had been trying" },
+            { id: "9", textBefore: "Mark", textAfter: "at that company for 10 years before he was promoted.", hint: "work", correctAnswer: "had been working" },
+            { id: "10", textBefore: "My eyes were red because I", textAfter: ".", hint: "cry", correctAnswer: "had been crying" }
+        ],
+        aiPrompt: "Evaluate the Past Perfect Continuous exercise. Look strictly for the structure 'had been + present participle' (except for questions/negatives) and sensible context fitting background ongoing past actions."
+    },
+    {
+        id: "inversion",
+        title: "Negative Inversion",
+        description: "Estiliza y da un énfasis poético o dramático a tus expresiones formales.",
+        level: "C1",
+        colorTheme: "rose",
+        icon: Sparkles,
+        grammarTip: {
+            title: "Negative Inversion",
+            description: "Para dar un énfasis fuerte y dramático alterando el orden de la oración.",
+            structure: "Negative adverb + auxiliary verb + subject + main verb",
+            examples: [],
+            markdownGuide: `
+La **Inversion** (Inversión o Inversión Negativa) es una estrategia de sintaxis de nivel **C1/C2** que consiste en hacer que una oración afirmativa o negativa suene dramática, imitando la estructura de una pregunta.
+
+### 🧩 ¿Cómo funciona?
+Si comenzamos la frase con una **palabra restrictiva o adverbio negativo**, debemos invertir el sujeto y el auxiliar (como si hiciéramos una pregunta).
+
+| Normal Order | Inverted (Dramatic) Order |
+| :--- | :--- |
+| I have **never** seen such a thing. | **Never have I** seen such a thing! |
+| She **rarely** goes out. | **Rarely does she** go out. |
+| He realized his mistake **only then**. | **Only then did he** realize his mistake. |
+
+### 📝 Expresiones Comunes
+- **Not only ... but also:** *Not only did they arrive late, but they also forgot the tickets.*
+- **Hardly / Scarcely / Barely ... when:** *Hardly had I sat down when the phone rang.*
+- **Little did (someone) know:** *Little did he know that she was planning a surprise.* (Él no tenía idea).
+`
+        },
+        sentences: [
+            { id: "1", textBefore: "Never", textAfter: "such a terrifying storm.", hint: "I / see (present perfect)", correctAnswer: "have I seen" },
+            { id: "2", textBefore: "Not only", textAfter: "the speed limit, but he also ran a red light.", hint: "he / break (past simple)", correctAnswer: "did he break" },
+            { id: "3", textBefore: "Rarely", textAfter: "anything sensible in these meetings.", hint: "she / say (present simple)", correctAnswer: "does she say" },
+            { id: "4", textBefore: "Little", textAfter: "that the company was going bankrupt.", hint: "they / know (past simple)", correctAnswer: "did they know" },
+            { id: "5", textBefore: "Hardly", textAfter: "the house when it started to rain.", hint: "we / leave (past perfect)", correctAnswer: "had we left" },
+            { id: "6", textBefore: "Under no circumstances", textAfter: "this button.", hint: "you / should press", correctAnswer: "should you press" },
+            { id: "7", textBefore: "Only later", textAfter: "that he had lied to us.", hint: "I / realize (past simple)", correctAnswer: "did I realize" },
+            { id: "8", textBefore: "No sooner", textAfter: "the letter than he started to cry.", hint: "he / read (past perfect)", correctAnswer: "had he read" },
+            { id: "9", textBefore: "At no time", textAfter: "me what his real intentions were.", hint: "he / tell (past simple)", correctAnswer: "did he tell" },
+            { id: "10", textBefore: "Not until the next day", textAfter: "about the accident.", hint: "we / hear (past simple)", correctAnswer: "did we hear" }
+        ],
+        aiPrompt: "Evaluate the Negative Inversion exercise. Check for correct question-like structure (auxiliary + subject + verb) following the negative adverb, maintaining the intended tense."
+    },
+    {
+        id: "cleft-sentences",
+        title: "Cleft Sentences",
+        description: "Aprende a usar oraciones endidas para recalcar y corregir información específica.",
+        level: "C2",
+        colorTheme: "amber",
+        icon: TrendingUp,
+        grammarTip: {
+            title: "Cleft Sentences",
+            description: "Para dar un foco extremo a una pieza de información.",
+            structure: "It is... who/that OR What... is...",
+            examples: [],
+            markdownGuide: `
+Las **Cleft Sentences** (oraciones hendidas) se usan para poner un **foco focal extremo** en un sujeto, un objeto o una acción, normalmente para contradecir a alguien o aclarar algo.
+
+### 🧩 1. Estructura con "It is / It was"
+La fórmula: \`It + be + (palabra a enfatizar) + that / who...\`
+
+**Oración normal:** *John broke the window yesterday.*
+- Énfasis en John: *It was **John** who broke the window yesterday.*
+- Énfasis en la ventana: *It was **the window** that John broke yesterday.*
+- Énfasis en ayer: *It was **yesterday** that John broke the window.*
+
+### 🧩 2. Estructura con "What" (Pseudo-cleft)
+La fórmula: \`What + clause + is/was + (enfoque)\`
+
+**Oración normal:** *I need a cup of coffee.*
+- Énfasis drástico: ***What** I need is **a cup of coffee**.*
+
+**Oración normal:** *She hated the noise in the city.*
+- Énfasis drástico: ***What** she hated was **the noise in the city**.*
+
+> 💡 **Nota especial:** También puedes usar *The reason why... is*, *The place where... is*, *The person who... is*.
+`
+        },
+        sentences: [
+            { id: "1", textBefore: "I didn't break the glass! It", textAfter: "who broke it.", hint: "be / Mark", correctAnswer: "was Mark" },
+            { id: "2", textBefore: "What I really", textAfter: "a long holiday.", hint: "need / be", correctAnswer: "need is" },
+            { id: "3", textBefore: "It is his attitude", textAfter: "me the most.", hint: "annoy", correctAnswer: "that annoys" },
+            { id: "4", textBefore: "I don't like London. The place", textAfter: "Tokyo.", hint: "I / love / be", correctAnswer: "I love is" },
+            { id: "5", textBefore: "No, they met in 2020. It", textAfter: "that they met.", hint: "be / in 2020", correctAnswer: "was in 2020" },
+            { id: "6", textBefore: "What she did", textAfter: "tell the truth to the police.", hint: "be", correctAnswer: "was" },
+            { id: "7", textBefore: "It", textAfter: "who stole the money, not Peter.", hint: "be / Sarah", correctAnswer: "was Sarah" },
+            { id: "8", textBefore: "The reason why I", textAfter: "I was extremely sick.", hint: "not/come / be", correctAnswer: "didn't come was" },
+            { id: "9", textBefore: "What", textAfter: "the unpredictable weather.", hint: "I / hate / be", correctAnswer: "I hate is" },
+            { id: "10", textBefore: "It was the movie's ending", textAfter: "so deeply.", hint: "make / me cry", correctAnswer: "that made me cry" }
+        ],
+        aiPrompt: "Evaluate the Cleft Sentences exercise. Look for correct usage of 'It is/was... that/who' and pseudo-cleft formats 'What... is/was'. Check for tense consistency within the cleft."
+    },
+    {
+        id: "participle-clauses",
+        title: "Participle Clauses",
+        description: "Condensa oraciones y aporta fluidez nativa a tu discurso.",
+        level: "C2",
+        colorTheme: "blue",
+        icon: Layers,
+        grammarTip: {
+            title: "Participle Clauses",
+            description: "Para aportar información extra de manera muy resumida, reemplazando conjunciones.",
+            structure: "Present Participle (verb-ING) / Past Participle (for passive) / Perfect Participle (Having + Past participle)",
+            examples: [],
+            markdownGuide: `
+Las **Participle Clauses** son el distintivo crítico de los lectores y hablantes nivel C2. Permiten condensar o combinar dos oraciones en una sola suprimiendo muchas palabras (como *because, when, after, who*).
+
+### 🧩 1. Action happening at the same time (Present Participle -> VERB-ING)
+Se usa con sentido activo para acciones simultáneas o consecuencias.
+- *Normal:* He walked down the street. He was whistling a song.
+- *Avanzado:* **Whistling a song**, he walked down the street.
+- *Significado:* Significa *(While he was whistling)*.
+
+### 🧩 2. Action happening before another (Perfect Participle -> Having + Participle)
+Se usa si una acción terminó completamente antes de que empezara la otra.
+- *Normal:* After he had finished his work, he went home.
+- *Avanzado:* **Having finished** his work, he went home.
+
+### 🧩 3. Passive meaning (Past Participle -> Participle)
+Se usa cuando la cláusula tiene un sentido pasivo.
+- *Normal:* Because it was built in 1920, the house is very old.
+- *Avanzado:* **Built in 1920**, the house is very old.
+
+> 💡 **Regla de oro:** El sujeto de la cláusula principal DEBE SER EL MISMO que el sujeto oculto de la Participle Clause. El error común es el *Dangling Participle* (ej. "Walking down the street, a car hit me" -> incorrecto, significa que el auto iba caminando).
+`
+        },
+        sentences: [
+            { id: "1", textBefore: "", textAfter: "for hours, I was incredibly tired.", hint: "walk (perfect participle)", correctAnswer: "Having walked" },
+            { id: "2", textBefore: "", textAfter: "by the dog, she started crying.", hint: "bite (passive past participle)", correctAnswer: "Bitten" },
+            { id: "3", textBefore: "", textAfter: "at the map, he realized he was lost.", hint: "look (present participle)", correctAnswer: "Looking" },
+            { id: "4", textBefore: "", textAfter: "the exam, she decided to celebrate with her friends.", hint: "pass (perfect participle)", correctAnswer: "Having passed" },
+            { id: "5", textBefore: "", textAfter: "in France, the wine was extremely expensive.", hint: "make (passive past participle)", correctAnswer: "Made" },
+            { id: "6", textBefore: "", textAfter: "feeling sick, I didn't go to work.", hint: "be (present participle)", correctAnswer: "Being" },
+            { id: "7", textBefore: "", textAfter: "not to go further, the explorers turned back.", hint: "warn (passive past participle)", correctAnswer: "Warned" },
+            { id: "8", textBefore: "", textAfter: "all his money, he had to ask for a loan.", hint: "spend (perfect participle)", correctAnswer: "Having spent" },
+            { id: "9", textBefore: "", textAfter: "rapidly towards the door, she grabbed her coat.", hint: "walk (present participle)", correctAnswer: "Walking" },
+            { id: "10", textBefore: "", textAfter: "by experts, the painting's value skyrocketed.", hint: "verify (passive past participle)", correctAnswer: "Verified" }
+        ],
+        aiPrompt: "Evaluate the Participle Clauses exercise. Ensure students properly apply Present Participles (-ing) for active/simultaneous actions, Perfect Participles (Having done) for prior events, and Past Participles for passive meaning."
+    }
 ];

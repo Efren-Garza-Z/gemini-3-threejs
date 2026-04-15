@@ -1,0 +1,76 @@
+[
+  {
+    "word": "run",
+    "definitions": [
+      {
+        "meaning": "Moverse rápidamente a pie.",
+        "example": "He decided to run towards the park."
+      },
+      {
+        "meaning": "Administrar o dirigir (un negocio).",
+        "example": "She wants to run her own company."
+      }
+    ]
+  },
+  {
+    "word": "novel",
+    "definitions": [
+      {
+        "meaning": "Libro extenso de ficción literaria.",
+        "example": "A novel was being written by her."
+      },
+      {
+        "meaning": "Algo nuevo u original.",
+        "example": "That is a very novel idea for a software."
+      }
+    ]
+  },
+  {
+    "word": "develop",
+    "definitions": [
+      {
+        "meaning": "Crecer o causar crecimiento y estar más avanzado.",
+        "example": "We need to develop a new strategy."
+      }
+    ]
+  },
+  {
+    "word": "yield",
+    "definitions": [
+      {
+        "meaning": "Producir u originar (un resultado financiero o agrícola).",
+        "example": "The investigation yielded some unexpected results."
+      },
+      {
+        "meaning": "Ceder el paso o rendirse ante presión.",
+        "example": "He refused to yield to their demands."
+      }
+    ]
+  },
+  {
+    "word": "successfully",
+    "definitions": [
+      {
+        "meaning": "Producir u originar (un resultado financiero o agrícola).",
+        "example": "The investigation yielded some unexpected results."
+      },
+      {
+        "meaning": "Ceder el paso o rendirse ante presión.",
+        "example": "He refused to yield to their demands."
+      }
+    ]
+  },
+  {
+    "word": "address",
+    "definitions": [
+      {
+        "meaning": "Lugar específico donde alguien vive o donde está un edificio.",
+        "example": "What is your home address?"
+      },
+      {
+        "meaning": "Abordar o enfrentar un problema o situación.",
+        "example": "We must address the issue immediately."
+      }
+    ]
+  }
+]

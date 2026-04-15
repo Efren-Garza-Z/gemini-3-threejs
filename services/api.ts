@@ -41,12 +41,11 @@ export const apiService = {
         }).then(res => res.json()),
 
     // Iniciar proceso de evaluación
-    processExercise: (prompt: string, token: string) =>
+    processExercise: (prompt: string) =>
         fetch(`${BASE_URL}/gemini/process`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 prompt: prompt,
@@ -55,11 +54,10 @@ export const apiService = {
         }).then(res => res.json()),
 
     // Consultar estado de la tarea
-    checkStatus: (taskId: string, token: string) =>
+    checkStatus: (taskId: string) =>
         fetch(`${BASE_URL}/gemini/status/${taskId}`, {
             method: 'GET',
             headers: {
-                'Authorization': `Bearer ${token}`,
                 'accept': 'application/json'
             }
         }).then(res => res.json()),

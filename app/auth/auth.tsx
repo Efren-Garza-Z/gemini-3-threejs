@@ -116,7 +116,7 @@ export default function AuthForm({ onLoginSuccess }: { onLoginSuccess: (token: s
                                 className="w-full p-4 rounded-2xl bg-white/60 border border-white/20 outline-none focus:ring-2 focus:ring-orange-300 transition-all text-zinc-800"
                                 onChange={e => setFormData({...formData, password: e.target.value})}
                             />
-                            <button className="w-full bg-zinc-900 text-white font-bold py-4 rounded-2xl hover:bg-zinc-800 transition-all shadow-lg flex items-center justify-center gap-2 group">
+                            <button className="w-full bg-orange-200 text-orange-950 font-bold py-4 rounded-2xl hover:bg-orange-300 transition-all shadow-lg flex items-center justify-center gap-2 group">
                                 {loading ? <Loader2 className="animate-spin" /> : (isLogin ? "Entrar ahora" : "Siguiente")}
                                 {!isLogin && !loading && <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />}
                             </button>
@@ -178,7 +178,7 @@ export default function AuthForm({ onLoginSuccess }: { onLoginSuccess: (token: s
                                 </div>
                             </div>
 
-                            <button className="w-full bg-zinc-900 text-white font-bold py-4 rounded-2xl hover:bg-zinc-800 transition-all shadow-lg flex items-center justify-center gap-2">
+                            <button className="w-full bg-orange-200 text-orange-950 font-bold py-4 rounded-2xl hover:bg-orange-300 transition-all shadow-lg flex items-center justify-center gap-2">
                                 {loading ? <Loader2 className="animate-spin" /> : "Completar Registro"}
                             </button>
 

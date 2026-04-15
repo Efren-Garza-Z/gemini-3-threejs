@@ -1,7 +1,7 @@
 // app/ielts/page.tsx
 "use client"
 import React from "react";
-import Navbar from "@/app/navbar/Navbar";
+import Navbar from "@/components/Navbar";
 import { BookOpen, Mic, Headset, PenTool, ArrowLeft, Star } from "lucide-react";
 import Link from "next/link";
 
@@ -42,7 +42,7 @@ export default function IELTSPage() {
     ];
 
     return (
-        <main className="min-h-screen w-full bg-gradient-to-br from-[#e0eafc] to-[#cfdef3] flex flex-col pt-24 px-4 pb-10 overflow-x-hidden items-center">
+        <main className="min-h-screen w-full bg-gradient-to-br from-[#e0eafc] to-[#cfdef3] flex flex-col pt-36 px-4 pb-10 overflow-x-hidden items-center">
             <Navbar />
 
             <div className="max-w-5xl mx-auto w-full flex flex-col items-center">

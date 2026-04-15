@@ -1,13 +1,13 @@
 "use client"
 import { useState, useEffect } from "react";
 import { ieltsReadingData, ReadingTest } from "@/app/ielts/data/readingTasks";
-import Navbar from "@/app/navbar/Navbar";
+import Navbar from "@/components/Navbar";
 import {Clock, BookOpen, Info, ChevronLeft, CheckCircle2, Loader2, AlertCircle} from "lucide-react";
 import ReactMarkdown from 'react-markdown';
 import {useTestEvaluation} from "@/app/reading/hooks/Usetestevaluation";
 import InstructionsModal from "@/app/reading/components/Instructionsmodal";
 import {QuestionRenderer} from "@/app/reading/components/Questionrenderer";
-import {Toast} from "@/app/util/notice";
+import {Toast} from "@/components/Notice";
 
 
 export default function IeltsReadingPage() {
