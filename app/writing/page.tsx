@@ -63,7 +63,7 @@ export default function IeltsWritingPage() {
                 res = await apiService.processFile(prompt, selectedTask.image, token);
                 setIsFileType(true);
             } else {
-                res = await apiService.processExercise(prompt, token);
+                res = await apiService.processExercise(prompt);
                 setIsFileType(false);
             }
             if (res.task_id) setTaskId(res.task_id);
@@ -78,7 +78,7 @@ export default function IeltsWritingPage() {
         let interval: any;
         if (taskId && (status === "pendiente" || status === "en_proceso")) {
             interval = setInterval(async () => {
-                const res = isFileType ? await apiService.checkFileStatus(taskId, token!) : await apiService.checkStatus(taskId, token!);
+                const res = isFileType ? await apiService.checkFileStatus(taskId, token!) : await apiService.checkStatus(taskId);
                 setStatus(res.status);
                 if (res.status === "finalizado") {
                     setResult(res.result);

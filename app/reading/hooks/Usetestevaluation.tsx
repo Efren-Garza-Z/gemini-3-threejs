@@ -18,7 +18,7 @@ export const useTestEvaluation = () => {
         let interval: any;
         if (taskId && (status === "pendiente" || status === "en_proceso")) {
             interval = setInterval(async () => {
-                const res = await apiService.checkStatus(taskId, token!);
+                const res = await apiService.checkStatus(taskId);
                 setStatus(res.status);
                 if (res.status === "finalizado") {
                     setResult(res.result);
@@ -82,7 +82,7 @@ export const useTestEvaluation = () => {
             Format your response in clear sections with markdown.`;
 
         try {
-            const res = await apiService.processExercise(prompt, token);
+            const res = await apiService.processExercise(prompt);
             if (res.task_id) setTaskId(res.task_id);
         } catch (error) {
             console.error("Evaluation error:", error);
