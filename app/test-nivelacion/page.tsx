@@ -24,15 +24,15 @@ export default function LevelTestPage() {
         const t = getTokenFromCookie();
         if (t) {
             setToken(t);
-            generateTest(t);
+            generateTest();
         }
     }, []);
 
     // 1. GENERAR EL TEST
-    const generateTest = async (t: string) => {
+    const generateTest = async () => {
         const prompt = `Generate a 48-question English placement test. 8 questions each for A1, A2, B1, B2, C1. Return ONLY a JSON object: { "questions": [{ "id": 1, "level": "A1", "question": "...", "options": ["...", "..."], "correct_index": 0 }] }`;
         try {
-            const data = await apiService.processExercise(prompt, t);
+            const data = await apiService.processExercise(prompt);
             setTaskId(data.task_id);
             setStatus("pendiente_preguntas");
         } catch (err) { setStatus("error"); }
@@ -46,7 +46,7 @@ export default function LevelTestPage() {
             interval = setInterval(async () => {
                 if (!token) return;
                 try {
-                    const data = await apiService.checkStatus(taskId, token);
+                    const data = await apiService.checkStatus(taskId);
 
                     if (data.status === "finalizado") {
                         // Limpieza robusta con Regex para extraer solo el contenido entre llaves
@@ -125,7 +125,7 @@ export default function LevelTestPage() {
 
         try {
             if (!token) return;
-            const data = await apiService.processExercise(promptEval, token);
+            const data = await apiService.processExercise(promptEval);
             setTaskId(data.task_id);
         } catch (err) { setStatus("error"); }
     };
