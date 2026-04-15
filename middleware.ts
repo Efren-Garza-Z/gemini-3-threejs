@@ -25,6 +25,5 @@ export const config = {
         "/profile/:path*",
         "/ielts/:path*",
         "/writing/:path*",
-        "/reading/:path*",
-        "/tech/:path*"],
+        "/reading/:path*"],
 }
