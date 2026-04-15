@@ -67,15 +67,14 @@ export default function VocabularyPage() {
 
   const handleRequestAIReview = async () => {
     setIsAnalyzing(true);
-    const token = getTokenFromCookie();
 
     const formattedSentences = savedSentences.map((s, i) => `${i+1}. Palabra [${s.word}]: "${s.sentence}"`).join("\\n");
     const prompt = `Soy un estudiante de inglés nivel ${level}. He practicado escribiendo estas oraciones con nuevo vocabulario:\\n${formattedSentences}\\n\\nPor favor, revisa cada oración y escribe retroalimentación en ESPAÑOL. Dime si están bien escritas, corrige mis errores ortográficos o gramaticales y sé muy breve y motivador. Usa formato Markdown.`;
 
     try {
-      const response = await apiService.processExercise(prompt, token || "");
+      const response = await apiService.processExercise(prompt);
       if (response && response.task_id) {
-        pollStatus(response.task_id, token || "");
+        pollStatus(response.task_id);
       } else {
         setAiFeedback("Error: No se inició la tarea de IA.");
         setIsAnalyzing(false);
@@ -86,10 +85,10 @@ export default function VocabularyPage() {
     }
   };
 
-  const pollStatus = async (taskId: string, token: string) => {
+  const pollStatus = async (taskId: string) => {
     const intervalId = setInterval(async () => {
       try {
-        const check = await apiService.checkStatus(taskId, token);
+        const check = await apiService.checkStatus(taskId);
         if (check.status === "finalizado" && check.result) {
           setAiFeedback(check.result);
           setIsAnalyzing(false);
