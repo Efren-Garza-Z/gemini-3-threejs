@@ -21,7 +21,6 @@ export default function ScrollModel({
     const { actions } = useAnimations(animations, scene)
 
     useEffect(() => {
-        // ✅ Corrige color space de todas las texturas del modelo
         scene.traverse((child) => {
             if ((child as Mesh).isMesh) {
                 const mesh = child as Mesh
@@ -31,9 +30,18 @@ export default function ScrollModel({
 
                 materials.forEach((mat) => {
                     const m = mat as MeshStandardMaterial
-                    if (m.map) m.map.colorSpace = SRGBColorSpace
-                    if (m.emissiveMap) m.emissiveMap.colorSpace = SRGBColorSpace
-                    m.needsUpdate = true
+                    console.log("🎨 Material:", {
+                        name: m.name,
+                        type: m.type,
+                        color: m.color,
+                        roughness: m.roughness,
+                        metalness: m.metalness,
+                        map: m.map ? "✅ tiene textura" : "❌ sin textura",
+                        colorSpace: m.map?.colorSpace,
+                        transparent: m.transparent,
+                        opacity: m.opacity,
+                        toneMapped: m.toneMapped,
+                    })
                 })
             }
         })
