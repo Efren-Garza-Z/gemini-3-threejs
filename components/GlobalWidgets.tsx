@@ -134,7 +134,7 @@ export default function GlobalWidgets() {
     });
   };
 
-  if (pathname === "/") {
+  if (pathname === "/" || pathname === "/auth") {
     return null;
   }
 
