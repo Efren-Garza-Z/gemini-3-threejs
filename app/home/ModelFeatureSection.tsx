@@ -45,7 +45,7 @@ export default function ModelFeatureSection({ title, description, reverse, model
                         outputColorSpace: "srgb" // Asegura que los colores se vean vibrantes
                     }}
                 >
-                    <ambientLight intensity={2.5} />
+                    <ambientLight intensity={5} />
                     <pointLight position={[10, 10, 10]} intensity={1.5} />
                     <spotLight
                         position={[10, 10, 10]}
@@ -55,8 +55,8 @@ export default function ModelFeatureSection({ title, description, reverse, model
                         castShadow
                         shadow-bias={0.0001}  // Evita sombras pegadas al modelo
                         shadow-mapSize={2048} // Mejora calidad en dispositivos con más GPU
-                    />                       <Environment preset="city" />
-                    <Suspense fallback={null}>
+                    />
+                    {/* <Environment preset="city" /> */}                    <Suspense fallback={null}>
                         {/* Pasamos la ruta del modelo aquí */}
                         <ScrollModel modelPath={modelPath} scale={modelScale} />
                     </Suspense>
