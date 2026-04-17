@@ -16,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" style={{ colorScheme: 'light' }}>
       <body className={`${inter.className} min-h-screen relative`}>
         {children}
         <GlobalWidgets  />
