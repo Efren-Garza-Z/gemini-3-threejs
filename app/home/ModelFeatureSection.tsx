@@ -56,7 +56,8 @@ export default function ModelFeatureSection({ title, description, reverse, model
                         shadow-bias={0.0001}  // Evita sombras pegadas al modelo
                         shadow-mapSize={2048} // Mejora calidad en dispositivos con más GPU
                     />
-                    {/* <Environment preset="city" /> */}                    <Suspense fallback={null}>
+                    <Environment preset="city" />
+                    <Suspense fallback={null}>
                         {/* Pasamos la ruta del modelo aquí */}
                         <ScrollModel modelPath={modelPath} scale={modelScale} />
                     </Suspense>

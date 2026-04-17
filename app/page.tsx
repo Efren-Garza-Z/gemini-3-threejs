@@ -52,7 +52,7 @@ export default function LandingPage() {
                     {/* BLOQUE 1: POYITO */}
                     <div className="relative">
                         <ModelFeatureSection
-                            title="¿Por... qué el Inglés ahora?"
+                            title="¿Por qué el Inglés ahora?"
                             description="Aprender con modelos interactivos como Gemini te permite retener un 70% más de vocabulario visual."
                             modelPath="/poyito.glb"
                             modelScale={2.5}
