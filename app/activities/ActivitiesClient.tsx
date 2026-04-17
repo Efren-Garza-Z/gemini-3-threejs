@@ -49,7 +49,7 @@ export default function ActivitiesClient() {
                                         className="bg-white/40 backdrop-blur-md p-8 rounded-[2.5rem] border border-white/50 shadow-xl hover:shadow-2xl hover:scale-[1.03] transition-all text-left group flex flex-col h-full"
                                     >
                                         <div
-                                            className={`bg-white/60 p-4 rounded-2xl w-fit mb-6 shadow-sm group-hover:bg-orange-200 group-hover:text-orange-950 group-hover:text-white transition-colors`}>
+                                            className={`bg-white/60 p-4 rounded-2xl w-fit mb-6 shadow-sm group-hover:bg-orange-200 group-hover:text-orange-950 group-hover:text-white transition-colors text-zinc-900`}>
                                             {/* Renderizamos el icono que viene en el objeto */}
                                             <activity.icon size={24}/>
                                         </div>

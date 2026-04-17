@@ -36,11 +36,26 @@ export default function ModelFeatureSection({ title, description, reverse, model
                 viewport={{ once: true }}
                 className="w-full md:w-1/2 h-[400px] cursor-grab active:cursor-grabbing bg-white/5 rounded-[40px] border border-white/20 shadow-xl"
             >
-                <Canvas camera={{ position: [0, 0, 5], fov: 35 }}>
-                    <ambientLight intensity={2} />
+                <Canvas
+                    flat
+                    camera={{ position: [0, 0, 5], fov: 35 }}
+                    gl={{
+                        antialias: true,
+                        toneMappingExposure: 1.5, // Aumenta la exposición global
+                        outputColorSpace: "srgb" // Asegura que los colores se vean vibrantes
+                    }}
+                >
+                    <ambientLight intensity={2.5} />
                     <pointLight position={[10, 10, 10]} intensity={1.5} />
-                    <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
-                    <Environment preset="city" />
+                    <spotLight
+                        position={[10, 10, 10]}
+                        angle={0.2}           // Aumentado para evitar artefactos en móvil
+                        penumbra={1}
+                        intensity={2}
+                        castShadow
+                        shadow-bias={0.0001}  // Evita sombras pegadas al modelo
+                        shadow-mapSize={2048} // Mejora calidad en dispositivos con más GPU
+                    />                       <Environment preset="city" />
                     <Suspense fallback={null}>
                         {/* Pasamos la ruta del modelo aquí */}
                         <ScrollModel modelPath={modelPath} scale={modelScale} />
