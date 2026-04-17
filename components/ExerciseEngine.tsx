@@ -200,7 +200,7 @@ export default function ExerciseEngine({ data, onBack }: Props) {
 
                 {/* Contenedor principal de la Guía */}
                 {/* Contenedor principal de la Guía */}
-                <div className="prose prose-lg prose-zinc max-w-none bg-white/30 p-6 md:p-8 rounded-[2rem] border border-white/20 shadow-sm w-full">
+                <div className="prose prose-lg prose-zinc max-w-none bg-white/30 p-6 md:p-8 rounded-[2rem] border border-white/20 shadow-sm w-full text-zinc-900">
                     <ReactMarkdown>
                         {data.grammarTip.markdownGuide || `
 El **${data.grammarTip.title}** ${data.grammarTip.description.toLowerCase()}
