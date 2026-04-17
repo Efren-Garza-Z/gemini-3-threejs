@@ -1,9 +1,9 @@
-// components/scene/ScrollModel.tsx
 "use client"
 
 import { useAnimations, useGLTF } from "@react-three/drei"
 import { useEffect, useRef } from "react"
-import { Group } from "three"
+import { Group, Mesh, MeshStandardMaterial, SRGBColorSpace } from "three"
+// ✅ Importa directamente desde "three" — no uses THREE.* en Next.js
 
 interface ScrollModelProps {
     modelPath: string;
@@ -17,20 +17,33 @@ export default function ScrollModel({
                                         position = [0, -1, 0]
                                     }: ScrollModelProps) {
     const group = useRef<Group>(null)
-    // Cargamos el modelo dinámicamente según la prop modelPath
     const { animations, scene } = useGLTF(modelPath)
     const { actions } = useAnimations(animations, scene)
 
     useEffect(() => {
-        console.log(`🔥 Animaciones de ${modelPath}:`, actions)
+        // ✅ Corrige color space de todas las texturas del modelo
+        scene.traverse((child) => {
+            if ((child as Mesh).isMesh) {
+                const mesh = child as Mesh
+                const materials = Array.isArray(mesh.material)
+                    ? mesh.material
+                    : [mesh.material]
 
-        // Reproduce la primera animación disponible
+                materials.forEach((mat) => {
+                    const m = mat as MeshStandardMaterial
+                    if (m.map) m.map.colorSpace = SRGBColorSpace
+                    if (m.emissiveMap) m.emissiveMap.colorSpace = SRGBColorSpace
+                    m.needsUpdate = true
+                })
+            }
+        })
+    }, [scene])
+
+    useEffect(() => {
         const firstAction = Object.values(actions)[0]
         if (firstAction) {
             firstAction.reset().fadeIn(0.5).play()
         }
-
-        // Limpieza al desmontar o cambiar de modelo
         return () => {
             if (firstAction) firstAction.fadeOut(0.5)
         }
