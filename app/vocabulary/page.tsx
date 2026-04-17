@@ -271,8 +271,8 @@ export default function VocabularyPage() {
                                 <ReactMarkdown>{aiFeedback}</ReactMarkdown>
                             </div>
 
-                            <button 
-                                onClick={() => setSetupMode(true)}
+                            <button
+                                onClick={() => setupMode ? router.push("/home") : setSetupMode(true)}
                                 className="w-full mt-6 bg-zinc-900 text-white p-4 rounded-2xl font-bold hover:bg-zinc-800 transition-colors"
                             >
                                 Finalizar y salir

@@ -28,7 +28,8 @@ export default function ExerciseEngine({ data, onBack }: Props) {
             // Para un 90% de similitud podrías usar algoritmos como Levenshtein
             return {
                 id: s.id,
-                isCorrect: userAns === correctAns
+                isCorrect: isSimilar(userAns, correctAns)
+                //isCorrect: userAns == correctAns
             };
         });
 
@@ -46,13 +47,14 @@ export default function ExerciseEngine({ data, onBack }: Props) {
     };
 
     function isSimilar(str1: string, str2: string): boolean {
-        // Implementación rápida de distancia simplificada
-        const s1 = str1.toLowerCase().trim();
-        const s2 = str2.toLowerCase().trim();
-        if (s1 === s2) return true;
-        // Aquí puedes agregar lógica para permitir 1 caracter de diferencia
-        return false;
+        // 1. Normalización: Pasamos a minúsculas y quitamos espacios al inicio/final
+        // 2. REEMPLAZAMOS múltiples espacios internos por uno solo usando Regex
+        const s1 = str1.toLowerCase().trim().replace(/\s+/g, ' ');
+        const s2 = str2.toLowerCase().trim().replace(/\s+/g, ' ');
+
+        return s1 == s2;
     }
+
 
     const colorMap: Record<string, { bg: string, text: string, border: string }> = {
         orange: {

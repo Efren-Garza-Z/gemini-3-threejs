@@ -47,7 +47,7 @@ export default function IELTSPage() {
 
             <div className="max-w-5xl mx-auto w-full flex flex-col items-center">
                 <header className="mb-12 w-full text-center md:text-left">
-                    <Link href="/" className="flex items-center gap-2 text-zinc-600 font-bold hover:text-zinc-900 transition-colors mb-6">
+                    <Link href="/home" className="flex items-center gap-2 text-zinc-600 font-bold hover:text-zinc-900 transition-colors mb-6">
                         <ArrowLeft size={20} /> Volver al inicio
                     </Link>
                     <h1 className="text-5xl font-black text-zinc-900 tracking-tight">IELTS Academy</h1>
