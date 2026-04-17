@@ -37,14 +37,15 @@ export default function ModelFeatureSection({ title, description, reverse, model
                 className="w-full md:w-1/2 h-[400px] cursor-grab active:cursor-grabbing bg-white/5 rounded-[40px] border border-white/20 shadow-xl"
             >
                 <Canvas camera={{ position: [0, 0, 5], fov: 35 }}>
-                    <ambientLight intensity={1.5} />
+                    <ambientLight intensity={2} />
+                    <pointLight position={[10, 10, 10]} intensity={1.5} />
                     <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
                     <Environment preset="city" />
                     <Suspense fallback={null}>
                         {/* Pasamos la ruta del modelo aquí */}
                         <ScrollModel modelPath={modelPath} scale={modelScale} />
                     </Suspense>
-                    <ContactShadows position={[0, -1.5, 0]} opacity={0.4} scale={10} blur={2} />
+                    <ContactShadows position={[0, -1.5, 0]} opacity={0.2} scale={10} blur={2} far={4.5} />
                     <OrbitControls enableZoom={false} />
                 </Canvas>
             </motion.div>

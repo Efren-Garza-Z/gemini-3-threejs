@@ -43,7 +43,7 @@ export default function Navbar() {
             </div>
 
             {/* Mobile */}
-            <button className="md:hidden" onClick={() => setOpen(!open)}>
+            <button className="md:hidden text-zinc-900" onClick={() => setOpen(!open)}>
                 {open ? <X /> : <Menu />}
             </button>
 
