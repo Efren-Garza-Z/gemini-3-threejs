@@ -1,18 +1,18 @@
 "use client"
 import { motion } from "framer-motion"
-import { ArrowRight, Globe, Shield, Zap, Star, Menu } from "lucide-react"
+import { ArrowRight, Zap, Star, Globe, MessageCircle } from "lucide-react"
 import Link from "next/link"
-import Image from 'next/image';
-
+import ModelFeatureSection from "@/app/home/ModelFeatureSection";
 
 export default function LandingPage() {
+    const currentYear = new Date().getFullYear();
+
     return (
         <div className="bg-white text-zinc-900 font-sans selection:bg-[#fcb69f]/30">
 
-            {/* NAVBAR VANGUARDISTA */}
+            {/* NAVBAR */}
             <nav className="fixed top-0 w-full z-[100] flex justify-between items-center px-8 py-6 mix-blend-difference">
                 <div className="text-white font-black text-2xl tracking-tighter">ICB</div>
-
                 <Link href="/auth">
                     <button className="bg-white text-black px-6 py-2 rounded-full font-bold text-sm hover:invert transition-all">
                         GET STARTED
@@ -20,7 +20,7 @@ export default function LandingPage() {
                 </Link>
             </nav>
 
-            {/* SECCIÓN 1: HERO (100vh - Pastel Impact) */}
+            {/* SECCIÓN 1: HERO */}
             <section className="h-screen w-full flex flex-col items-center justify-center relative overflow-hidden bg-gradient-to-br from-blue-100 via-teal-50 to-green-100">
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
@@ -36,115 +36,108 @@ export default function LandingPage() {
                     </p>
                     <div className="flex justify-center gap-4">
                         <Link href="/home">
-                        <button className="bg-orange-200 text-orange-950 px-10 py-4 rounded-full font-bold hover:scale-105 transition-transform flex items-center gap-3">
-                            EXPLORE ICB <ArrowRight size={18} />
-                        </button>
+                            <button className="bg-orange-200 text-orange-950 px-10 py-4 rounded-full font-bold hover:scale-105 transition-transform flex items-center gap-3">
+                                EXPLORE ICB <ArrowRight size={18} />
+                            </button>
                         </Link>
                     </div>
                 </motion.div>
-                {/* Espacio para Imagen Vanguardista Flotante (Abstracta/3D) */}
                 <div className="absolute bottom-[-10%] right-[-5%] w-1/2 h-1/2 bg-white/10 backdrop-blur-3xl rounded-full border border-white/20" />
             </section>
 
-            {/* SECCIÓN 2: THE WHY (100vh - White Minimalist) */}
-            <section id="why" className="h-screen w-full bg-white flex items-center px-10 md:px-24 relative">
-                <div className="grid md:grid-cols-2 gap-20 items-center max-w-7xl mx-auto">
-                    <div className="mi-clase-personalizada">
-                        <span className="text-sm font-bold tracking-[0.3em] text-zinc-400 uppercase">The Opportunity</span>
-                        <h2 className="text-5xl md:text-7xl font-bold mt-6 mb-8 tracking-tight">
-                            ¿Por qué el <span className="text-[#fcb69f]">Inglés</span> ahora?
-                        </h2>
-                        <div className="space-y-8">
-                            <div className="flex gap-6">
+            {/* SECCIONES DE MODELOS INTERCALADOS */}
+            <section className="bg-white py-20">
+                <div className="max-w-7xl mx-auto space-y-32">
+
+                    {/* BLOQUE 1: POYITO */}
+                    <div className="relative">
+                        <ModelFeatureSection
+                            title="¿Por qué el Inglés ahora?"
+                            description="Aprender con modelos interactivos como Gemini te permite retener un 70% más de vocabulario visual."
+                            modelPath="/poyito.glb"
+                            modelScale={2.5}
+                            reverse={false}
+                        />
+                        <div className="px-12 md:pl-24 -mt-10 max-w-2xl">
+                            <div className="flex gap-6 items-start">
                                 <div className="w-12 h-12 rounded-2xl bg-[#ffecd2] flex items-center justify-center shrink-0"><Zap className="text-zinc-800" /></div>
                                 <div>
                                     <h4 className="text-xl font-bold">Salarios Globales</h4>
-                                    <p className="text-zinc-500">Accede a vacantes remotas en USD y EUR con incrementos de hasta un 50% anual.</p>
+                                    <p className="text-zinc-500">Accede a vacantes remotas con incrementos de hasta un 50% anual.</p>
                                 </div>
                             </div>
-                            <div className="flex gap-6">
+                        </div>
+                    </div>
+
+                    {/* BLOQUE 2: SUSAN (Sustituyendo a Jake) */}
+                    <div className="relative">
+                        <ModelFeatureSection
+                            title="Practica con IA"
+                            description="Nuestros modelos están listos para desafiar tu gramática y fluidez en tiempo real."
+                            modelPath="/fusionfall-frankie_foster_belly_dancing.glb"
+                            modelScale={.7}
+                            reverse={true}
+                        />
+                        <div className="px-12 md:pr-24 -mt-10 flex justify-end">
+                            <div className="flex gap-6 items-start max-w-2xl text-right flex-row-reverse">
                                 <div className="w-12 h-12 rounded-2xl bg-[#fcb69f] flex items-center justify-center shrink-0"><Star className="text-zinc-800" /></div>
                                 <div>
-                                    <h4 className="text-xl font-bold">Networking de Alto Nivel</h4>
-                                    <p className="text-zinc-500">Conecta con líderes y fundadores en la lengua nativa de los negocios.</p>
+                                    <h4 className="text-xl font-bold">Networking Pro</h4>
+                                    <p className="text-zinc-500">Conecta con líderes globales en la lengua nativa de los negocios.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    {/* ESPACIO PARA IMAGEN 1 (Vanguardista / Business Moderno) */}
-                    <div className="w-full h-[60vh] bg-zinc-100 rounded-[40px] overflow-hidden relative shadow-2xl border border-zinc-200">
-                        <div className="absolute inset-0 flex items-center justify-center text-zinc-300 font-bold uppercase tracking-widest text-xs italic">
-                            <Image
-                                src="/assest/salary.png" /* Ruta relativa desde la carpeta public */
-                                alt="Imagen Vanguardista 1: Oficina Minimalista"
-                                fill={true} /* La imagen llenará el contenedor padre */
-                            />
+
+                    {/* BLOQUE 3: MORDECAI (Sustituye la sección de cards) */}
+                    <div className="relative">
+                        <ModelFeatureSection
+                            title="Nuestro Método AI"
+                            description="Combinamos aprendizaje adaptativo, enfoque en negocios y una comunidad global bilingüe."
+                            modelPath="/squidwards_robot_house.glb"
+                            modelScale={1.5}
+                            reverse={false}
+                        />
+                        <div className="px-12 md:pl-24 -mt-10 flex flex-wrap gap-8 max-w-4xl">
+                            <div className="flex items-center gap-3 bg-zinc-50 p-4 rounded-2xl border border-zinc-100">
+                                <Zap size={20} className="text-orange-400" />
+                                <span className="font-bold text-sm text-zinc-600">AI DRIVEN</span>
+                            </div>
+                            <div className="flex items-center gap-3 bg-zinc-50 p-4 rounded-2xl border border-zinc-100">
+                                <Globe size={20} className="text-teal-400" />
+                                <span className="font-bold text-sm text-zinc-600">BUSINESS FOCUS</span>
+                            </div>
+                            <div className="flex items-center gap-3 bg-zinc-50 p-4 rounded-2xl border border-zinc-100">
+                                <MessageCircle size={20} className="text-blue-400" />
+                                <span className="font-bold text-sm text-zinc-600">GLOBAL COMMUNITY</span>
+                            </div>
                         </div>
                     </div>
+
+                    {/* BLOQUE 4: SQUIDWARD HOUSE (Opcional - Estético) */}
+                    <ModelFeatureSection
+                        title="Tu espacio internacional"
+                        description="Cada logro desbloquea entornos únicos para tu aprendizaje."
+                        modelPath="/fusionfall-mordecai_hip_hop_dancing.glb"
+                        modelScale={1}
+                        reverse={true}
+                    />
                 </div>
             </section>
 
-            {/* SECCIÓN 3: METODOLOGÍA (Cards en Colores Pastel) */}
-            <section id="method" className="mi-clase-personalizada py-32 px-10 bg-zinc-50 ">
-                <div className="max-w-7xl mx-auto">
-                    <div className="text-center mb-20">
-                        <h2 className="text-5xl font-black mb-4 uppercase tracking-tighter">Nuestro Método</h2>
-                        <p className="text-zinc-500 max-w-2xl mx-auto">IA aplicada y práctica conversacional intensa desde el primer día.</p>
-                    </div>
-                    <div className="grid md:grid-cols-3 gap-6">
-                        <div className="p-10 rounded-[40px] bg-[#ffecd2] flex flex-col justify-between h-[450px] shadow-sm">
-                            <h3 className="text-3xl font-bold">AI Driven <br /> Learning</h3>
-                            <div className="h-40 bg-white/40 rounded-3xl border border-white/60 relative items-center justify-center text-xs text-zinc-400">
-                                <Image
-                                    src="/assest/jake.png" /* Ruta relativa desde la carpeta public */
-                                    alt="Imagen Vanguardista 1: Oficina Minimalista"
-                                    fill={true} /* La imagen llenará el contenedor padre */
-                                    className="object-cover rounded-3xl" // Clase opcional para que la imagen no se estire y herede bordes
-                                />
-                            </div>
-                        </div>
-                        <div className="p-10 rounded-[40px] bg-[#fcb69f] flex flex-col justify-between h-[450px] shadow-sm">
-                            <h3 className="text-3xl font-bold">Business <br /> Focus</h3>
-                            <div className="h-40 bg-white/40 rounded-3xl border border-white/60 relative items-center justify-center text-xs text-zinc-400">
-                                <Image
-                                    src="/assest/meetings.jpeg" /* Ruta relativa desde la carpeta public */
-                                    alt="Imagen Vanguardista 1: Oficina Minimalista"
-                                    fill={true} /* La imagen llenará el contenedor padre */
-                                    className="object-cover rounded-3xl" // Clase opcional para que la imagen no se estire y herede bordes
-                                />
-                            </div>
-                        </div>
-                        <div className="p-10 rounded-[40px] bg-[#ff9a9e] flex flex-col justify-between h-[450px] shadow-sm text-white">
-                            <h3 className="text-3xl font-bold">Global <br /> Community</h3>
-                            <div className="h-40 bg-black/10 rounded-3xl border border-white/20 relative items-center justify-center text-xs text-white/50">
-                                <Image
-                                    src="/assest/connection.jpeg" /* Ruta relativa desde la carpeta public */
-                                    alt="Imagen Vanguardista 1: Oficina Minimalista"
-                                    fill={true} /* La imagen llenará el contenedor padre */
-                                    className="object-cover rounded-3xl" // Clase opcional para que la imagen no se estire y herede bordes
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            {/* FOOTER MINIMALISTA */}
+            <footer className="bg-white border-t border-zinc-100 py-16 px-10">
+                <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+                    <div className="text-2xl font-black tracking-tighter text-zinc-900">ICB</div>
 
-            {/* FOOTER (Diseño de Logos) */}
-            <footer className="bg-zinc-900 text-white py-24 px-10">
-                <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
-                    <div className="col-span-2">
-                        <span className="text-4xl font-black tracking-tighter">ICB</span>
-                        <p className="mt-6 text-zinc-400 max-w-sm">
-                            Formando la próxima generación de líderes bilingües con tecnología de vanguardia.
-                        </p>
+                    <div className="flex flex-wrap justify-center gap-8 text-sm font-bold text-zinc-400 uppercase tracking-widest">
+                        <a href="mailto:cornbread.institute@gmail.com" className="hover:text-zinc-900 transition-colors">Email</a>
+                        <a href="https://www.instagram.com/web_gz?igsh=OHd0OTZ1MGN6Y3dz" className="hover:text-zinc-900 transition-colors">Instagram</a>
+                        <a href="https://wa.me/522462136643" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:text-green-700 transition-colors">WhatsApp</a>
                     </div>
-                    <div>
-                        <h5 className="font-bold mb-6 text-zinc-500 uppercase text-xs tracking-widest">Company</h5>
-                        <ul className="space-y-4 font-medium text-zinc-300">
-                            <li><a href="#">About</a></li>
-                            <li><a href="mailto:cornbread.institute@gmail.com">Contact</a></li>
-                            <li><a href="https://www.instagram.com/web_gz?igsh=OHd0OTZ1MGN6Y3dz">Instagram</a></li>
-                        </ul>
+
+                    <div className="text-[10px] font-medium text-zinc-400 uppercase tracking-widest">
+                        © {currentYear} ICB INSTITUTE. ALL RIGHTS RESERVED.
                     </div>
                 </div>
             </footer>
