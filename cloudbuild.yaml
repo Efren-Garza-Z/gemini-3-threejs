@@ -31,3 +31,6 @@ steps:
 
 images:
   - 'us-central1-docker.pkg.dev/$PROJECT_ID/docker-repo/edu-front:$SHORT_SHA'
+  
+options:
+  logging: CLOUD_LOGGING_ONLY
