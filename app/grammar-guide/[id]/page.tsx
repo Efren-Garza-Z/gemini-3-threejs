@@ -76,9 +76,9 @@ export default function UnitPage() {
                         </div>
 
                         {currentExercise.type === "DRAG_DROP" && (
-                            <DragDropSentence 
-                                parts={currentExercise.data.parts} 
-                                correctOrder={currentExercise.data.correctOrder}
+                            <DragDropSentence
+                                parts={currentExercise.data?.parts ?? []}
+                                correctOrder={currentExercise.data?.correctOrder ?? []}
                                 onSuccess={handleNext}
                             />
                         )}
