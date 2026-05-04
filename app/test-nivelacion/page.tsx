@@ -4,6 +4,7 @@ import { apiService } from "@/services/api";
 import getTokenFromCookie from "@/services/api";
 import { Loader2, CheckCircle2, Award, Sparkles } from "lucide-react";
 import Navbar from "@/components/Navbar";
+import SidebarLayout from "@/components/SidebarLayout";
 
 interface Question {
     id: number;
@@ -134,19 +135,19 @@ export default function LevelTestPage() {
 
     if (status === "generando" || status === "pendiente_preguntas") {
         return (
+            <SidebarLayout>
             <div className="min-h-screen bg-gradient-to-br from-blue-100 via-teal-50 to-green-100 flex flex-col items-center justify-center p-6 text-center">
-                <Navbar/>
                 <Loader2 size={48} className="text-white animate-spin mb-4" />
                 <h2 className="text-3xl font-black text-white">IA creando tu examen...</h2>
                 <p className="text-white/80 mt-2 font-medium">Gemini está formulando 48 preguntas para medir tu nivel real.</p>
             </div>
+            </SidebarLayout>
         );
     }
 
     if (status === "finalizado") {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-blue-100 via-teal-50 to-green-100 flex items-center justify-center p-4">
-                <Navbar/>
+            <SidebarLayout>
                 <div className="max-w-xl w-full bg-white rounded-[3rem] p-12 shadow-2xl text-center border-t-8 border-orange-400 animate-in zoom-in duration-300">
                     <Award size={80} className="mx-auto text-orange-400 mb-6" />
                     <h1 className="text-4xl font-black text-zinc-900 tracking-tight">¡Test Completado!</h1>
@@ -162,16 +163,15 @@ export default function LevelTestPage() {
                         Comenzar mi viaje
                     </button>
                 </div>
-            </div>
+            </SidebarLayout>
         );
     }
 
     const isTestIncomplete = Object.keys(userAnswers).length < 48;
 
     return (
-        <main className="min-h-screen bg-gradient-to-br from-blue-100 via-teal-50 to-green-100 pt-24 pb-20 px-4">
-            <Navbar/>
-            <div className="max-w-3xl mx-auto space-y-8">
+        <SidebarLayout>
+            <div className="max-w-3xl mx-auto space-y-8 mb-10">
                 <div className="flex justify-between items-center bg-white/80 backdrop-blur-md p-6 rounded-3xl shadow-xl sticky top-24 z-10 border border-white/50">
                     <div>
                         <h1 className="text-2xl font-black text-zinc-900">Placement Test</h1>
@@ -209,7 +209,7 @@ export default function LevelTestPage() {
                 <button
                     onClick={handleFinish}
                     disabled={status === "evaluando" || isTestIncomplete}
-                    className={`w-full font-black py-6 rounded-[2rem] shadow-2xl transition-all text-xl active:scale-95 ${
+                    className={`w-full mb-4 font-black py-6 rounded-[2rem] transition-all text-xl active:scale-95 ${
                         isTestIncomplete
                             ? 'bg-zinc-300 cursor-not-allowed text-zinc-500'
                             : 'bg-orange-200 text-orange-950 hover:bg-orange-300'
@@ -219,6 +219,6 @@ export default function LevelTestPage() {
                         isTestIncomplete ? `Faltan ${48 - Object.keys(userAnswers).length} respuestas` : "Finalizar y Ver Mi Nivel"}
                 </button>
             </div>
-        </main>
+        </SidebarLayout>
     );
 }

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Navbar from "@/components/Navbar";
+import SidebarLayout from "@/components/SidebarLayout";
 import { ChevronLeft, BrainCircuit, RefreshCcw, Send, CheckCircle2, RotateCw } from "lucide-react";
 import vocabData from "@/app/data/vocabulary.json";
 import { apiService } from "@/services/api";
@@ -107,12 +107,11 @@ export default function VocabularyPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-teal-50 via-green-50 to-emerald-50 pb-20">
-      <Navbar />
-      
-      <div className="max-w-2xl mx-auto pt-36 px-6 animate-in fade-in duration-500">
-        <button 
-          onClick={() => setupMode ? router.push("/home") : setSetupMode(true)}
+    <SidebarLayout>
+      <div className="w-full min-h-full bg-gradient-to-br from-teal-50 via-green-50 to-emerald-50 pb-20 pt-12 px-6">
+        <div className="max-w-2xl mx-auto animate-in fade-in duration-500">
+          <button 
+            onClick={() => setupMode ? router.push("/home") : setSetupMode(true)}
           className="flex items-center gap-2 text-teal-700 font-semibold mb-6 hover:text-teal-900 transition-colors"
         >
           <ChevronLeft size={20} /> {setupMode ? "Volver al Inicio" : "Abandonar Práctica"}
@@ -291,6 +290,7 @@ export default function VocabularyPage() {
         .backface-hidden { backface-visibility: hidden; }
         .rotate-y-180 { transform: rotateY(180deg); }
       `}</style>
-    </div>
+      </div>
+    </SidebarLayout>
   );
 }

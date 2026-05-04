@@ -1,5 +1,6 @@
 import {Metadata} from "next";
 import HomeClient from "@/app/home/HomeClient";
+import SidebarLayout from "@/components/SidebarLayout";
 
 export const metadata: Metadata = {
     title: "ICB - Home",
@@ -8,5 +9,9 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-    return <HomeClient />
+    return (
+        <SidebarLayout>
+            <HomeClient />
+        </SidebarLayout>
+    );
 }

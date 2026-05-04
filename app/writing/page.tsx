@@ -4,7 +4,7 @@ import getTokenFromCookie, { apiService } from "@/services/api";
 import { Loader2, Clock, BookOpen, ChevronLeft, Lightbulb } from "lucide-react";
 import ReactMarkdown from 'react-markdown';
 import { ieltsWritingData, WritingTask } from "@/app/ielts/data/writingTasks";
-import Navbar from "@/components/Navbar";
+import SidebarLayout from "@/components/SidebarLayout";
 
 export default function IeltsWritingPage() {
     // ESTADOS DE NAVEGACIÓN
@@ -93,8 +93,8 @@ export default function IeltsWritingPage() {
     // --- VISTA 1: SELECTOR DE CARDS ---
     if (!isStarted) {
         return (
-            <main className="min-h-screen bg-gradient-to-br from-[#e0eafc] to-[#cfdef3] pt-24 px-6 pb-20">
-                <Navbar />
+            <SidebarLayout>
+            <div className="w-full min-h-full bg-gradient-to-br from-[#e0eafc] to-[#cfdef3] pt-12 px-6 pb-20">
                 <div className="max-w-6xl mx-auto">
                     <h1 className="text-4xl font-black text-slate-900 mb-2">Writing Practice</h1>
                     <p className="text-slate-600 mb-10">Select a task to begin your preparation.</p>
@@ -122,14 +122,15 @@ export default function IeltsWritingPage() {
                         ))}
                     </div>
                 </div>
-            </main>
+            </div>
+            </SidebarLayout>
         );
     }
 
     // --- VISTA 2: ENTORNO DE PRÁCTICA ---
     return (
-        <main className="min-h-screen bg-gradient-to-br from-[#e0eafc] to-[#cfdef3] pt-24 px-4 pb-20">
-            <Navbar />
+        <SidebarLayout>
+        <div className="w-full min-h-full bg-gradient-to-br from-[#e0eafc] to-[#cfdef3] pt-12 px-4 pb-20">
             <div className="max-w-7xl mx-auto flex flex-col gap-6 mt-6 mt-9">
                 <button
                     onClick={() => setIsStarted(false)}
@@ -215,6 +216,7 @@ export default function IeltsWritingPage() {
                     </div>
                 )}
             </div>
-        </main>
+        </div>
+        </SidebarLayout>
     );
 }

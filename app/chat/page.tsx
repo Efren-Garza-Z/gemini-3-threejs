@@ -1,4 +1,5 @@
 import ChatClient from "@/app/chat/ChatClient";
+import SidebarLayout from "@/components/SidebarLayout";
 import {Metadata} from "next";
 
 export const metadata: Metadata = {
@@ -8,5 +9,9 @@ export const metadata: Metadata = {
 };
 
 export default function ChatPage() {
-    return <ChatClient />
+    return (
+        <SidebarLayout>
+            <ChatClient />
+        </SidebarLayout>
+    );
 }
