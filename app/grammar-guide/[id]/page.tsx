@@ -99,7 +99,7 @@ export default function UnitPage() {
                                         onKeyDown={(e) => {
                                             if (e.key === "Enter") {
                                                 const val = (e.target as HTMLInputElement).value;
-                                                if (val.toLowerCase().trim() === currentExercise.data.correct.toLowerCase().trim()) {
+                                                if (val.toLowerCase().trim() === currentExercise.data?.correct?.toLowerCase().trim()) {
                                                     handleNext();
                                                 } else {
                                                     const target = e.target as HTMLInputElement;
@@ -121,7 +121,7 @@ export default function UnitPage() {
                                         if (!revealed) {
                                             setRevealed(true);
                                             const inputEl = document.getElementById("error-correction-input") as HTMLInputElement;
-                                            if (inputEl) inputEl.value = currentExercise.data.correct;
+                                            if (inputEl) inputEl.value = currentExercise.data?.correct?? "";
                                         } else {
                                             const inputEl = document.getElementById("error-correction-input") as HTMLInputElement;
                                             if (inputEl) inputEl.value = "";
