@@ -1,0 +1,36 @@
+steps:
+  # 1. Construir la imagen con Bun
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [
+      'build', 
+      '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/docker-repo/edu-front:$SHORT_SHA', 
+      '.'
+    ]
+
+  # 2. Subir la imagen al registro que acabamos de crear
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [
+      'push', 
+      'us-central1-docker.pkg.dev/$PROJECT_ID/docker-repo/edu-front:$SHORT_SHA'
+    ]
+
+  # 3. Desplegar en Cloud Run con un nombre de servicio claro
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'edu-platforms-front'  # Este es el nombre que verás en Cloud Run
+      - '--image'
+      - 'us-central1-docker.pkg.dev/$PROJECT_ID/docker-repo/edu-front:$SHORT_SHA'
+      - '--region'
+      - 'us-central1'
+      - '--platform'
+      - 'managed'
+      - '--allow-unauthenticated'
+
+images:
+  - 'us-central1-docker.pkg.dev/$PROJECT_ID/docker-repo/edu-front:$SHORT_SHA'
+  
+options:
+  logging: CLOUD_LOGGING_ONLY

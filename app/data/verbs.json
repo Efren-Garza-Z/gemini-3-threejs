@@ -1,23 +1,576 @@
 [
-  { "english": "accept", "spanish": "aceptar", "past": "accepted", "participle": "accepted", "type": "regular" },
-  { "english": "act", "spanish": "actuar", "past": "acted", "participle": "acted", "type": "regular" },
-  { "english": "bake", "spanish": "hornear", "past": "baked", "participle": "baked", "type": "regular" },
-  { "english": "call", "spanish": "llamar", "past": "called", "participle": "called", "type": "regular" },
-  { "english": "decide", "spanish": "decidir", "past": "decided", "participle": "decided", "type": "regular" },
-  { "english": "earn", "spanish": "ganar", "past": "earned", "participle": "earned", "type": "regular" },
-  { "english": "fix", "spanish": "arreglar", "past": "fixed", "participle": "fixed", "type": "regular" },
-  { "english": "guess", "spanish": "adivinar", "past": "guessed", "participle": "guessed", "type": "regular" },
-  { "english": "happen", "spanish": "suceder", "past": "happened", "participle": "happened", "type": "regular" },
-  { "english": "jump", "spanish": "saltar", "past": "jumped", "participle": "jumped", "type": "regular" },
-  
-  { "english": "be", "spanish": "ser/estar", "past": "was/were", "participle": "been", "type": "irregular" },
-  { "english": "begin", "spanish": "empezar", "past": "began", "participle": "begun", "type": "irregular" },
-  { "english": "break", "spanish": "romper", "past": "broke", "participle": "broken", "type": "irregular" },
-  { "english": "choose", "spanish": "elegir", "past": "chose", "participle": "chosen", "type": "irregular" },
-  { "english": "do", "spanish": "hacer", "past": "did", "participle": "done", "type": "irregular" },
-  { "english": "eat", "spanish": "comer", "past": "ate", "participle": "eaten", "type": "irregular" },
-  { "english": "fall", "spanish": "caer", "past": "fell", "participle": "fallen", "type": "irregular" },
-  { "english": "give", "spanish": "dar", "past": "gave", "participle": "given", "type": "irregular" },
-  { "english": "know", "spanish": "saber/conocer", "past": "knew", "participle": "known", "type": "irregular" },
-  { "english": "see", "spanish": "ver", "past": "saw", "participle": "seen", "type": "irregular" }
+  {
+    "english": "accept",
+    "spanish": "aceptar",
+    "past": "accepted",
+    "participle": "accepted",
+    "type": "regular"
+  },
+  {
+    "english": "act",
+    "spanish": "actuar",
+    "past": "acted",
+    "participle": "acted",
+    "type": "regular"
+  },
+  {
+    "english": "answer",
+    "spanish": "responder",
+    "past": "answered",
+    "participle": "answered",
+    "type": "regular"
+  },
+  {
+    "english": "ask",
+    "spanish": "preguntar",
+    "past": "asked",
+    "participle": "asked",
+    "type": "regular"
+  },
+  {
+    "english": "bake",
+    "spanish": "hornear",
+    "past": "baked",
+    "participle": "baked",
+    "type": "regular"
+  },
+  {
+    "english": "call",
+    "spanish": "llamar",
+    "past": "called",
+    "participle": "called",
+    "type": "regular"
+  },
+  {
+    "english": "change",
+    "spanish": "cambiar",
+    "past": "changed",
+    "participle": "changed",
+    "type": "regular"
+  },
+  {
+    "english": "clean",
+    "spanish": "limpiar",
+    "past": "cleaned",
+    "participle": "cleaned",
+    "type": "regular"
+  },
+  {
+    "english": "close",
+    "spanish": "cerrar",
+    "past": "closed",
+    "participle": "closed",
+    "type": "regular"
+  },
+  {
+    "english": "cook",
+    "spanish": "cocinar",
+    "past": "cooked",
+    "participle": "cooked",
+    "type": "regular"
+  },
+  {
+    "english": "create",
+    "spanish": "crear",
+    "past": "created",
+    "participle": "created",
+    "type": "regular"
+  },
+  {
+    "english": "dance",
+    "spanish": "bailar",
+    "past": "danced",
+    "participle": "danced",
+    "type": "regular"
+  },
+  {
+    "english": "decide",
+    "spanish": "decidir",
+    "past": "decided",
+    "participle": "decided",
+    "type": "regular"
+  },
+  {
+    "english": "develop",
+    "spanish": "desarrollar",
+    "past": "developed",
+    "participle": "developed",
+    "type": "regular"
+  },
+  {
+    "english": "earn",
+    "spanish": "ganar",
+    "past": "earned",
+    "participle": "earned",
+    "type": "regular"
+  },
+  {
+    "english": "explain",
+    "spanish": "explicar",
+    "past": "explained",
+    "participle": "explained",
+    "type": "regular"
+  },
+  {
+    "english": "finish",
+    "spanish": "terminar",
+    "past": "finished",
+    "participle": "finished",
+    "type": "regular"
+  },
+  {
+    "english": "fix",
+    "spanish": "arreglar",
+    "past": "fixed",
+    "participle": "fixed",
+    "type": "regular"
+  },
+  {
+    "english": "guess",
+    "spanish": "adivinar",
+    "past": "guessed",
+    "participle": "guessed",
+    "type": "regular"
+  },
+  {
+    "english": "happen",
+    "spanish": "suceder",
+    "past": "happened",
+    "participle": "happened",
+    "type": "regular"
+  },
+  {
+    "english": "help",
+    "spanish": "ayudar",
+    "past": "helped",
+    "participle": "helped",
+    "type": "regular"
+  },
+  {
+    "english": "jump",
+    "spanish": "saltar",
+    "past": "jumped",
+    "participle": "jumped",
+    "type": "regular"
+  },
+  {
+    "english": "learn",
+    "spanish": "aprender",
+    "past": "learned",
+    "participle": "learned",
+    "type": "regular"
+  },
+  {
+    "english": "listen",
+    "spanish": "escuchar",
+    "past": "listened",
+    "participle": "listened",
+    "type": "regular"
+  },
+  {
+    "english": "love",
+    "spanish": "amar",
+    "past": "loved",
+    "participle": "loved",
+    "type": "regular"
+  },
+  {
+    "english": "need",
+    "spanish": "necesitar",
+    "past": "needed",
+    "participle": "needed",
+    "type": "regular"
+  },
+  {
+    "english": "play",
+    "spanish": "jugar",
+    "past": "played",
+    "participle": "played",
+    "type": "regular"
+  },
+  {
+    "english": "stop",
+    "spanish": "detener",
+    "past": "stopped",
+    "participle": "stopped",
+    "type": "regular"
+  },
+  {
+    "english": "study",
+    "spanish": "estudiar",
+    "past": "studied",
+    "participle": "studied",
+    "type": "regular"
+  },
+  {
+    "english": "talk",
+    "spanish": "hablar",
+    "past": "talked",
+    "participle": "talked",
+    "type": "regular"
+  },
+  {
+    "english": "travel",
+    "spanish": "viajar",
+    "past": "traveled",
+    "participle": "traveled",
+    "type": "regular"
+  },
+  {
+    "english": "use",
+    "spanish": "usar",
+    "past": "used",
+    "participle": "used",
+    "type": "regular"
+  },
+  {
+    "english": "wait",
+    "spanish": "esperar",
+    "past": "waited",
+    "participle": "waited",
+    "type": "regular"
+  },
+  {
+    "english": "walk",
+    "spanish": "caminar",
+    "past": "walked",
+    "participle": "walked",
+    "type": "regular"
+  },
+  {
+    "english": "want",
+    "spanish": "querer",
+    "past": "wanted",
+    "participle": "wanted",
+    "type": "regular"
+  },
+  {
+    "english": "watch",
+    "spanish": "mirar",
+    "past": "watched",
+    "participle": "watched",
+    "type": "regular"
+  },
+  {
+    "english": "work",
+    "spanish": "trabajar",
+    "past": "worked",
+    "participle": "worked",
+    "type": "regular"
+  },
+  {
+    "english": "be",
+    "spanish": "ser/estar",
+    "past": "was/were",
+    "participle": "been",
+    "type": "irregular"
+  },
+  {
+    "english": "become",
+    "spanish": "convertirse",
+    "past": "became",
+    "participle": "become",
+    "type": "irregular"
+  },
+  {
+    "english": "begin",
+    "spanish": "empezar",
+    "past": "began",
+    "participle": "begun",
+    "type": "irregular"
+  },
+  {
+    "english": "break",
+    "spanish": "romper",
+    "past": "broke",
+    "participle": "broken",
+    "type": "irregular"
+  },
+  {
+    "english": "bring",
+    "spanish": "traer",
+    "past": "brought",
+    "participle": "brought",
+    "type": "irregular"
+  },
+  {
+    "english": "build",
+    "spanish": "construir",
+    "past": "built",
+    "participle": "built",
+    "type": "irregular"
+  },
+  {
+    "english": "buy",
+    "spanish": "comprar",
+    "past": "bought",
+    "participle": "bought",
+    "type": "irregular"
+  },
+  {
+    "english": "catch",
+    "spanish": "atrapar",
+    "past": "caught",
+    "participle": "caught",
+    "type": "irregular"
+  },
+  {
+    "english": "choose",
+    "spanish": "elegir",
+    "past": "chose",
+    "participle": "chosen",
+    "type": "irregular"
+  },
+  {
+    "english": "come",
+    "spanish": "venir",
+    "past": "came",
+    "participle": "come",
+    "type": "irregular"
+  },
+  {
+    "english": "do",
+    "spanish": "hacer",
+    "past": "did",
+    "participle": "done",
+    "type": "irregular"
+  },
+  {
+    "english": "draw",
+    "spanish": "dibujar",
+    "past": "drew",
+    "participle": "drawn",
+    "type": "irregular"
+  },
+  {
+    "english": "drink",
+    "spanish": "beber",
+    "past": "drank",
+    "participle": "drunk",
+    "type": "irregular"
+  },
+  {
+    "english": "drive",
+    "spanish": "conducir",
+    "past": "drove",
+    "participle": "driven",
+    "type": "irregular"
+  },
+  {
+    "english": "eat",
+    "spanish": "comer",
+    "past": "ate",
+    "participle": "eaten",
+    "type": "irregular"
+  },
+  {
+    "english": "fall",
+    "spanish": "caer",
+    "past": "fell",
+    "participle": "fallen",
+    "type": "irregular"
+  },
+  {
+    "english": "feel",
+    "spanish": "sentir",
+    "past": "felt",
+    "participle": "felt",
+    "type": "irregular"
+  },
+  {
+    "english": "find",
+    "spanish": "encontrar",
+    "past": "found",
+    "participle": "found",
+    "type": "irregular"
+  },
+  {
+    "english": "forget",
+    "spanish": "olvidar",
+    "past": "forgot",
+    "participle": "forgotten",
+    "type": "irregular"
+  },
+  {
+    "english": "get",
+    "spanish": "obtener",
+    "past": "got",
+    "participle": "gotten/got",
+    "type": "irregular"
+  },
+  {
+    "english": "give",
+    "spanish": "dar",
+    "past": "gave",
+    "participle": "given",
+    "type": "irregular"
+  },
+  {
+    "english": "go",
+    "spanish": "ir",
+    "past": "went",
+    "participle": "gone",
+    "type": "irregular"
+  },
+  {
+    "english": "have",
+    "spanish": "tener",
+    "past": "had",
+    "participle": "had",
+    "type": "irregular"
+  },
+  {
+    "english": "hear",
+    "spanish": "escuchar/oír",
+    "past": "heard",
+    "participle": "heard",
+    "type": "irregular"
+  },
+  {
+    "english": "keep",
+    "spanish": "mantener/guardar",
+    "past": "kept",
+    "participle": "kept",
+    "type": "irregular"
+  },
+  {
+    "english": "know",
+    "spanish": "saber/conocer",
+    "past": "knew",
+    "participle": "known",
+    "type": "irregular"
+  },
+  {
+    "english": "leave",
+    "spanish": "dejar/salir",
+    "past": "left",
+    "participle": "left",
+    "type": "irregular"
+  },
+  {
+    "english": "make",
+    "spanish": "hacer",
+    "past": "made",
+    "participle": "made",
+    "type": "irregular"
+  },
+  {
+    "english": "meet",
+    "spanish": "conocer/reunirse",
+    "past": "met",
+    "participle": "met",
+    "type": "irregular"
+  },
+  {
+    "english": "put",
+    "spanish": "poner",
+    "past": "put",
+    "participle": "put",
+    "type": "irregular"
+  },
+  {
+    "english": "read",
+    "spanish": "leer",
+    "past": "read",
+    "participle": "read",
+    "type": "irregular"
+  },
+  {
+    "english": "run",
+    "spanish": "correr",
+    "past": "ran",
+    "participle": "run",
+    "type": "irregular"
+  },
+  {
+    "english": "say",
+    "spanish": "decir",
+    "past": "said",
+    "participle": "said",
+    "type": "irregular"
+  },
+  {
+    "english": "see",
+    "spanish": "ver",
+    "past": "saw",
+    "participle": "seen",
+    "type": "irregular"
+  },
+  {
+    "english": "send",
+    "spanish": "enviar",
+    "past": "sent",
+    "participle": "sent",
+    "type": "irregular"
+  },
+  {
+    "english": "sleep",
+    "spanish": "dormir",
+    "past": "slept",
+    "participle": "slept",
+    "type": "irregular"
+  },
+  {
+    "english": "speak",
+    "spanish": "hablar",
+    "past": "spoke",
+    "participle": "spoken",
+    "type": "irregular"
+  },
+  {
+    "english": "swim",
+    "spanish": "nadar",
+    "past": "swam",
+    "participle": "swum",
+    "type": "irregular"
+  },
+  {
+    "english": "take",
+    "spanish": "tomar",
+    "past": "took",
+    "participle": "taken",
+    "type": "irregular"
+  },
+  {
+    "english": "teach",
+    "spanish": "enseñar",
+    "past": "taught",
+    "participle": "taught",
+    "type": "irregular"
+  },
+  {
+    "english": "tell",
+    "spanish": "decir",
+    "past": "told",
+    "participle": "told",
+    "type": "irregular"
+  },
+  {
+    "english": "think",
+    "spanish": "pensar",
+    "past": "thought",
+    "participle": "thought",
+    "type": "irregular"
+  },
+  {
+    "english": "understand",
+    "spanish": "entender",
+    "past": "understood",
+    "participle": "understood",
+    "type": "irregular"
+  },
+  {
+    "english": "win",
+    "spanish": "ganar",
+    "past": "won",
+    "participle": "won",
+    "type": "irregular"
+  },
+  {
+    "english": "write",
+    "spanish": "escribir",
+    "past": "wrote",
+    "participle": "written",
+    "type": "irregular"
+  }
 ]

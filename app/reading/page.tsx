@@ -1,7 +1,7 @@
 "use client"
 import { useState, useEffect } from "react";
 import { ieltsReadingData, ReadingTest } from "@/app/ielts/data/readingTasks";
-import Navbar from "@/components/Navbar";
+import SidebarLayout from "@/components/SidebarLayout";
 import {Clock, BookOpen, Info, ChevronLeft, CheckCircle2, Loader2, AlertCircle} from "lucide-react";
 import ReactMarkdown from 'react-markdown';
 import {useTestEvaluation} from "@/app/reading/hooks/Usetestevaluation";
@@ -97,8 +97,8 @@ export default function IeltsReadingPage() {
     // --- VISTA 1: CARDS DE SELECCIÓN ---
     if (!isStarted) {
         return (
-            <main className="min-h-screen bg-gradient-to-br from-[#e0eafc] to-[#cfdef3]">
-                <Navbar />
+            <SidebarLayout>
+            <div className="w-full min-h-full bg-gradient-to-br from-[#e0eafc] to-[#cfdef3]">
                 {toast && (
                     <Toast
                         message={toast.message}
@@ -147,14 +147,15 @@ export default function IeltsReadingPage() {
                         ))}
                     </div>
                 </div>
-            </main>
+            </div>
+            </SidebarLayout>
         );
     }
 
     // --- VISTA 2: ENTORNO DE EXAMEN ---
     return (
-        <div className="h-screen flex flex-col bg-gradient-to-br from-[#e0eafc] to-[#cfdef3]">
-            <Navbar />
+        <SidebarLayout>
+        <div className="h-full flex flex-col bg-gradient-to-br from-[#e0eafc] to-[#cfdef3]">
 
             {/* Header del Test */}
             <div className="pt-20 px-6 py-4 border-b flex justify-between items-center text-black shadow-lg mt-9">
@@ -301,5 +302,6 @@ export default function IeltsReadingPage() {
             {/* Modal de Confirmación */}
             {showConfirmModal && <ConfirmationModal />}
         </div>
+        </SidebarLayout>
     );
 }

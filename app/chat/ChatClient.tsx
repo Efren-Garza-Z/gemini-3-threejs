@@ -7,7 +7,7 @@ const Scene = dynamic(() => import("@/components/scene/Scene"), { ssr: false })
 import getTokenFromCookie, { apiService } from "@/services/api"
 import dynamic from "next/dynamic";
 import {ArrowUp, Loader2} from "lucide-react";
-import Navbar from "@/components/Navbar";
+
 
 export default function ChatClient() {
     const [token, setToken] = useState<string | null>(null)
@@ -99,8 +99,7 @@ export default function ChatClient() {
     }, [history, isWaitingResponse])
 
     return (
-        <main className="h-screen w-screen bg-gradient-to-br from-blue-100 via-teal-50 to-green-100 overflow-hidden flex flex-col pt-24">
-            <Navbar/>
+        <div className="h-full w-full bg-gradient-to-br from-blue-100 via-teal-50 to-green-100 overflow-hidden flex flex-col pt-12">
 
             {/* Auth Gate Logic */}
             {isChecking && (
@@ -212,6 +211,6 @@ export default function ChatClient() {
                     </section>
                 </div>
             )}
-        </main>
+        </div>
     )
 }

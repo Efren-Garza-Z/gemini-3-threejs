@@ -215,7 +215,7 @@ export default function GlobalWidgets() {
       {/* FLOATING NOTEBOOK BUTTON */}
       <button 
         onClick={() => setIsNotebookOpen(true)}
-        className="fixed bottom-4 left-4 z-[9000] bg-orange-300 text-orange-950 p-3 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all outline-none focus:ring-4 focus:ring-orange-200"
+        className="fixed bottom-4 right-4 z-[9000] bg-orange-300 text-orange-950 p-3 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all outline-none focus:ring-4 focus:ring-orange-200"
       >
         <NotebookPen size={20} />
       </button>

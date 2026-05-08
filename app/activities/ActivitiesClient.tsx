@@ -7,6 +7,7 @@ import {CheckCircle, Star} from "lucide-react";
 // Importamos el motor y los datos
 import { exercisesData } from "./data/exercises";
 import ExerciseEngine from "@/components/ExerciseEngine";
+import SidebarLayout from "@/components/SidebarLayout";
 
 
 export default function ActivitiesClient() {
@@ -25,8 +26,7 @@ export default function ActivitiesClient() {
     const selectedExercise = exercisesData.find(ex => ex.id === activeTab);
 
     return (
-        <main className="min-h-screen mx-auto w-full bg-gradient-to-br from-blue-100 via-teal-50 to-green-100 flex flex-col pt-24 px-4 pb-10 overflow-x-hidden">
-            <Navbar />
+        <SidebarLayout>
 
             <div className="w-full max-w-5xl mx-auto flex flex-col items-center">
                 {!activeTab ? (
@@ -86,6 +86,6 @@ export default function ActivitiesClient() {
                     )
                 )}
             </div>
-        </main>
+            </SidebarLayout>
     );
 }
