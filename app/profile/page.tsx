@@ -1,41 +1,97 @@
-"use client"
+"use client";
+
 import { useState, useEffect } from "react";
 import SidebarLayout from "@/components/SidebarLayout";
-import { User, Mail, Globe, Award, Settings, LogOut, ChevronRight } from "lucide-react";
+import {
+    User,
+    Mail,
+    Globe,
+    Award,
+    Settings,
+    ChevronRight,
+} from "lucide-react";
 import getTokenFromCookie, { apiService } from "@/services/api";
 import { Toast } from "@/components/Notice";
 
+type PasswordFormData = {
+    currentPassword: string;
+    newPassword: string;
+    confirmPassword: string;
+};
 
-const ChangePasswordModal = ({ isOpen, onClose, onConfirm }: {
+const ChangePasswordModal = ({
+                                 isOpen,
+                                 onClose,
+                                 onConfirm,
+                             }: {
     isOpen: boolean;
     onClose: () => void;
-    onConfirm: (password: string) => void
+    onConfirm: (data: PasswordFormData) => void;
 }) => {
-    const [newPassword, setNewPassword] = useState("");
+    const [form, setForm] = useState<PasswordFormData>({
+        currentPassword: "",
+        newPassword: "",
+        confirmPassword: "",
+    });
+
+    useEffect(() => {
+        if (!isOpen) {
+            setForm({
+                currentPassword: "",
+                newPassword: "",
+                confirmPassword: "",
+            });
+        }
+    }, [isOpen]);
 
     if (!isOpen) return null;
 
     return (
         <div className="fixed inset-0 bg-zinc-900/40 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
             <div className="bg-white/80 backdrop-blur-xl rounded-[2.5rem] p-8 border border-white shadow-2xl max-w-md w-full animate-in fade-in zoom-in duration-200">
-                <h3 className="text-2xl font-black text-zinc-900 mb-2">Cambiar Contraseña</h3>
-                <p className="text-zinc-600 mb-6 font-medium">Introduce tu nueva clave de acceso.</p>
+                <h3 className="text-2xl font-black text-zinc-900 mb-2">
+                    Cambiar Contraseña
+                </h3>
+                <p className="text-zinc-600 mb-6 font-medium">
+                    Introduce tu contraseña actual y define una nueva.
+                </p>
 
-                <input
-                    type="password"
-                    autoFocus
-                    placeholder="Nueva contraseña"
-                    className="w-full p-4 bg-white/50 border-2 border-zinc-200 rounded-2xl focus:border-orange-400 outline-none transition-all mb-6 text-zinc-800 font-bold"
-                    value={newPassword}
-                    onChange={(e) => setNewPassword(e.target.value)}
-                />
+                <div className="space-y-4">
+                    <input
+                        type="password"
+                        autoFocus
+                        placeholder="Contraseña actual"
+                        className="w-full p-4 bg-white/50 border-2 border-zinc-200 rounded-2xl focus:border-orange-400 outline-none transition-all text-zinc-800 font-bold"
+                        value={form.currentPassword}
+                        onChange={(e) =>
+                            setForm((prev) => ({ ...prev, currentPassword: e.target.value }))
+                        }
+                    />
 
-                <div className="flex flex-col gap-3">
+                    <input
+                        type="password"
+                        placeholder="Nueva contraseña"
+                        className="w-full p-4 bg-white/50 border-2 border-zinc-200 rounded-2xl focus:border-orange-400 outline-none transition-all text-zinc-800 font-bold"
+                        value={form.newPassword}
+                        onChange={(e) =>
+                            setForm((prev) => ({ ...prev, newPassword: e.target.value }))
+                        }
+                    />
+
+                    <input
+                        type="password"
+                        placeholder="Confirmar nueva contraseña"
+                        className="w-full p-4 bg-white/50 border-2 border-zinc-200 rounded-2xl focus:border-orange-400 outline-none transition-all text-zinc-800 font-bold"
+                        value={form.confirmPassword}
+                        onChange={(e) =>
+                            setForm((prev) => ({ ...prev, confirmPassword: e.target.value }))
+                        }
+                    />
+                </div>
+
+                <div className="flex flex-col gap-3 mt-6">
                     <button
-                        onClick={() => {
-                            onConfirm(newPassword);
-                            setNewPassword("");
-                        }}
+                        onClick={() => onConfirm(form)}
                         className="w-full py-4 bg-orange-200 text-orange-950 rounded-2xl font-black hover:bg-orange-300 transition-all shadow-lg"
                     >
                         Actualizar Contraseña
@@ -54,17 +110,20 @@ const ChangePasswordModal = ({ isOpen, onClose, onConfirm }: {
 
 export default function ProfilePage() {
     const [user, setUser] = useState<{
+        id?: number;
         full_name: string;
         email: string;
         language_level: string;
         target_language: string;
     } | null>(null);
-    const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
-    const [toast, setToast] = useState<{ message: string, type: 'success' | 'error' } | null>(null);
 
+    const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
+    const [toast, setToast] = useState<{
+        message: string;
+        type: "success" | "error";
+    } | null>(null);
 
     useEffect(() => {
-        // Recuperamos la sesión que guardamos durante el login y el test
         const session = localStorage.getItem("user_session");
         if (session) {
             setUser(JSON.parse(session));
@@ -85,10 +144,14 @@ export default function ProfilePage() {
                         <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center text-orange-400 shadow-lg mx-auto mb-6">
                             <User size={40} />
                         </div>
-                        <h2 className="text-3xl font-black text-zinc-900 mb-4 tracking-tight">Casi lo logras...</h2>
-                        <p className="text-zinc-600 mb-8 font-medium">Aún no accedes a tu cuenta. Entra ahora para ver tu progreso educativo.</p>
+                        <h2 className="text-3xl font-black text-zinc-900 mb-4 tracking-tight">
+                            Casi lo logras...
+                        </h2>
+                        <p className="text-zinc-600 mb-8 font-medium">
+                            Aún no accedes a tu cuenta. Entra ahora para ver tu progreso educativo.
+                        </p>
                         <button
-                            onClick={() => window.location.href = '/auth'}
+                            onClick={() => (window.location.href = "/auth")}
                             className="bg-orange-200 text-orange-950 px-8 py-4 rounded-2xl font-black hover:bg-orange-300 transition-all shadow-lg w-full flex items-center justify-center gap-2"
                         >
                             Iniciar Sesión o Registrarse <ChevronRight size={18} />
@@ -99,31 +162,65 @@ export default function ProfilePage() {
         );
     }
 
-    const handleConfirmPasswordChange = async (newPassword: string) => {
-        if (!newPassword || newPassword.length < 4) {
-            setToast({ message: "La contraseña es muy corta (mínimo 4)", type: 'error' });
+    const handleConfirmPasswordChange = async ({
+                                                   currentPassword,
+                                                   newPassword,
+                                                   confirmPassword,
+                                               }: PasswordFormData) => {
+        if (!currentPassword || !newPassword || !confirmPassword) {
+            setToast({ message: "Completa todos los campos", type: "error" });
+            return;
+        }
+
+        if (newPassword.length < 6) {
+            setToast({
+                message: "La nueva contraseña debe tener al menos 6 caracteres",
+                type: "error",
+            });
+            return;
+        }
+
+        if (newPassword !== confirmPassword) {
+            setToast({
+                message: "La confirmación de la contraseña no coincide",
+                type: "error",
+            });
             return;
         }
 
         try {
             const token = getTokenFromCookie();
-            if (!token || !user) return;
+            if (!token) {
+                setToast({ message: "No hay sesión activa", type: "error" });
+                return;
+            }
 
-            await apiService.updateUserPassword(user.email, newPassword, token);
+            await apiService.updateUserPassword(
+                currentPassword,
+                newPassword,
+                confirmPassword,
+                token
+            );
 
-            // Cerramos el modal tras el éxito
             setIsPasswordModalOpen(false);
-            setToast({ message: "¡Contraseña actualizada con éxito!", type: 'success' });
+            setToast({
+                message: "¡Contraseña actualizada con éxito!",
+                type: "success",
+            });
         } catch (error) {
-            setToast({ message: "Error al actualizar la contraseña", type: 'error' });
+            setToast({
+                message:
+                    error instanceof Error
+                        ? error.message
+                        : "Error al actualizar la contraseña",
+                type: "error",
+            });
         }
     };
-
 
     return (
         <SidebarLayout>
             <div className="w-full min-h-full bg-gradient-to-br from-blue-100 via-teal-50 to-green-100 pt-12 pb-12 px-6">
-                {/* Renderizar el Toast si existe */}
                 {toast && (
                     <Toast
                         message={toast.message}
@@ -133,30 +230,29 @@ export default function ProfilePage() {
                 )}
 
                 <div className="max-w-4xl mx-auto space-y-6">
-                    {/* Cabecera de Perfil */}
                     <div className="bg-white/40 backdrop-blur-md rounded-[3rem] p-8 md:p-12 border border-white/50 shadow-xl flex flex-col md:flex-row items-center gap-8">
                         <div className="w-32 h-32 bg-white rounded-full flex items-center justify-center text-orange-400 shadow-2xl">
                             <User size={60} />
                         </div>
                         <div className="text-center md:text-left flex-1">
-                            <h1 className="text-4xl font-black text-zinc-900 tracking-tight">{user.full_name}</h1>
+                            <h1 className="text-4xl font-black text-zinc-900 tracking-tight">
+                                {user.full_name}
+                            </h1>
                             <p className="text-zinc-700 font-medium flex items-center justify-center md:justify-start gap-2 mt-1">
                                 <Mail size={16} /> {user.email}
                             </p>
                             <div className="flex flex-wrap gap-3 mt-6 justify-center md:justify-start">
-                                <span className="bg-orange-500 text-white px-6 py-2 rounded-2xl font-black text-sm shadow-lg flex items-center gap-2">
-                                    <Award size={18} /> Nivel: {user.language_level || "No evaluado"}
-                                </span>
+                <span className="bg-orange-500 text-white px-6 py-2 rounded-2xl font-black text-sm shadow-lg flex items-center gap-2">
+                  <Award size={18} /> Nivel: {user.language_level || "No evaluado"}
+                </span>
                                 <span className="bg-white/60 text-zinc-800 px-6 py-2 rounded-2xl font-black text-sm border border-white/40 flex items-center gap-2">
-                                    <Globe size={18} /> {user.target_language || "English"}
-                                </span>
+                  <Globe size={18} /> {user.target_language || "English"}
+                </span>
                             </div>
                         </div>
                     </div>
 
-                    {/* Grid de Configuración */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {/* Tarjeta de Progreso */}
                         <div className="bg-white/30 backdrop-blur-md rounded-[2.5rem] p-8 border border-white/40 shadow-lg">
                             <h3 className="text-xl font-black text-zinc-900 mb-6 flex items-center gap-2">
                                 <Settings size={20} /> Ajustes de Cuenta
@@ -167,19 +263,36 @@ export default function ProfilePage() {
                                     className="w-full flex items-center justify-between p-4 bg-white/40 rounded-2xl hover:bg-white/60 transition-all group"
                                 >
                                     <span className="font-bold text-zinc-700">Cambiar Contraseña</span>
-                                    <ChevronRight size={18} className="text-zinc-400 group-hover:translate-x-1 transition-transform" />
+                                    <ChevronRight
+                                        size={18}
+                                        className="text-zinc-400 group-hover:translate-x-1 transition-transform"
+                                    />
+                                </button>
+
+                                <button
+                                    onClick={handleLogout}
+                                    className="w-full flex items-center justify-between p-4 bg-red-50/70 rounded-2xl hover:bg-red-100 transition-all group"
+                                >
+                                    <span className="font-bold text-red-700">Cerrar sesión</span>
+                                    <ChevronRight
+                                        size={18}
+                                        className="text-red-400 group-hover:translate-x-1 transition-transform"
+                                    />
                                 </button>
                             </div>
                         </div>
 
-                        {/* Tarjeta de Acción */}
                         <div className="bg-white/30 backdrop-blur-md rounded-[2.5rem] p-8 border border-white/40 shadow-lg flex flex-col justify-between">
                             <div>
-                                <h3 className="text-xl font-black text-zinc-900 mb-2">¿Quieres subir de nivel?</h3>
-                                <p className="text-zinc-700 text-sm font-medium">Puedes volver a tomar el test de nivelación cada 30 días.</p>
+                                <h3 className="text-xl font-black text-zinc-900 mb-2">
+                                    ¿Quieres subir de nivel?
+                                </h3>
+                                <p className="text-zinc-700 text-sm font-medium">
+                                    Puedes volver a tomar el test de nivelación cada 30 días.
+                                </p>
                             </div>
                             <button
-                                onClick={() => window.location.href = "/test-nivelacion"}
+                                onClick={() => (window.location.href = "/test-nivelacion")}
                                 className="mt-6 w-full bg-orange-400/20 text-orange-700 border-2 border-orange-400/50 py-4 rounded-2xl font-black hover:bg-orange-400/30 transition-all"
                             >
                                 Repetir Test de Nivelación

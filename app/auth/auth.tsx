@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { apiService } from "@/services/api";
 import {AlertCircle, ChevronRight, GraduationCap, Languages, Loader2, X} from "lucide-react";
+import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 
 export default function AuthForm({ onLoginSuccess }: { onLoginSuccess: (token: string, needsTest?: boolean) => void }) {
     const [isLogin, setIsLogin] = useState(true);
@@ -13,6 +14,31 @@ export default function AuthForm({ onLoginSuccess }: { onLoginSuccess: (token: s
     const [formData, setFormData] = useState({
         email: "", password: "", full_name: "", language_level: "A1", target_language: "English"
     });
+
+    const handleGoogleSuccess = async (credentialResponse: any) => {
+        setLoading(true);
+        setError(null);
+        try {
+            if (credentialResponse.credential) {
+                const res = await apiService.googleAuth(credentialResponse.credential);
+                if (res.token && res.user) {
+                    document.cookie = `token=${res.token}; path=/; SameSite=None; Secure`;
+                    const userInfo = {
+                        email: res.user.email,
+                        full_name: res.user.full_name,
+                        language_level: res.user.language_level || "A1",
+                        target_language: res.user.target_language || "English"
+                    };
+                    localStorage.setItem("user_session", JSON.stringify(userInfo));
+                    onLoginSuccess(res.token, false);
+                }
+            }
+        } catch (err) {
+            setError(err instanceof Error ? err.message : "Error de autenticación con Google");
+        } finally {
+            setLoading(false);
+        }
+    };
 
     const handleNextStep = (e: React.FormEvent) => {
         e.preventDefault();
@@ -66,7 +92,7 @@ export default function AuthForm({ onLoginSuccess }: { onLoginSuccess: (token: s
     };
 
     return (
-        /* Eliminamos el 'fixed inset-0' para que fluya como contenido de página */
+        <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || "YOUR_CLIENT_ID"}>
         <div className="flex flex-col items-center justify-center w-full max-w-md mx-auto">
             <div className="w-full bg-white/40 backdrop-blur-md p-10 rounded-[2.5rem] shadow-xl border border-white/50">
                 {/* Botón SKIP (Solo en paso 2 de registro) */}
@@ -121,6 +147,33 @@ export default function AuthForm({ onLoginSuccess }: { onLoginSuccess: (token: s
                                 {!isLogin && !loading && <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />}
                             </button>
                         </form>
+
+                        {isLogin && (
+                            <div className="mt-4 text-center">
+                                <a href="/forgot-password" className="text-sm font-bold text-zinc-500 hover:text-zinc-900 transition-colors">
+                                    ¿Olvidaste tu contraseña?
+                                </a>
+                            </div>
+                        )}
+
+                        <div className="mt-6">
+                            <div className="relative">
+                                <div className="absolute inset-0 flex items-center">
+                                    <div className="w-full border-t border-zinc-300"></div>
+                                </div>
+                                <div className="relative flex justify-center text-sm">
+                                    <span className="px-2 bg-transparent text-zinc-500 font-medium">O continúa con</span>
+                                </div>
+                            </div>
+                            <div className="mt-6 flex justify-center">
+                                <GoogleLogin 
+                                    onSuccess={handleGoogleSuccess} 
+                                    onError={() => setError("Error al conectar con Google")}
+                                    shape="pill"
+                                />
+                            </div>
+                        </div>
+
                     </div>
                 )}
 
@@ -207,5 +260,6 @@ export default function AuthForm({ onLoginSuccess }: { onLoginSuccess: (token: s
 
             </div>
         </div>
+        </GoogleOAuthProvider>
     );
 }
