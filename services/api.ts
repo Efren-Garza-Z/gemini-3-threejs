@@ -1,164 +1,288 @@
 const BASE_URL = "/api/proxy";
 
+async function parseResponse(response: Response, defaultMessage: string) {
+    const contentType = response.headers.get("content-type") || "";
+    const isJson = contentType.includes("application/json");
+
+    const data = isJson ? await response.json().catch(() => ({})) : null;
+
+    if (!response.ok) {
+        throw new Error(
+            (data && (data.error || data.message)) || defaultMessage
+        );
+    }
+
+    return data;
+}
+
+export interface SessionUser {
+    id?: number;
+    email: string;
+    full_name: string;
+    language_level?: string;
+    target_language?: string;
+}
+
+export interface ApiNote {
+    id: number;
+    created_at: string;
+    updated_at: string;
+    user_id: number;
+    content: string;
+}
+
 export const apiService = {
     // Autenticación
-    login: (data: any) =>
-        fetch(`${BASE_URL}/auth/login`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        }).then(res => res.json()),
-
-    register: (data: any) =>
-        fetch(`${BASE_URL}/users`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        }).then(res => res.json()),
-
-    // Chat (Requiere Token)
-    sendChat: (prompt: string, token: string) =>
-        fetch(`${BASE_URL}/learning/chat`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify({
-                prompt: prompt,
-                model: "gemini-3-flash-preview",
-            })
-        }).then(res => res.json()),
-
-    // Historial (Para obtener la respuesta procesada)
-    getHistory: (token: string) =>
-        fetch(`${BASE_URL}/learning/history`, {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'accept': 'application/json'
-            }
-        }).then(res => res.json()),
-
-    // Iniciar proceso de evaluación
-    processExercise: (prompt: string) =>
-        fetch(`${BASE_URL}/gemini/process`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                prompt: prompt,
-                model: "gemini-3-flash-preview",
-            })
-        }).then(res => res.json()),
-
-    // Consultar estado de la tarea
-    checkStatus: (taskId: string) =>
-        fetch(`${BASE_URL}/gemini/status/${taskId}`, {
-            method: 'GET',
-            headers: {
-                'accept': 'application/json'
-            }
-        }).then(res => res.json()),
-
-    updateUserLanguage: async (email: string, data: { language_level: string, target_language: string }, token: string) => {
-        const response = await fetch(`${BASE_URL}/users/email/${encodeURIComponent(email)}/language`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`,
-                'accept': 'application/json'
-            },
-            body: JSON.stringify(data)
+    login: async (data: { email: string; password: string }) => {
+        const response = await fetch(`${BASE_URL}/auth/login`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
         });
-        return response.json();
+
+        return parseResponse(response, "Error al iniciar sesión");
+    },
+
+    googleAuth: async (token: string) => {
+        const response = await fetch(`${BASE_URL}/auth/google`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ token }),
+        });
+
+        return parseResponse(response, "Error al autenticar con Google");
+    },
+
+    register: async (data: {
+        email: string;
+        password: string;
+        full_name: string;
+        language_level: string;
+        target_language: string;
+    }) => {
+        const response = await fetch(`${BASE_URL}/users`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+        });
+
+        return parseResponse(response, "Error al registrar usuario");
+    },
+
+    forgotPassword: async (email: string) => {
+        const response = await fetch(`${BASE_URL}/auth/forgot-password`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email }),
+        });
+
+        return parseResponse(response, "Error al solicitar recuperación de contraseña");
+    },
+
+    resetPassword: async (
+        token: string,
+        newPassword: string,
+        confirmPassword: string
+    ) => {
+        const response = await fetch(`${BASE_URL}/auth/reset-password`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                token,
+                new_password: newPassword,
+                confirm_password: confirmPassword,
+            }),
+        });
+
+        return parseResponse(response, "Error al restablecer la contraseña");
+    },
+
+    updateUserPassword: async (
+        currentPassword: string,
+        newPassword: string,
+        confirmPassword: string,
+        token: string
+    ) => {
+        const response = await fetch(`${BASE_URL}/users/change-password`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                accept: "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+                current_password: currentPassword,
+                new_password: newPassword,
+                confirm_password: confirmPassword,
+            }),
+        });
+
+        return parseResponse(response, "Error al actualizar la contraseña");
+    },
+
+    updateUserLanguage: async (
+        email: string,
+        data: { language_level: string; target_language: string },
+        token: string
+    ) => {
+        const response = await fetch(`${BASE_URL}/users/email/${encodeURIComponent(email)}/language`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+                accept: "application/json",
+            },
+            body: JSON.stringify(data),
+        });
+
+        return parseResponse(response, "No se pudo actualizar el idioma del usuario");
     },
 
     getUserByEmail: async (email: string, token: string) => {
         const response = await fetch(`${BASE_URL}/users/email/${encodeURIComponent(email)}`, {
-            method: 'GET',
+            method: "GET",
             headers: {
-                'accept': 'application/json',
-                'Authorization': `Bearer ${token}`
-            }
+                accept: "application/json",
+                Authorization: `Bearer ${token}`,
+            },
         });
-        if (!response.ok) throw new Error("No se pudo obtener la información del usuario");
-        return await response.json();
+
+        return parseResponse(response, "No se pudo obtener la información del usuario");
     },
 
-    // MÉTODO PARA PROCESAR IMAGEN + TEXTO (Multipart)
+    getNotes: async (token: string): Promise<ApiNote[]> => {
+        const response = await fetch(`${BASE_URL}/notes`, {
+            method: "GET",
+            headers: {
+                accept: "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        return parseResponse(response, "No se pudieron obtener los apuntes");
+    },
+
+    saveNote: async (content: string, token: string): Promise<ApiNote> => {
+        const response = await fetch(`${BASE_URL}/notes`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                accept: "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ content }),
+        });
+
+        return parseResponse(response, "No se pudo guardar el apunte");
+    },
+
+    deleteNote: async (id: string | number, token: string) => {
+        const response = await fetch(`${BASE_URL}/notes/${id}`, {
+            method: "DELETE",
+            headers: {
+                accept: "*/*",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error("No se pudo eliminar el apunte");
+        }
+
+        return true;
+    },
+
+    // Chat legacy
+    sendChat: async (prompt: string, token: string) => {
+        const response = await fetch(`${BASE_URL}/learning/chat`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+                prompt,
+                model: "gemini-3-flash-preview",
+            }),
+        });
+
+        return parseResponse(response, "Error al enviar mensaje al chat");
+    },
+
+    getHistory: async (token: string) => {
+        const response = await fetch(`${BASE_URL}/learning/history`, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                accept: "application/json",
+            },
+        });
+
+        return parseResponse(response, "Error al obtener historial");
+    },
+
+    processExercise: async (prompt: string) => {
+        const response = await fetch(`${BASE_URL}/gemini/process`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                prompt,
+                model: "gemini-3-flash-preview",
+            }),
+        });
+
+        return parseResponse(response, "Error al iniciar procesamiento");
+    },
+
+    checkStatus: async (taskId: string) => {
+        const response = await fetch(`${BASE_URL}/gemini/status/${taskId}`, {
+            method: "GET",
+            headers: {
+                accept: "application/json",
+            },
+        });
+
+        return parseResponse(response, "Error al consultar estado");
+    },
+
     processFile: async (prompt: string, imagePath: string, token: string) => {
-        // 1. Convertimos la ruta de la imagen en un archivo real (Blob)
         const imageResponse = await fetch(imagePath);
         const imageBlob = await imageResponse.blob();
 
         const formData = new FormData();
-        formData.append('prompt', prompt);
-        // 'file' es el nombre del campo que espera tu backend según el CURL
-        formData.append('file', imageBlob, 'task_image.png');
+        formData.append("prompt", prompt);
+        formData.append("file", imageBlob, "task_image.png");
 
         const response = await fetch(`${BASE_URL}/gemini/process-file`, {
-            method: 'POST',
+            method: "POST",
             headers: {
-                'accept': 'application/json',
-                'Authorization': `Bearer ${token}`
-                // Nota: No poner Content-Type manual, el navegador lo hace con el boundary correcto
+                accept: "application/json",
+                Authorization: `Bearer ${token}`,
             },
-            body: formData
+            body: formData,
         });
 
-        if (!response.ok) throw new Error("Error al procesar el archivo");
-        return await response.json(); // Retorna { task_id: "..." }
+        return parseResponse(response, "Error al procesar el archivo");
     },
 
-    // MÉTODO PARA CONSULTAR STATUS DE ARCHIVO
     checkFileStatus: async (taskId: string, token: string) => {
         const response = await fetch(`${BASE_URL}/gemini/status-file/${taskId}`, {
-            method: 'GET',
+            method: "GET",
             headers: {
-                'accept': 'application/json',
-                'Authorization': `Bearer ${token}`
-            }
-        });
-        if (!response.ok) throw new Error("Error al consultar el estado del archivo");
-        return await response.json(); // Retorna { status: "finalizado", result: "..." }
-    },
-    updateUserPassword: async (email: string, newPassword: string, token: string) => {
-        // 1. Obtenemos los datos actuales del localStorage para no perder información
-        const session = localStorage.getItem("user_session");
-        if (!session) throw new Error("No hay sesión activa");
-
-        const currentUserData = JSON.parse(session);
-
-        // 2. Construimos el body tal como lo pide tu cURL
-        const updateData = {
-            email: currentUserData.email,
-            full_name: currentUserData.full_name,
-            language_level: currentUserData.language_level,
-            password: newPassword, // La nueva contraseña
-            target_language: currentUserData.target_language
-        };
-
-        const response = await fetch(`${BASE_URL}/users/email/${encodeURIComponent(email)}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'accept': 'application/json',
-                'Authorization': `Bearer ${token}`
+                accept: "application/json",
+                Authorization: `Bearer ${token}`,
             },
-            body: JSON.stringify(updateData)
         });
 
-        if (!response.ok) throw new Error("Error al actualizar la contraseña");
-        return response.json();
+        return parseResponse(response, "Error al consultar el estado del archivo");
     },
-
 };
 
 export default function getTokenFromCookie() {
     return document.cookie
         .split("; ")
-        .find(row => row.startsWith("token="))
-        ?.split("=")[1]
+        .find((row) => row.startsWith("token="))
+        ?.split("=")[1];
 }

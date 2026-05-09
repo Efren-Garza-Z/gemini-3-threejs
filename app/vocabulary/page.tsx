@@ -271,7 +271,7 @@ export default function VocabularyPage() {
                             </div>
 
                             <button
-                                onClick={() => setupMode ? router.push("/home") : setSetupMode(true)}
+                                onClick={() => router.push("/home")}
                                 className="w-full mt-6 bg-zinc-900 text-white p-4 rounded-2xl font-bold hover:bg-zinc-800 transition-colors"
                             >
                                 Finalizar y salir
@@ -281,7 +281,6 @@ export default function VocabularyPage() {
                 </div>
             </div>
         )}
-
       </div>
 
       <style jsx global>{`
