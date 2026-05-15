@@ -6,7 +6,7 @@ import SidebarLayout from "@/components/SidebarLayout";
 import grammarData from "@/data/grammar-units.json";
 import DragDropSentence from "@/components/grammar-guide/DragDropSentence";
 import TenseTimeline from "@/components/grammar-guide/TenseTimeline";
-import { ArrowLeft, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, CheckCircle2, BookOpen } from "lucide-react";
 import ReactMarkdown from 'react-markdown';
 
 export default function UnitPage() {
@@ -50,12 +50,60 @@ export default function UnitPage() {
                 </div>
 
                 {/* Content Explanation */}
-                <div className="bg-indigo-50 rounded-3xl p-6 md:p-8 mb-10 border border-indigo-100">
-                    <div className="prose prose-indigo prose-lg max-w-none text-indigo-900 mb-6 font-medium">
-                        <ReactMarkdown>{unit.content.explanation}</ReactMarkdown>
+                <div className="mb-12">
+                    <div className="prose prose-lg max-w-none">
+                        <ReactMarkdown
+                            components={{
+                                h3: ({node, ...props}) => (
+                                    <h3 className="text-3xl font-black text-indigo-950 mb-6 pb-4 border-b-2 border-indigo-100 flex items-center gap-3" {...props}>
+                                        <span className="bg-indigo-100 text-indigo-600 p-2 rounded-xl">
+                                            <BookOpen size={24} />
+                                        </span>
+                                        {props.children}
+                                    </h3>
+                                ),
+                                h4: ({node, ...props}) => (
+                                    <h4 className="text-xl font-bold text-indigo-800 mt-8 mb-4 flex items-center gap-2" {...props}>
+                                        <div className="w-2 h-6 bg-indigo-400 rounded-full"></div>
+                                        {props.children}
+                                    </h4>
+                                ),
+                                p: ({node, ...props}) => (
+                                    <p className="text-gray-700 leading-relaxed mb-4 text-[1.05rem]" {...props} />
+                                ),
+                                ul: ({node, ...props}) => (
+                                    <ul className="space-y-3 mb-6" {...props} />
+                                ),
+                                li: ({node, ...props}) => (
+                                    <li className="bg-white p-4 rounded-2xl shadow-sm border border-indigo-50 flex items-start gap-3 hover:shadow-md transition-shadow relative overflow-hidden group" {...props}>
+                                        <div className="absolute top-0 left-0 w-1 h-full bg-indigo-300 group-hover:bg-indigo-500 transition-colors"></div>
+                                        <div className="mt-1.5 w-2 h-2 rounded-full bg-indigo-400 shrink-0"></div>
+                                        <div className="text-gray-800 w-full">{props.children}</div>
+                                    </li>
+                                ),
+                                strong: ({node, ...props}) => (
+                                    <strong className="font-black text-indigo-900 bg-indigo-50 px-1.5 py-0.5 rounded-md" {...props} />
+                                ),
+                                em: ({node, ...props}) => {
+                                    // Check if the em text is "Example:"
+                                    const isExample = props.children?.toString().includes("Example:");
+                                    if (isExample) {
+                                        return <em className="text-orange-600 font-bold not-italic bg-orange-100 px-2 py-1 rounded-lg text-sm tracking-wide uppercase mr-2" {...props} />
+                                    }
+                                    return <em className="text-indigo-600 font-medium italic" {...props} />
+                                },
+                            }}
+                        >
+                            {unit.content.explanation}
+                        </ReactMarkdown>
                     </div>
                     {unit.content.timeline && (
-                        <TenseTimeline {...unit.content.timeline} />
+                        <div className="mt-8 bg-indigo-50 p-6 rounded-3xl border border-indigo-100">
+                            <h4 className="text-lg font-bold text-indigo-900 mb-4 flex items-center gap-2">
+                                <span className="bg-white p-1.5 rounded-lg text-indigo-500 shadow-sm">⏳</span> Línea de Tiempo
+                            </h4>
+                            <TenseTimeline {...unit.content.timeline} />
+                        </div>
                     )}
                 </div>
 

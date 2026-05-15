@@ -2,12 +2,13 @@
 
 import {Home, BookOpen, PenTool, CheckSquare, User, LogOut, Menu, X, Book, TestTube, Bot} from "lucide-react";
 import { useRouter, usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Sidebar() {
     const router = useRouter();
     const pathname = usePathname();
     const [isMobileOpen, setIsMobileOpen] = useState(false);
+    const [showExpiredModal, setShowExpiredModal] = useState(false);
 
     const handleLogout = () => {
         document.cookie = "token=; Max-Age=0; path=/";
@@ -20,12 +21,24 @@ export default function Sidebar() {
         { name: "Grammar Guide", path: "/grammar-guide", icon: <BookOpen size={24} /> },
         { name: "Vocabulario", path: "/vocabulary", icon: <PenTool size={24} /> },
         { name: "Verbos", path: "/verbs", icon: <CheckSquare size={24} /> },
+        { name: "Adverbios", path: "/adverbs", icon: <Book size={24} /> },
+        { name: "Adjetivos", path: "/adjectives", icon: <PenTool size={24} /> },
+        { name: "Phrasal Verbs", path: "/phrasal-verbs", icon: <CheckSquare size={24} /> },
         { name: "Activities", path: "/activities", icon: <Book size={24} /> },
         { name: "IELTS", path: "/ielts", icon: <BookOpen size={24} /> },
         { name: "Test", path: "/test-nivelacion", icon: <TestTube size={24} /> },
         { name: "Chat", path: "/chat", icon: <Bot size={24} /> },
         { name: "Perfil", path: "/profile", icon: <User size={24} /> },
     ];
+
+    useEffect(() => {
+        const handleAuthExpired = (e: any) => {
+            setShowExpiredModal(true);
+        };
+
+        window.addEventListener("auth-expired", handleAuthExpired);
+        return () => window.removeEventListener("auth-expired", handleAuthExpired);
+    }, []);
 
     const go = (path: string) => {
         setIsMobileOpen(false);
@@ -86,6 +99,25 @@ export default function Sidebar() {
                     </button>
                 </div>
             </div>
+
+            {/* Session Expired Modal */}
+            {showExpiredModal && (
+                <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-in fade-in duration-200">
+                    <div className="bg-white rounded-3xl p-8 max-w-sm w-full shadow-2xl flex flex-col items-center text-center animate-in zoom-in-95 duration-200">
+                        <div className="w-16 h-16 bg-red-100 text-red-500 rounded-full flex items-center justify-center mb-6">
+                            <LogOut size={32} />
+                        </div>
+                        <h2 className="text-2xl font-black text-gray-800 mb-2">Su sesión ha expirado</h2>
+                        <p className="text-gray-500 mb-8 font-medium">Por favor, vuelva a iniciar sesión para continuar.</p>
+                        <button 
+                            onClick={handleLogout}
+                            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-2xl shadow-[0_4px_0_rgb(37,99,235)] hover:shadow-[0_2px_0_rgb(37,99,235)] hover:translate-y-[2px] transition-all"
+                        >
+                            Ir al Login
+                        </button>
+                    </div>
+                </div>
+            )}
         </>
     );
 }

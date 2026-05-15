@@ -39,6 +39,33 @@ export default function HomeClient() {
             category: "VERBOS"
         },
         {
+            title: "Adverbios",
+            description: "Aprende a modificar y describir acciones",
+            icon: <BookOpen size={32} />,
+            color: "purple",
+            path: "/adverbs",
+            progress: "1/5",
+            category: "VOCABULARIO"
+        },
+        {
+            title: "Adjetivos",
+            description: "Expande tu vocabulario para describir el mundo",
+            icon: <GraduationCap size={32} />,
+            color: "green",
+            path: "/adjectives",
+            progress: "2/5",
+            category: "VOCABULARIO"
+        },
+        {
+            title: "Phrasal Verbs",
+            description: "Domina los verbos compuestos más usados",
+            icon: <CheckCircle size={32} />,
+            color: "indigo",
+            path: "/phrasal-verbs",
+            progress: "0/5",
+            category: "VERBOS"
+        },
+        {
             title: "IELTS Preparation",
             description: "Domina certificaciones",
             icon: <Clock size={32} />,
@@ -119,7 +146,9 @@ export default function HomeClient() {
                         teal: "text-teal-500 bg-teal-50 group-hover:bg-teal-100 border-teal-200",
                         indigo: "text-indigo-500 bg-indigo-50 group-hover:bg-indigo-100 border-indigo-200",
                         orange: "text-orange-500 bg-orange-50 group-hover:bg-orange-100 border-orange-200",
-                    }[module.color];
+                        purple: "text-purple-500 bg-purple-50 group-hover:bg-purple-100 border-purple-200",
+                        green: "text-green-500 bg-green-50 group-hover:bg-green-100 border-green-200",
+                    }[module.color] || "text-gray-500 bg-gray-50 border-gray-200";
 
                     return (
                         <button

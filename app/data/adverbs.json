@@ -1,0 +1,114 @@
+[
+  {
+    "word": "always",
+    "spanish": "siempre",
+    "explanation": "Se usa para indicar que algo ocurre en todo momento o en cada ocasión.",
+    "example": "I always wake up at 7 AM.",
+    "type": "frequency"
+  },
+  {
+    "word": "never",
+    "spanish": "nunca",
+    "explanation": "Indica que algo no ocurre en ninguna ocasión.",
+    "example": "She never eats meat.",
+    "type": "frequency"
+  },
+  {
+    "word": "sometimes",
+    "spanish": "a veces",
+    "explanation": "Indica que algo ocurre en algunas ocasiones, pero no siempre.",
+    "example": "We sometimes go to the cinema on Fridays.",
+    "type": "frequency"
+  },
+  {
+    "word": "usually",
+    "spanish": "usualmente",
+    "explanation": "Indica que algo ocurre la mayor parte del tiempo.",
+    "example": "He usually takes the bus to work.",
+    "type": "frequency"
+  },
+  {
+    "word": "quickly",
+    "spanish": "rápidamente",
+    "explanation": "Describe una acción que se realiza a gran velocidad o en poco tiempo.",
+    "example": "She quickly finished her homework.",
+    "type": "manner"
+  },
+  {
+    "word": "slowly",
+    "spanish": "lentamente",
+    "explanation": "Describe una acción que se realiza a baja velocidad.",
+    "example": "The turtle moved slowly across the road.",
+    "type": "manner"
+  },
+  {
+    "word": "carefully",
+    "spanish": "cuidadosamente",
+    "explanation": "Describe una acción que se realiza con atención y precaución.",
+    "example": "He carefully carried the glass vase.",
+    "type": "manner"
+  },
+  {
+    "word": "easily",
+    "spanish": "fácilmente",
+    "explanation": "Describe una acción que se realiza sin dificultad.",
+    "example": "She passed the exam easily.",
+    "type": "manner"
+  },
+  {
+    "word": "here",
+    "spanish": "aquí",
+    "explanation": "Indica un lugar cercano al hablante.",
+    "example": "Please sit here.",
+    "type": "place"
+  },
+  {
+    "word": "there",
+    "spanish": "allí",
+    "explanation": "Indica un lugar alejado del hablante.",
+    "example": "Look over there!",
+    "type": "place"
+  },
+  {
+    "word": "everywhere",
+    "spanish": "en todas partes",
+    "explanation": "Indica que algo está en todos los lugares posibles.",
+    "example": "I searched everywhere for my keys.",
+    "type": "place"
+  },
+  {
+    "word": "now",
+    "spanish": "ahora",
+    "explanation": "Indica que algo ocurre en el momento presente.",
+    "example": "We need to leave now.",
+    "type": "time"
+  },
+  {
+    "word": "yesterday",
+    "spanish": "ayer",
+    "explanation": "Indica el día anterior al actual.",
+    "example": "It rained yesterday.",
+    "type": "time"
+  },
+  {
+    "word": "tomorrow",
+    "spanish": "mañana",
+    "explanation": "Indica el día siguiente al actual.",
+    "example": "We will travel tomorrow.",
+    "type": "time"
+  },
+  {
+    "word": "very",
+    "spanish": "muy",
+    "explanation": "Se usa para intensificar un adjetivo o adverbio.",
+    "example": "It is very cold outside.",
+    "type": "degree"
+  },
+  {
+    "word": "too",
+    "spanish": "demasiado",
+    "explanation": "Indica un grado excesivo de algo.",
+    "example": "The soup is too hot to eat.",
+    "type": "degree"
+  }
+]

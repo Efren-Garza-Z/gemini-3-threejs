@@ -1,0 +1,114 @@
+[
+  {
+    "word": "beautiful",
+    "spanish": "hermoso/a",
+    "explanation": "Que posee una gran belleza, atractivo físico o estético.",
+    "example": "She wore a beautiful dress to the party.",
+    "type": "appearance"
+  },
+  {
+    "word": "ugly",
+    "spanish": "feo/a",
+    "explanation": "Que carece de belleza o es desagradable a la vista.",
+    "example": "The old building looked ugly and abandoned.",
+    "type": "appearance"
+  },
+  {
+    "word": "happy",
+    "spanish": "feliz",
+    "explanation": "Que siente o muestra placer, satisfacción o alegría.",
+    "example": "He was very happy to see his friends again.",
+    "type": "emotion"
+  },
+  {
+    "word": "sad",
+    "spanish": "triste",
+    "explanation": "Que siente pena, melancolía o dolor emocional.",
+    "example": "The movie's ending was very sad.",
+    "type": "emotion"
+  },
+  {
+    "word": "angry",
+    "spanish": "enojado/a",
+    "explanation": "Que siente o muestra ira o disgusto.",
+    "example": "She was angry because they arrived late.",
+    "type": "emotion"
+  },
+  {
+    "word": "big",
+    "spanish": "grande",
+    "explanation": "De tamaño, volumen o extensión considerables.",
+    "example": "They live in a big house near the park.",
+    "type": "size"
+  },
+  {
+    "word": "small",
+    "spanish": "pequeño/a",
+    "explanation": "De tamaño, volumen o extensión reducidos.",
+    "example": "The small dog barked at the stranger.",
+    "type": "size"
+  },
+  {
+    "word": "tall",
+    "spanish": "alto/a",
+    "explanation": "De altura superior a la media (se usa para personas o cosas estrechas).",
+    "example": "He is very tall, like a basketball player.",
+    "type": "size"
+  },
+  {
+    "word": "short",
+    "spanish": "corto/a, bajo/a",
+    "explanation": "De poca longitud o de baja estatura.",
+    "example": "She has short hair.",
+    "type": "size"
+  },
+  {
+    "word": "fast",
+    "spanish": "rápido/a",
+    "explanation": "Que se mueve o actúa con gran velocidad.",
+    "example": "The cheetah is a fast runner.",
+    "type": "speed"
+  },
+  {
+    "word": "slow",
+    "spanish": "lento/a",
+    "explanation": "Que se mueve o actúa con poca velocidad.",
+    "example": "The traffic was very slow this morning.",
+    "type": "speed"
+  },
+  {
+    "word": "smart",
+    "spanish": "inteligente",
+    "explanation": "Que tiene facilidad para aprender y comprender.",
+    "example": "She is a smart student who always gets good grades.",
+    "type": "personality"
+  },
+  {
+    "word": "funny",
+    "spanish": "gracioso/a",
+    "explanation": "Que causa risa o diversión.",
+    "example": "He told a funny joke that made everyone laugh.",
+    "type": "personality"
+  },
+  {
+    "word": "kind",
+    "spanish": "amable",
+    "explanation": "Que muestra buena voluntad, afecto y consideración hacia los demás.",
+    "example": "It was very kind of you to help me.",
+    "type": "personality"
+  },
+  {
+    "word": "hot",
+    "spanish": "caliente, caluroso",
+    "explanation": "Que tiene una temperatura elevada.",
+    "example": "Be careful, the coffee is hot.",
+    "type": "temperature"
+  },
+  {
+    "word": "cold",
+    "spanish": "frío/a",
+    "explanation": "Que tiene una temperatura baja.",
+    "example": "It is cold outside, you should wear a coat.",
+    "type": "temperature"
+  }
+]

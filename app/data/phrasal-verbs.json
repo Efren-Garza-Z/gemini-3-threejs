@@ -1,0 +1,107 @@
+[
+  {
+    "word": "give up",
+    "spanish": "rendirse, dejar de hacer algo",
+    "explanation": "Detener el esfuerzo para hacer algo; abandonar un hábito.",
+    "example": "He decided to give up smoking.",
+    "type": "separable"
+  },
+  {
+    "word": "take off",
+    "spanish": "despegar, quitarse (ropa)",
+    "explanation": "Cuando un avión deja el suelo; remover una prenda de vestir del cuerpo.",
+    "example": "The plane will take off in 10 minutes. / Take off your shoes.",
+    "type": "separable"
+  },
+  {
+    "word": "look after",
+    "spanish": "cuidar de",
+    "explanation": "Tomar la responsabilidad de cuidar o proteger a alguien o algo.",
+    "example": "Can you look after my dog while I'm on vacation?",
+    "type": "inseparable"
+  },
+  {
+    "word": "look forward to",
+    "spanish": "esperar con ansias",
+    "explanation": "Sentirse emocionado por algo que va a suceder en el futuro.",
+    "example": "I'm looking forward to seeing you again.",
+    "type": "inseparable"
+  },
+  {
+    "word": "put off",
+    "spanish": "posponer",
+    "explanation": "Retrasar algo para un momento posterior.",
+    "example": "They had to put off the meeting until next week.",
+    "type": "separable"
+  },
+  {
+    "word": "turn out",
+    "spanish": "resultar, apagar",
+    "explanation": "Tener un resultado en particular; apagar una luz.",
+    "example": "The movie turned out to be really good.",
+    "type": "separable"
+  },
+  {
+    "word": "bring up",
+    "spanish": "criar, mencionar",
+    "explanation": "Cuidar a un niño hasta que sea adulto; mencionar un tema en una conversación.",
+    "example": "She brought up three children on her own.",
+    "type": "separable"
+  },
+  {
+    "word": "call off",
+    "spanish": "cancelar",
+    "explanation": "Decidir que un evento planeado no sucederá.",
+    "example": "They called off the wedding at the last minute.",
+    "type": "separable"
+  },
+  {
+    "word": "find out",
+    "spanish": "descubrir, averiguar",
+    "explanation": "Obtener información sobre algo.",
+    "example": "I need to find out what time the train leaves.",
+    "type": "separable"
+  },
+  {
+    "word": "get along",
+    "spanish": "llevarse bien",
+    "explanation": "Tener una relación amistosa con alguien.",
+    "example": "I get along very well with my neighbors.",
+    "type": "inseparable"
+  },
+  {
+    "word": "go on",
+    "spanish": "continuar, suceder",
+    "explanation": "Continuar una actividad; describir algo que está pasando.",
+    "example": "Please go on reading. / What's going on here?",
+    "type": "inseparable"
+  },
+  {
+    "word": "make up",
+    "spanish": "inventar, reconciliarse",
+    "explanation": "Crear una historia (a menudo falsa); volver a ser amigos después de una discusión.",
+    "example": "He made up an excuse for being late.",
+    "type": "separable"
+  },
+  {
+    "word": "set up",
+    "spanish": "establecer, montar",
+    "explanation": "Preparar o iniciar algo, como un negocio o equipo.",
+    "example": "They set up a new company last year.",
+    "type": "separable"
+  },
+  {
+    "word": "show up",
+    "spanish": "aparecer, llegar",
+    "explanation": "Llegar a un lugar donde se le espera, a veces tarde o de forma inesperada.",
+    "example": "He didn't show up for the interview.",
+    "type": "inseparable"
+  },
+  {
+    "word": "work out",
+    "spanish": "hacer ejercicio, resolver",
+    "explanation": "Hacer ejercicio físico; encontrar una solución a un problema.",
+    "example": "I work out at the gym three times a week.",
+    "type": "separable"
+  }
+]

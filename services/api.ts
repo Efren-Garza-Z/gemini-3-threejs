@@ -7,6 +7,15 @@ async function parseResponse(response: Response, defaultMessage: string) {
     const data = isJson ? await response.json().catch(() => ({})) : null;
 
     if (!response.ok) {
+        if (response.status === 401) {
+            if (typeof window !== "undefined") {
+                const event = new CustomEvent("auth-expired", { 
+                    detail: { message: (data && (data.error || data.message)) || defaultMessage } 
+                });
+                window.dispatchEvent(event);
+            }
+        }
+
         throw new Error(
             (data && (data.error || data.message)) || defaultMessage
         );
