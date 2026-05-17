@@ -287,6 +287,28 @@ export const apiService = {
 
         return parseResponse(response, "Error al consultar el estado del archivo");
     },
+    saveCompletedActivity: async (activityId: string | number, token: string) => {
+        const response = await fetch(`${BASE_URL}/users/me/activities/${activityId}`, {
+            method: "POST",
+            headers: {
+                accept: "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        return parseResponse(response, "No se pudo guardar el progreso de la actividad");
+    },
+    getCompletedActivities: async (token: string): Promise<string[]> => {
+        const response = await fetch(`${BASE_URL}/users/me/activities`, {
+            method: "GET",
+            headers: {
+                accept: "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        return parseResponse(response, "No se pudieron obtener las actividades completadas");
+    },
 };
 
 export default function getTokenFromCookie() {
