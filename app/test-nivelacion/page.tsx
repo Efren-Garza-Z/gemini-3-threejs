@@ -16,7 +16,7 @@ interface Question {
 export default function LevelTestPage() {
     const [questions, setQuestions] = useState<Question[]>([]);
     const [userAnswers, setUserAnswers] = useState<{ [key: number]: number }>({});
-    const [status, setStatus] = useState("generando"); // generando, pendiente_preguntas, contestando, evaluando, finalizado
+    const [status, setStatus] = useState("inicio"); // inicio, generando, pendiente_preguntas, contestando, evaluando, finalizado
     const [taskId, setTaskId] = useState<string | null>(null);
     const [finalResult, setFinalResult] = useState<any>(null);
     const [token, setToken] = useState<string | null>(null);
@@ -25,7 +25,6 @@ export default function LevelTestPage() {
         const t = getTokenFromCookie();
         if (t) {
             setToken(t);
-            generateTest();
         }
     }, []);
 
@@ -88,7 +87,7 @@ export default function LevelTestPage() {
                     setStatus("error");
                     clearInterval(interval);
                 }
-            }, 3000);
+            }, 10000);
         }
         return () => clearInterval(interval);
     }, [taskId, status, token]);
@@ -133,13 +132,45 @@ export default function LevelTestPage() {
 
     // --- RENDERIZADOS DE ESTADO ---
 
+    if (status === "inicio") {
+        return (
+            <SidebarLayout>
+                <div className="min-h-screen bg-gradient-to-br from-blue-100 via-teal-50 to-green-100 flex flex-col items-center justify-center p-6">
+                    <div className="bg-white p-10 rounded-[3rem] shadow-2xl max-w-lg text-center border border-white/50 animate-in zoom-in-95 duration-300">
+                        <div className="bg-teal-100 text-teal-600 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <Sparkles size={40} />
+                        </div>
+                        <h1 className="text-3xl font-black text-zinc-900 mb-4">Placement Test</h1>
+                        <p className="text-zinc-600 font-medium mb-8 leading-relaxed">
+                            Estás a punto de iniciar un examen de nivelación de 48 preguntas generado en tiempo real por inteligencia artificial. Tomará aproximadamente 15 minutos. ¿Deseas comenzar ahora?
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                            <button 
+                                onClick={() => window.location.href = "/home"}
+                                className="px-8 py-4 rounded-2xl font-bold text-zinc-500 bg-zinc-100 hover:bg-zinc-200 transition-colors"
+                            >
+                                Cancelar
+                            </button>
+                            <button 
+                                onClick={() => { setStatus("generando"); generateTest(); }}
+                                className="px-8 py-4 rounded-2xl font-bold text-white bg-teal-500 shadow-[0_4px_0_rgb(13,148,136)] hover:shadow-[0_2px_0_rgb(13,148,136)] hover:translate-y-[2px] transition-all"
+                            >
+                                Sí, comenzar examen
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </SidebarLayout>
+        );
+    }
+
     if (status === "generando" || status === "pendiente_preguntas") {
         return (
             <SidebarLayout>
-            <div className="min-h-screen bg-gradient-to-br from-blue-100 via-teal-50 to-green-100 flex flex-col items-center justify-center p-6 text-center">
-                <Loader2 size={48} className="text-white animate-spin mb-4" />
+            <div className="min-h-screen bg-gradient-to-br from-teal-600 to-emerald-800 flex flex-col items-center justify-center p-6 text-center">
+                <Loader2 size={48} className="text-teal-100 animate-spin mb-4" />
                 <h2 className="text-3xl font-black text-white">IA creando tu examen...</h2>
-                <p className="text-white/80 mt-2 font-medium">Gemini está formulando 48 preguntas para medir tu nivel real.</p>
+                <p className="text-teal-100 mt-2 font-medium">Gemini está formulando 48 preguntas para medir tu nivel real.</p>
             </div>
             </SidebarLayout>
         );

@@ -1,0 +1,324 @@
+[
+  {
+    "word": "always",
+    "spanish": "siempre",
+    "explanation": "Se usa para indicar que algo ocurre en todo momento o en cada ocasión.",
+    "example": "I always wake up at 7 AM.",
+    "type": "frequency"
+  },
+  {
+    "word": "never",
+    "spanish": "nunca",
+    "explanation": "Indica que algo no ocurre en ninguna ocasión.",
+    "example": "She never eats meat.",
+    "type": "frequency"
+  },
+  {
+    "word": "sometimes",
+    "spanish": "a veces",
+    "explanation": "Indica que algo ocurre en algunas ocasiones, pero no siempre.",
+    "example": "We sometimes go to the cinema on Fridays.",
+    "type": "frequency"
+  },
+  {
+    "word": "usually",
+    "spanish": "usualmente",
+    "explanation": "Indica que algo ocurre la mayor parte del tiempo.",
+    "example": "He usually takes the bus to work.",
+    "type": "frequency"
+  },
+  {
+    "word": "quickly",
+    "spanish": "rápidamente",
+    "explanation": "Describe una acción que se realiza a gran velocidad o en poco tiempo.",
+    "example": "She quickly finished her homework.",
+    "type": "manner"
+  },
+  {
+    "word": "slowly",
+    "spanish": "lentamente",
+    "explanation": "Describe una acción que se realiza a baja velocidad.",
+    "example": "The turtle moved slowly across the road.",
+    "type": "manner"
+  },
+  {
+    "word": "carefully",
+    "spanish": "cuidadosamente",
+    "explanation": "Describe una acción que se realiza con atención y precaución.",
+    "example": "He carefully carried the glass vase.",
+    "type": "manner"
+  },
+  {
+    "word": "easily",
+    "spanish": "fácilmente",
+    "explanation": "Describe una acción que se realiza sin dificultad.",
+    "example": "She passed the exam easily.",
+    "type": "manner"
+  },
+  {
+    "word": "here",
+    "spanish": "aquí",
+    "explanation": "Indica un lugar cercano al hablante.",
+    "example": "Please sit here.",
+    "type": "place"
+  },
+  {
+    "word": "there",
+    "spanish": "allí",
+    "explanation": "Indica un lugar alejado del hablante.",
+    "example": "Look over there!",
+    "type": "place"
+  },
+  {
+    "word": "everywhere",
+    "spanish": "en todas partes",
+    "explanation": "Indica que algo está en todos los lugares posibles.",
+    "example": "I searched everywhere for my keys.",
+    "type": "place"
+  },
+  {
+    "word": "now",
+    "spanish": "ahora",
+    "explanation": "Indica que algo ocurre en el momento presente.",
+    "example": "We need to leave now.",
+    "type": "time"
+  },
+  {
+    "word": "yesterday",
+    "spanish": "ayer",
+    "explanation": "Indica el día anterior al actual.",
+    "example": "It rained yesterday.",
+    "type": "time"
+  },
+  {
+    "word": "tomorrow",
+    "spanish": "mañana",
+    "explanation": "Indica el día siguiente al actual.",
+    "example": "We will travel tomorrow.",
+    "type": "time"
+  },
+  {
+    "word": "very",
+    "spanish": "muy",
+    "explanation": "Se usa para intensificar un adjetivo o adverbio.",
+    "example": "It is very cold outside.",
+    "type": "degree"
+  },
+  {
+    "word": "too",
+    "spanish": "demasiado",
+    "explanation": "Indica un grado excesivo de algo.",
+    "example": "The soup is too hot to eat.",
+    "type": "degree"
+  },
+  {
+    "word": "often",
+    "spanish": "a menudo",
+    "explanation": "Indica que algo ocurre con frecuencia o repetidas veces.",
+    "example": "I often read a book before going to bed.",
+    "type": "frequency"
+  },
+  {
+    "word": "rarely",
+    "spanish": "rara vez",
+    "explanation": "Indica que algo ocurre en muy pocas ocasiones.",
+    "example": "She rarely eats fast food.",
+    "type": "frequency"
+  },
+  {
+    "word": "frequently",
+    "spanish": "frecuentemente",
+    "explanation": "Similar a 'often', indica que una acción se repite muchas veces.",
+    "example": "Buses run frequently in this city.",
+    "type": "frequency"
+  },
+  {
+    "word": "occasionally",
+    "spanish": "ocasionalmente",
+    "explanation": "Indica que algo sucede de vez en cuando, pero no con regularidad.",
+    "example": "We occasionally go out for dinner.",
+    "type": "frequency"
+  },
+  {
+    "word": "happily",
+    "spanish": "felizmente",
+    "explanation": "Describe una acción realizada con alegría o felicidad.",
+    "example": "The children played happily in the park.",
+    "type": "manner"
+  },
+  {
+    "word": "sadly",
+    "spanish": "tristemente",
+    "explanation": "Describe una acción realizada con tristeza o pesar.",
+    "example": "He looked at her sadly and walked away.",
+    "type": "manner"
+  },
+  {
+    "word": "beautifully",
+    "spanish": "hermosamente",
+    "explanation": "Describe una acción realizada de manera bella o excelente.",
+    "example": "She sings beautifully.",
+    "type": "manner"
+  },
+  {
+    "word": "loudly",
+    "spanish": "fuertemente / en voz alta",
+    "explanation": "Describe un sonido que se emite con mucho volumen.",
+    "example": "The dog barked loudly at the stranger.",
+    "type": "manner"
+  },
+  {
+    "word": "quietly",
+    "spanish": "silenciosamente",
+    "explanation": "Describe una acción realizada sin hacer ruido.",
+    "example": "He closed the door quietly.",
+    "type": "manner"
+  },
+  {
+    "word": "eagerly",
+    "spanish": "ansiosamente / con entusiasmo",
+    "explanation": "Describe una acción realizada con muchas ganas o impaciencia.",
+    "example": "They waited eagerly for the concert to start.",
+    "type": "manner"
+  },
+  {
+    "word": "well",
+    "spanish": "bien",
+    "explanation": "Describe una acción que se realiza de manera correcta o satisfactoria (es el adverbio irregular de 'good').",
+    "example": "She speaks English very well.",
+    "type": "manner"
+  },
+  {
+    "word": "badly",
+    "spanish": "mal",
+    "explanation": "Describe una acción que se realiza de forma incorrecta o deficiente.",
+    "example": "He played badly in the last match.",
+    "type": "manner"
+  },
+  {
+    "word": "inside",
+    "spanish": "adentro",
+    "explanation": "Indica que algo o alguien está en el interior de un lugar.",
+    "example": "It's raining, let's go inside.",
+    "type": "place"
+  },
+  {
+    "word": "outside",
+    "spanish": "afuera",
+    "explanation": "Indica que algo o alguien está en el exterior de un lugar.",
+    "example": "The kids are playing outside.",
+    "type": "place"
+  },
+  {
+    "word": "anywhere",
+    "spanish": "en cualquier lugar / a ninguna parte",
+    "explanation": "Se usa en oraciones negativas o interrogativas para referirse a un lugar no específico.",
+    "example": "I can't find my glasses anywhere.",
+    "type": "place"
+  },
+  {
+    "word": "nowhere",
+    "spanish": "en ninguna parte",
+    "explanation": "Indica la ausencia de un lugar específico.",
+    "example": "There is nowhere to park around here.",
+    "type": "place"
+  },
+  {
+    "word": "nearby",
+    "spanish": "cerca",
+    "explanation": "Indica que algo se encuentra a poca distancia.",
+    "example": "Is there a pharmacy nearby?",
+    "type": "place"
+  },
+  {
+    "word": "soon",
+    "spanish": "pronto",
+    "explanation": "Indica que algo ocurrirá en un corto período de tiempo.",
+    "example": "We will arrive soon.",
+    "type": "time"
+  },
+  {
+    "word": "later",
+    "spanish": "más tarde",
+    "explanation": "Indica un momento posterior al presente.",
+    "example": "I will call you later.",
+    "type": "time"
+  },
+  {
+    "word": "already",
+    "spanish": "ya",
+    "explanation": "Indica que una acción ha sucedido antes de lo esperado.",
+    "example": "I have already finished my dinner.",
+    "type": "time"
+  },
+  {
+    "word": "yet",
+    "spanish": "todavía / aún",
+    "explanation": "Se usa principalmente en preguntas y oraciones negativas para indicar si algo que se espera ha ocurrido.",
+    "example": "Has the mail arrived yet?",
+    "type": "time"
+  },
+  {
+    "word": "still",
+    "spanish": "todavía",
+    "explanation": "Indica que una situación continúa y no ha cambiado.",
+    "example": "Are you still working on that project?",
+    "type": "time"
+  },
+  {
+    "word": "recently",
+    "spanish": "recientemente",
+    "explanation": "Indica que algo ocurrió no hace mucho tiempo.",
+    "example": "I have recently started learning French.",
+    "type": "time"
+  },
+  {
+    "word": "tonight",
+    "spanish": "esta noche",
+    "explanation": "Indica la noche del día actual.",
+    "example": "We are watching a movie tonight.",
+    "type": "time"
+  },
+  {
+    "word": "quite",
+    "spanish": "bastante",
+    "explanation": "Indica un grado significativo, pero sin llegar a ser extremo.",
+    "example": "The movie was quite good.",
+    "type": "degree"
+  },
+  {
+    "word": "almost",
+    "spanish": "casi",
+    "explanation": "Indica que algo estuvo a punto de suceder o completarse.",
+    "example": "I am almost ready to leave.",
+    "type": "degree"
+  },
+  {
+    "word": "enough",
+    "spanish": "suficiente",
+    "explanation": "Indica que hay la cantidad necesaria o adecuada de algo.",
+    "example": "He didn't study enough for the test.",
+    "type": "degree"
+  },
+  {
+    "word": "extremely",
+    "spanish": "extremadamente",
+    "explanation": "Indica un grado muy alto o máximo de una cualidad.",
+    "example": "The weather is extremely hot today.",
+    "type": "degree"
+  },
+  {
+    "word": "completely",
+    "spanish": "completamente",
+    "explanation": "Indica que algo ocurre en su totalidad o al 100%.",
+    "example": "I completely forgot about the meeting.",
+    "type": "degree"
+  },
+  {
+    "word": "exactly",
+    "spanish": "exactamente",
+    "explanation": "Indica precisión o exactitud total en una acción o estado.",
+    "example": "That is exactly what I meant.",
+    "type": "degree"
+  }
+]

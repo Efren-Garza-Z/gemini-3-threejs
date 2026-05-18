@@ -29,7 +29,7 @@ export const ieltsReadingData: ReadingTest[] = [
         totalQuestions: 40,
         instructions: [
             "Do not open this question paper until you are told to do so",
-            "Write your name and candidate number in the spaces at the top of the page",
+            "Write your name and candidate number in the spaces at the top of the page.tsx",
             "Read the instructions for each part of the paper carefully",
             "Answer all the questions",
             "Write your answers on the answer sheet",

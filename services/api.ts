@@ -7,6 +7,15 @@ async function parseResponse(response: Response, defaultMessage: string) {
     const data = isJson ? await response.json().catch(() => ({})) : null;
 
     if (!response.ok) {
+        if (response.status === 401) {
+            if (typeof window !== "undefined") {
+                const event = new CustomEvent("auth-expired", { 
+                    detail: { message: (data && (data.error || data.message)) || defaultMessage } 
+                });
+                window.dispatchEvent(event);
+            }
+        }
+
         throw new Error(
             (data && (data.error || data.message)) || defaultMessage
         );
@@ -202,7 +211,7 @@ export const apiService = {
             },
             body: JSON.stringify({
                 prompt,
-                model: "gemini-3-flash-preview",
+                model: "gemini-2.5-flash",
             }),
         });
 
@@ -229,7 +238,7 @@ export const apiService = {
             },
             body: JSON.stringify({
                 prompt,
-                model: "gemini-3-flash-preview",
+                model: "gemini-2.5-flash",
             }),
         });
 
@@ -247,28 +256,59 @@ export const apiService = {
         return parseResponse(response, "Error al consultar estado");
     },
 
-    processFile: async (prompt: string, imagePath: string, token: string) => {
+    processFile: async (prompt: string, imagePath: string, token?: string) => {
         const imageResponse = await fetch(imagePath);
         const imageBlob = await imageResponse.blob();
 
         const formData = new FormData();
         formData.append("prompt", prompt);
-        formData.append("file", imageBlob, "task_image.png");
+        // Usamos una extensión genérica o extraída
+        formData.append("file", imageBlob, "task_image.webp");
+
+        const headers: any = {
+            accept: "application/json",
+        };
+        if (token) {
+            headers["Authorization"] = `Bearer ${token}`;
+        }
 
         const response = await fetch(`${BASE_URL}/gemini/process-file`, {
             method: "POST",
-            headers: {
-                accept: "application/json",
-                Authorization: `Bearer ${token}`,
-            },
+            headers,
             body: formData,
         });
 
         return parseResponse(response, "Error al procesar el archivo");
     },
 
-    checkFileStatus: async (taskId: string, token: string) => {
+    checkFileStatus: async (taskId: string, token?: string) => {
+        const headers: any = {
+            accept: "application/json",
+        };
+        if (token) {
+            headers["Authorization"] = `Bearer ${token}`;
+        }
+
         const response = await fetch(`${BASE_URL}/gemini/status-file/${taskId}`, {
+            method: "GET",
+            headers,
+        });
+
+        return parseResponse(response, "Error al consultar el estado del archivo");
+    },
+    saveCompletedActivity: async (activityId: string | number, token: string) => {
+        const response = await fetch(`${BASE_URL}/users/me/activities/${activityId}`, {
+            method: "POST",
+            headers: {
+                accept: "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        return parseResponse(response, "No se pudo guardar el progreso de la actividad");
+    },
+    getCompletedActivities: async (token: string): Promise<string[]> => {
+        const response = await fetch(`${BASE_URL}/users/me/activities`, {
             method: "GET",
             headers: {
                 accept: "application/json",
@@ -276,7 +316,43 @@ export const apiService = {
             },
         });
 
-        return parseResponse(response, "Error al consultar el estado del archivo");
+        return parseResponse(response, "No se pudieron obtener las actividades completadas");
+    },
+    getListeningTests: async (): Promise<ListeningTest[]> => {
+        const response = await fetch(`${BASE_URL}/listening`, {
+            method: "GET",
+            headers: {
+                accept: "application/json",
+            },
+        });
+
+        return parseResponse(response, "No se pudieron obtener los audios de listening");
+    },
+
+    getListeningTestById: async (id: string): Promise<ListeningTest> => {
+        const response = await fetch(`${BASE_URL}/listening/${id}`, {
+            method: "GET",
+            headers: {
+                accept: "application/json",
+            },
+        });
+
+        return parseResponse(response, "No se pudo obtener el audio de listening");
+    },
+
+    analyzeListeningSection: async (prompt: string) => {
+        const response = await fetch(`${BASE_URL}/gemini/process`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                prompt,
+                model: "gemini-2.5-flash",
+            }),
+        });
+
+        return parseResponse(response, "No se pudo analizar la sección de listening");
     },
 };
 
@@ -285,4 +361,13 @@ export default function getTokenFromCookie() {
         .split("; ")
         .find((row) => row.startsWith("token="))
         ?.split("=")[1];
+}
+
+export interface ListeningTest {
+    id: string;
+    title: string;
+    audio_url: string;
+    description: string;
+    created_at: string;
+    updated_at: string;
 }

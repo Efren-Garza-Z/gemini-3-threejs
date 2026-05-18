@@ -1,0 +1,534 @@
+[
+  {
+    "word": "beautiful",
+    "spanish": "hermoso/a",
+    "explanation": "Que posee una gran belleza, atractivo físico o estético.",
+    "example": "She wore a beautiful dress to the party.",
+    "type": "appearance"
+  },
+  {
+    "word": "ugly",
+    "spanish": "feo/a",
+    "explanation": "Que carece de belleza o es desagradable a la vista.",
+    "example": "The old building looked ugly and abandoned.",
+    "type": "appearance"
+  },
+  {
+    "word": "happy",
+    "spanish": "feliz",
+    "explanation": "Que siente o muestra placer, satisfacción o alegría.",
+    "example": "He was very happy to see his friends again.",
+    "type": "emotion"
+  },
+  {
+    "word": "sad",
+    "spanish": "triste",
+    "explanation": "Que siente pena, melancolía o dolor emocional.",
+    "example": "The movie's ending was very sad.",
+    "type": "emotion"
+  },
+  {
+    "word": "angry",
+    "spanish": "enojado/a",
+    "explanation": "Que siente o muestra ira o disgusto.",
+    "example": "She was angry because they arrived late.",
+    "type": "emotion"
+  },
+  {
+    "word": "big",
+    "spanish": "grande",
+    "explanation": "De tamaño, volumen o extensión considerables.",
+    "example": "They live in a big house near the park.",
+    "type": "size"
+  },
+  {
+    "word": "small",
+    "spanish": "pequeño/a",
+    "explanation": "De tamaño, volumen o extensión reducidos.",
+    "example": "The small dog barked at the stranger.",
+    "type": "size"
+  },
+  {
+    "word": "tall",
+    "spanish": "alto/a",
+    "explanation": "De altura superior a la media (se usa para personas o cosas estrechas).",
+    "example": "He is very tall, like a basketball player.",
+    "type": "size"
+  },
+  {
+    "word": "short",
+    "spanish": "corto/a, bajo/a",
+    "explanation": "De poca longitud o de baja estatura.",
+    "example": "She has short hair.",
+    "type": "size"
+  },
+  {
+    "word": "fast",
+    "spanish": "rápido/a",
+    "explanation": "Que se mueve o actúa con gran velocidad.",
+    "example": "The cheetah is a fast runner.",
+    "type": "speed"
+  },
+  {
+    "word": "slow",
+    "spanish": "lento/a",
+    "explanation": "Que se mueve o actúa con poca velocidad.",
+    "example": "The traffic was very slow this morning.",
+    "type": "speed"
+  },
+  {
+    "word": "smart",
+    "spanish": "inteligente",
+    "explanation": "Que tiene facilidad para aprender y comprender.",
+    "example": "She is a smart student who always gets good grades.",
+    "type": "personality"
+  },
+  {
+    "word": "funny",
+    "spanish": "gracioso/a",
+    "explanation": "Que causa risa o diversión.",
+    "example": "He told a funny joke that made everyone laugh.",
+    "type": "personality"
+  },
+  {
+    "word": "kind",
+    "spanish": "amable",
+    "explanation": "Que muestra buena voluntad, afecto y consideración hacia los demás.",
+    "example": "It was very kind of you to help me.",
+    "type": "personality"
+  },
+  {
+    "word": "hot",
+    "spanish": "caliente, caluroso",
+    "explanation": "Que tiene una temperatura elevada.",
+    "example": "Be careful, the coffee is hot.",
+    "type": "temperature"
+  },
+  {
+    "word": "cold",
+    "spanish": "frío/a",
+    "explanation": "Que tiene una temperatura baja.",
+    "example": "It is cold outside, you should wear a coat.",
+    "type": "temperature"
+  },
+  {
+    "word": "clean",
+    "spanish": "limpio/a",
+    "explanation": "Que no tiene suciedad, manchas o impurezas.",
+    "example": "The hotel room was very clean and comfortable.",
+    "type": "appearance"
+  },
+  {
+    "word": "dirty",
+    "spanish": "sucio/a",
+    "explanation": "Que tiene manchas, polvo o suciedad.",
+    "example": "Please wash your dirty hands before eating.",
+    "type": "appearance"
+  },
+  {
+    "word": "bright",
+    "spanish": "brillante, luminoso/a",
+    "explanation": "Que emite o refleja mucha luz; también describe colores intensos.",
+    "example": "The sun is very bright today.",
+    "type": "appearance"
+  },
+  {
+    "word": "dark",
+    "spanish": "oscuro/a",
+    "explanation": "Que tiene poca o ninguna luz, o colores que no son claros.",
+    "example": "It gets dark very early in winter.",
+    "type": "appearance"
+  },
+  {
+    "word": "tired",
+    "spanish": "cansado/a",
+    "explanation": "Que siente fatiga o falta de energía después de un esfuerzo.",
+    "example": "She was too tired to go to the gym.",
+    "type": "condition"
+  },
+  {
+    "word": "excited",
+    "spanish": "emocionado/a",
+    "explanation": "Que siente gran entusiasmo o alegría por algo que va a suceder.",
+    "example": "The children are excited about the trip to the zoo.",
+    "type": "emotion"
+  },
+  {
+    "word": "nervous",
+    "spanish": "nervioso/a",
+    "explanation": "Que siente ansiedad, inquietud o temor ante una situación.",
+    "example": "I always get nervous before an exam.",
+    "type": "emotion"
+  },
+  {
+    "word": "bored",
+    "spanish": "aburrido/a",
+    "explanation": "Que siente desinterés o falta de motivación ante algo.",
+    "example": "He was bored during the long meeting.",
+    "type": "emotion"
+  },
+  {
+    "word": "surprised",
+    "spanish": "sorprendido/a",
+    "explanation": "Que experimenta asombro por algo inesperado.",
+    "example": "She was surprised by the birthday party.",
+    "type": "emotion"
+  },
+  {
+    "word": "heavy",
+    "spanish": "pesado/a",
+    "explanation": "Que tiene mucho peso y es difícil de levantar.",
+    "example": "This box is too heavy for me to carry alone.",
+    "type": "weight"
+  },
+  {
+    "word": "light",
+    "spanish": "ligero/a",
+    "explanation": "Que tiene poco peso y es fácil de mover.",
+    "example": "The suitcase is light because it is almost empty.",
+    "type": "weight"
+  },
+  {
+    "word": "wide",
+    "spanish": "ancho/a, amplio/a",
+    "explanation": "Que tiene una gran distancia de un lado al otro.",
+    "example": "The river is too wide to swim across.",
+    "type": "size"
+  },
+  {
+    "word": "narrow",
+    "spanish": "estrecho/a",
+    "explanation": "Que tiene poca distancia de un lado al otro.",
+    "example": "The streets in the old town are very narrow.",
+    "type": "size"
+  },
+  {
+    "word": "thick",
+    "spanish": "grueso/a",
+    "explanation": "Que tiene un grosor considerable.",
+    "example": "You need a thick coat for the winter.",
+    "type": "size"
+  },
+  {
+    "word": "thin",
+    "spanish": "delgado/a, fino/a",
+    "explanation": "Que tiene poco grosor o poca grasa corporal.",
+    "example": "The pages of this book are very thin.",
+    "type": "size"
+  },
+  {
+    "word": "loud",
+    "spanish": "ruidoso/a, fuerte (sonido)",
+    "explanation": "Que produce un sonido de gran intensidad o volumen.",
+    "example": "The music at the concert was too loud.",
+    "type": "sound"
+  },
+  {
+    "word": "quiet",
+    "spanish": "silencioso/a, tranquilo/a",
+    "explanation": "Que produce poco o ningún sonido.",
+    "example": "The library is a very quiet place to study.",
+    "type": "sound"
+  },
+  {
+    "word": "hard",
+    "spanish": "duro/a",
+    "explanation": "Que es firme y resistente al tacto o a la presión.",
+    "example": "The chair was made of hard wood.",
+    "type": "texture"
+  },
+  {
+    "word": "soft",
+    "spanish": "suave",
+    "explanation": "Que es agradable al tacto y cede fácilmente a la presión.",
+    "example": "The baby's skin is very soft.",
+    "type": "texture"
+  },
+  {
+    "word": "rough",
+    "spanish": "áspero/a",
+    "explanation": "Que tiene una superficie irregular y no es suave al tacto.",
+    "example": "The bark of the tree feels rough.",
+    "type": "texture"
+  },
+  {
+    "word": "smooth",
+    "spanish": "liso/a, suave",
+    "explanation": "Que tiene una superficie regular, sin irregularidades ni asperezas.",
+    "example": "The stone from the river was completely smooth.",
+    "type": "texture"
+  },
+  {
+    "word": "brave",
+    "spanish": "valiente",
+    "explanation": "Que actúa con valor y determinación frente al peligro o miedo.",
+    "example": "The brave firefighter rescued the cat from the tree.",
+    "type": "personality"
+  },
+  {
+    "word": "shy",
+    "spanish": "tímido/a",
+    "explanation": "Que siente vergüenza o inseguridad al relacionarse con otras personas.",
+    "example": "He was too shy to speak to the new girl.",
+    "type": "personality"
+  },
+  {
+    "word": "polite",
+    "spanish": "educado/a, cortés",
+    "explanation": "Que muestra buenos modales y respeto hacia los demás.",
+    "example": "It is important to be polite to the customers.",
+    "type": "personality"
+  },
+  {
+    "word": "rude",
+    "spanish": "grosero/a, maleducado/a",
+    "explanation": "Que carece de buenos modales y muestra falta de respeto.",
+    "example": "It was rude of him to interrupt the conversation.",
+    "type": "personality"
+  },
+  {
+    "word": "lazy",
+    "spanish": "perezoso/a, flojo/a",
+    "explanation": "Que tiene poca disposición para trabajar o hacer esfuerzo.",
+    "example": "My lazy cat sleeps all day on the sofa.",
+    "type": "personality"
+  },
+  {
+    "word": "generous",
+    "spanish": "generoso/a",
+    "explanation": "Que le gusta dar o compartir lo que tiene con los demás.",
+    "example": "She is very generous and always donates to charity.",
+    "type": "personality"
+  },
+  {
+    "word": "sweet",
+    "spanish": "dulce",
+    "explanation": "Que tiene el sabor característico del azúcar o la miel.",
+    "example": "These strawberries are incredibly sweet.",
+    "type": "taste"
+  },
+  {
+    "word": "sour",
+    "spanish": "ácido/a, agrio/a",
+    "explanation": "Que tiene un sabor parecido al del limón o el vinagre.",
+    "example": "The milk went bad and smells sour.",
+    "type": "taste"
+  },
+  {
+    "word": "spicy",
+    "spanish": "picante",
+    "explanation": "Que contiene especias que producen una sensación de ardor en la boca.",
+    "example": "I love Mexican food, but sometimes it is too spicy.",
+    "type": "taste"
+  },
+  {
+    "word": "cheap",
+    "spanish": "barato/a",
+    "explanation": "Que cuesta poco dinero o tiene un precio bajo.",
+    "example": "We stayed in a cheap hotel during our vacation.",
+    "type": "value"
+  },
+  {
+    "word": "expensive",
+    "spanish": "caro/a",
+    "explanation": "Que cuesta mucho dinero o tiene un precio alto.",
+    "example": "That sports car is too expensive for me.",
+    "type": "value"
+  },
+  {
+    "word": "young",
+    "spanish": "joven",
+    "explanation": "Que tiene poca edad o está en la primera etapa de la vida.",
+    "example": "The young boy was playing with his toys.",
+    "type": "age"
+  },
+  {
+    "word": "old",
+    "spanish": "viejo/a, antiguo/a",
+    "explanation": "Que tiene mucha edad o que existe desde hace mucho tiempo.",
+    "example": "My grandfather lives in an old house in the country.",
+    "type": "age"
+  },
+  {
+    "word": "rich",
+    "spanish": "rico/a",
+    "explanation": "Que tiene mucho dinero, bienes o recursos.",
+    "example": "The rich businessman donated to the hospital.",
+    "type": "wealth"
+  },
+  {
+    "word": "poor",
+    "spanish": "pobre",
+    "explanation": "Que no tiene lo necesario para vivir cómodamente o carece de dinero.",
+    "example": "They helped the poor families in the neighborhood.",
+    "type": "wealth"
+  },
+  {
+    "word": "empty",
+    "spanish": "vacío/a",
+    "explanation": "Que no contiene nada en su interior.",
+    "example": "The bottle is completely empty.",
+    "type": "state"
+  },
+  {
+    "word": "full",
+    "spanish": "lleno/a",
+    "explanation": "Que contiene todo lo que su capacidad permite.",
+    "example": "The glass is full of water.",
+    "type": "state"
+  },
+  {
+    "word": "strong",
+    "spanish": "fuerte",
+    "explanation": "Que tiene mucha fuerza física o es difícil de romper.",
+    "example": "You need to be strong to lift those weights.",
+    "type": "strength"
+  },
+  {
+    "word": "weak",
+    "spanish": "débil",
+    "explanation": "Que tiene poca fuerza, energía o resistencia.",
+    "example": "He felt weak after being sick for a week.",
+    "type": "strength"
+  },
+  {
+    "word": "safe",
+    "spanish": "seguro/a",
+    "explanation": "Que no presenta peligro o riesgo.",
+    "example": "It is safe to cross the street when the light is green.",
+    "type": "safety"
+  },
+  {
+    "word": "dangerous",
+    "spanish": "peligroso/a",
+    "explanation": "Que puede causar daño, dolor o pérdida.",
+    "example": "It is dangerous to play with fire.",
+    "type": "safety"
+  },
+  {
+    "word": "easy",
+    "spanish": "fácil",
+    "explanation": "Que no requiere mucho esfuerzo o habilidad para hacerse.",
+    "example": "The math test was surprisingly easy.",
+    "type": "difficulty"
+  },
+  {
+    "word": "difficult",
+    "spanish": "difícil",
+    "explanation": "Que requiere mucho esfuerzo, habilidad o inteligencia para lograrse.",
+    "example": "Learning a new language can be difficult at first.",
+    "type": "difficulty"
+  },
+  {
+    "word": "true",
+    "spanish": "verdadero/a",
+    "explanation": "Que es acorde con la realidad o los hechos.",
+    "example": "The documentary is based on a true story.",
+    "type": "truth"
+  },
+  {
+    "word": "false",
+    "spanish": "falso/a",
+    "explanation": "Que no es cierto o no corresponde a la realidad.",
+    "example": "He gave a false name to the police.",
+    "type": "truth"
+  },
+  {
+    "word": "dry",
+    "spanish": "seco/a",
+    "explanation": "Que carece de humedad o agua.",
+    "example": "The paint is finally dry.",
+    "type": "moisture"
+  },
+  {
+    "word": "wet",
+    "spanish": "mojado/a",
+    "explanation": "Que está cubierto o empapado de agua u otro líquido.",
+    "example": "My clothes got wet in the rain.",
+    "type": "moisture"
+  },
+  {
+    "word": "bitter",
+    "spanish": "amargo/a",
+    "explanation": "Que tiene un sabor fuerte y desagradable, como el café sin azúcar.",
+    "example": "The medicine had a very bitter taste.",
+    "type": "taste"
+  },
+  {
+    "word": "salty",
+    "spanish": "salado/a",
+    "explanation": "Que contiene mucha sal o tiene sabor a sal.",
+    "example": "This soup is too salty for me.",
+    "type": "taste"
+  },
+  {
+    "word": "fresh",
+    "spanish": "fresco/a",
+    "explanation": "Que está recién hecho, cosechado o que no está procesado.",
+    "example": "I love eating fresh fruit in the morning.",
+    "type": "condition"
+  },
+  {
+    "word": "healthy",
+    "spanish": "saludable, sano/a",
+    "explanation": "Que goza de buena salud o que es bueno para el cuerpo.",
+    "example": "Eating vegetables is a healthy habit.",
+    "type": "health"
+  },
+  {
+    "word": "sick",
+    "spanish": "enfermo/a",
+    "explanation": "Que padece alguna enfermedad o no se siente bien de salud.",
+    "example": "He didn't go to school because he was sick.",
+    "type": "health"
+  },
+  {
+    "word": "famous",
+    "spanish": "famoso/a",
+    "explanation": "Que es conocido o reconocido por muchas personas.",
+    "example": "She is a famous actress in Hollywood.",
+    "type": "reputation"
+  },
+  {
+    "word": "friendly",
+    "spanish": "amigable",
+    "explanation": "Que se comporta de manera agradable y afectuosa con los demás.",
+    "example": "Our new neighbors are very friendly.",
+    "type": "personality"
+  },
+  {
+    "word": "lonely",
+    "spanish": "solitario/a",
+    "explanation": "Que se siente triste por estar solo o aislado.",
+    "example": "The old man felt lonely after his dog died.",
+    "type": "emotion"
+  },
+  {
+    "word": "proud",
+    "spanish": "orgulloso/a",
+    "explanation": "Que siente satisfacción por un logro propio o de alguien cercano.",
+    "example": "Her parents are very proud of her graduation.",
+    "type": "emotion"
+  },
+  {
+    "word": "jealous",
+    "spanish": "celoso/a",
+    "explanation": "Que siente envidia o temor de perder la atención o afecto de alguien.",
+    "example": "He got jealous when she talked to another boy.",
+    "type": "emotion"
+  },
+  {
+    "word": "careful",
+    "spanish": "cuidadoso/a",
+    "explanation": "Que presta atención a lo que hace para evitar errores o accidentes.",
+    "example": "You must be careful when driving in the snow.",
+    "type": "behavior"
+  },
+  {
+    "word": "crazy",
+    "spanish": "loco/a",
+    "explanation": "Que actúa de manera irracional, extravagante o fuera de lo común.",
+    "example": "It is a crazy idea, but it might work.",
+    "type": "personality"
+  }
+]
