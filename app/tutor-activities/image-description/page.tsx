@@ -6,7 +6,7 @@ import { ArrowLeft, CheckCircle2, MessageSquare, Loader2, Info, RefreshCw } from
 import { useRouter } from "next/navigation";
 import { apiService } from "@/services/api";
 import ReactMarkdown from "react-markdown";
-import { practiceImages } from "../data/images";
+import {practiceImages, speakingTips} from "../data/images";
 
 export default function ImageDescriptionPage() {
     const router = useRouter();
@@ -90,18 +90,26 @@ Analiza si la gramática, vocabulario y estructura de la descripción son correc
                                 <Info size={20} className="text-orange-500" /> Cómo empezar
                             </h3>
                             <ul className="space-y-4 text-sm text-orange-800 font-medium">
-                                <li className="bg-white p-3 rounded-2xl shadow-sm">
-                                    <strong>Lo General:</strong> "In this picture, I can see..." o "This is a photo of..."
-                                </li>
-                                <li className="bg-white p-3 rounded-2xl shadow-sm">
-                                    <strong>Ubicación:</strong> "In the foreground..." (en primer plano), "In the background..." (al fondo).
-                                </li>
-                                <li className="bg-white p-3 rounded-2xl shadow-sm">
-                                    <strong>Detalles:</strong> Usa "There is" (hay uno) o "There are" (hay varios) para listar cosas.
-                                </li>
-                                <li className="bg-white p-3 rounded-2xl shadow-sm">
-                                    <strong>Acciones:</strong> Usa Presente Continuo. "The people are walking..."
-                                </li>
+                                {speakingTips.map((tip) => (
+                                    <li
+                                        key={tip.id}
+                                        className="bg-white p-4 rounded-2xl shadow-sm border border-orange-100/50 hover:shadow-md transition-shadow duration-200"
+                                    >
+                                        <div className="flex flex-col gap-1">
+            <span className="text-xs font-black uppercase tracking-wider text-orange-600">
+              {tip.title}
+            </span>
+                                            <p className="text-zinc-800 font-semibold text-base">
+                                                {tip.example}
+                                            </p>
+                                            {tip.description && (
+                                                <p className="text-zinc-500 text-xs font-normal mt-1">
+                                                    {tip.description}
+                                                </p>
+                                            )}
+                                        </div>
+                                    </li>
+                                ))}
                             </ul>
                         </div>
                     </div>
