@@ -85,7 +85,7 @@ export default function IeltsWritingPage() {
                     setLoading(false);
                     clearInterval(interval);
                 }
-            }, 3000);
+            }, 10000);
         }
         return () => clearInterval(interval);
     }, [taskId, status]);

@@ -37,7 +37,7 @@ app/
 │   ├── writing/      # Writing practice (Task 1 & 2)
 │   └── listening/    # Listening comprehension
 ├── activities/       # Interactive exercise engine
-│   ├── ExerciseEngine.tsx
+│   ├── ExerciseEngineielts-listening.ts
 │   └── data/
 ├── chat/             # AI chat assistant interface
 ├── profile/          # User profile management
@@ -49,8 +49,8 @@ app/
 
 components/
 └── scene/            # 3D scene components (Three.js)
-    ├── Model.tsx
-    └── Scene.tsx
+    ├── Modelielts-listening.ts
+    └── Sceneielts-listening.ts
 
 services/
 └── api.ts            # API service layer with authentication

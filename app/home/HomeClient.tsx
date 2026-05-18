@@ -1,13 +1,13 @@
 "use client"
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { ChevronRight, GraduationCap, CheckCircle, BookOpen, Clock } from "lucide-react";
+import { ChevronRight, GraduationCap, CheckCircle, BookOpen, Clock, MessageSquare } from "lucide-react";
 
 export default function HomeClient() {
     const router = useRouter();
     const [activeTab, setActiveTab] = useState("TODAS");
 
-    const tabs = ["TODAS", "GRAMÁTICA", "VOCABULARIO", "VERBOS", "IELTS"];
+    const tabs = ["TODAS", "GRAMÁTICA", "VOCABULARIO", "VERBOS", "IELTS", "TUTOR"];
 
     const modules = [
         {
@@ -92,6 +92,16 @@ export default function HomeClient() {
             path: "/test-nivelacion",
             progress: "Completo",
             category: "TODAS"
+        },
+        {
+            title: "Actividades con Tutor",
+            description: "Practica escribiendo y describiendo con feedback IA",
+            icon: <MessageSquare size={32} />,
+            color: "teal",
+            path: "/tutor-activities",
+            progress: "0/2",
+            category: "TUTOR",
+            badge: "NUEVO"
         }
     ];
 

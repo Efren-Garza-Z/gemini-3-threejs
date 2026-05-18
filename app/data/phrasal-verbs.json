@@ -103,5 +103,635 @@
     "explanation": "Hacer ejercicio físico; encontrar una solución a un problema.",
     "example": "I work out at the gym three times a week.",
     "type": "separable"
+  },
+  {
+    "word": "break down",
+    "spanish": "averiarse, romperse / derrumbarse",
+    "explanation": "Cuando una máquina o vehículo deja de funcionar; perder el control emocional.",
+    "example": "My car broke down on the highway.",
+    "type": "inseparable"
+  },
+  {
+    "word": "calm down",
+    "spanish": "calmarse",
+    "explanation": "Relajarse después de estar enojado, asustado o alterado.",
+    "example": "Take a deep breath and calm down.",
+    "type": "separable"
+  },
+  {
+    "word": "carry on",
+    "spanish": "continuar",
+    "explanation": "Seguir haciendo una actividad o tarea.",
+    "example": "Please carry on with your reading.",
+    "type": "inseparable"
+  },
+  {
+    "word": "catch up",
+    "spanish": "ponerse al día, alcanzar",
+    "explanation": "Alcanzar el nivel de alguien o actualizarse sobre noticias con un amigo.",
+    "example": "Let's meet for coffee and catch up.",
+    "type": "inseparable"
+  },
+  {
+    "word": "check in",
+    "spanish": "registrarse",
+    "explanation": "Anunciar la llegada a un hotel, aeropuerto o evento.",
+    "example": "We need to check in at the hotel by 3 PM.",
+    "type": "inseparable"
+  },
+  {
+    "word": "check out",
+    "spanish": "pagar y salir / echar un vistazo",
+    "explanation": "Dejar la habitación del hotel tras pagar; mirar algo interesante.",
+    "example": "Don't forget to leave the keys when you check out.",
+    "type": "separable"
+  },
+  {
+    "word": "come across",
+    "spanish": "encontrar por casualidad",
+    "explanation": "Encontrar a alguien o algo sin haberlo planeado.",
+    "example": "I came across some old photos in the attic.",
+    "type": "inseparable"
+  },
+  {
+    "word": "come up with",
+    "spanish": "idear, proponer",
+    "explanation": "Pensar en una idea, un plan o una solución.",
+    "example": "We need to come up with a better solution.",
+    "type": "inseparable"
+  },
+  {
+    "word": "count on",
+    "spanish": "contar con, confiar en",
+    "explanation": "Depender de alguien o tener la seguridad de que hará algo.",
+    "example": "You can always count on me for help.",
+    "type": "inseparable"
+  },
+  {
+    "word": "cut down on",
+    "spanish": "reducir el consumo",
+    "explanation": "Consumir o hacer menos cantidad de algo (usualmente por salud).",
+    "example": "I am trying to cut down on sugar.",
+    "type": "inseparable"
+  },
+  {
+    "word": "drop by",
+    "spanish": "pasar de visita",
+    "explanation": "Visitar a alguien de manera informal y generalmente sin cita.",
+    "example": "I will drop by your house later to say hi.",
+    "type": "inseparable"
+  },
+  {
+    "word": "drop off",
+    "spanish": "dejar (a alguien o algo)",
+    "explanation": "Llevar a alguien a un lugar y dejarlo allí; quedarse dormido.",
+    "example": "I have to drop off my brother at the airport.",
+    "type": "separable"
+  },
+  {
+    "word": "end up",
+    "spanish": "terminar (en una situación)",
+    "explanation": "Llegar a una situación, estado o lugar que no estaba planeado originalmente.",
+    "example": "We got lost and ended up in a different city.",
+    "type": "inseparable"
+  },
+  {
+    "word": "fall apart",
+    "spanish": "desmoronarse, hacerse pedazos",
+    "explanation": "Romperse físicamente por viejo; fracasar un plan o derrumbarse emocionalmente.",
+    "example": "My old shoes are falling apart.",
+    "type": "inseparable"
+  },
+  {
+    "word": "figure out",
+    "spanish": "descifrar, resolver",
+    "explanation": "Encontrar la solución a un problema o llegar a comprender algo.",
+    "example": "I need to figure out how to fix this bug in the code.",
+    "type": "separable"
+  },
+  {
+    "word": "fill in",
+    "spanish": "completar (un formulario)",
+    "explanation": "Escribir información en los espacios vacíos de un documento.",
+    "example": "Please fill in this application form with your details.",
+    "type": "separable"
+  },
+  {
+    "word": "get away",
+    "spanish": "escapar, irse de vacaciones",
+    "explanation": "Huir de un lugar o tomarse un descanso lejos de casa.",
+    "example": "We are hoping to get away to the beach for the weekend.",
+    "type": "inseparable"
+  },
+  {
+    "word": "get over",
+    "spanish": "recuperarse, superar",
+    "explanation": "Recuperarse de una enfermedad o de una mala experiencia emocional.",
+    "example": "It took him a long time to get over the flu.",
+    "type": "inseparable"
+  },
+  {
+    "word": "give back",
+    "spanish": "devolver",
+    "explanation": "Retornar algo a su dueño original.",
+    "example": "Don't forget to give back the book you borrowed.",
+    "type": "separable"
+  },
+  {
+    "word": "go out",
+    "spanish": "salir",
+    "explanation": "Dejar la casa para ir a un evento social o divertirse; apagarse (una luz).",
+    "example": "Do you want to go out for dinner tonight?",
+    "type": "inseparable"
+  },
+  {
+    "word": "grow up",
+    "spanish": "crecer, madurar",
+    "explanation": "El proceso de convertirse de niño a adulto.",
+    "example": "I grew up in a small town near the mountains.",
+    "type": "inseparable"
+  },
+  {
+    "word": "hold on",
+    "spanish": "esperar, aguantar",
+    "explanation": "Pedir a alguien que espere un momento (muy común en llamadas telefónicas).",
+    "example": "Hold on a minute, I will transfer your call.",
+    "type": "inseparable"
+  },
+  {
+    "word": "keep on",
+    "spanish": "seguir, continuar",
+    "explanation": "Continuar haciendo una acción de manera repetida.",
+    "example": "He kept on talking during the movie.",
+    "type": "inseparable"
+  },
+  {
+    "word": "look up",
+    "spanish": "buscar información",
+    "explanation": "Buscar una palabra en un diccionario o información específica en internet.",
+    "example": "If you don't know the word, look it up.",
+    "type": "separable"
+  },
+  {
+    "word": "pass away",
+    "spanish": "fallecer",
+    "explanation": "Una forma respetuosa y suave de decir morir.",
+    "example": "Her grandfather passed away peacefully last night.",
+    "type": "inseparable"
+  },
+  {
+    "word": "pass out",
+    "spanish": "desmayarse",
+    "explanation": "Perder el conocimiento por un momento.",
+    "example": "It was so hot in the room that she almost passed out.",
+    "type": "inseparable"
+  },
+  {
+    "word": "pick up",
+    "spanish": "recoger, aprender",
+    "explanation": "Levantar algo; ir a buscar a alguien; aprender algo nuevo sin mucho esfuerzo.",
+    "example": "Can you pick up some milk on your way home?",
+    "type": "separable"
+  },
+  {
+    "word": "run out of",
+    "spanish": "quedarse sin",
+    "explanation": "Agotar las existencias o la reserva de algo.",
+    "example": "We have run out of coffee, I need to buy more.",
+    "type": "inseparable"
+  },
+  {
+    "word": "stand out",
+    "spanish": "destacar",
+    "explanation": "Ser muy fácil de notar o ser mejor en comparación con los demás.",
+    "example": "Her bright red dress made her stand out in the crowd.",
+    "type": "inseparable"
+  },
+  {
+    "word": "throw away",
+    "spanish": "tirar a la basura",
+    "explanation": "Deshacerse de algo porque ya no es útil o no se necesita.",
+    "example": "Don't throw away those old newspapers.",
+    "type": "separable"
+  },
+  {
+    "word": "back up",
+    "spanish": "respaldar (datos) / retroceder",
+    "explanation": "Hacer una copia de seguridad de información, o moverse hacia atrás.",
+    "example": "It's important to back up your database before making changes.",
+    "type": "separable"
+  },
+  {
+    "word": "log in",
+    "spanish": "iniciar sesión",
+    "explanation": "Ingresar a un sistema informático, aplicación o sitio web usando credenciales.",
+    "example": "You need to log in to access the microservices dashboard.",
+    "type": "inseparable"
+  },
+  {
+    "word": "set back",
+    "spanish": "retrasar",
+    "explanation": "Causar un retraso en el progreso o en el horario de algo.",
+    "example": "The bug in the code set us back a few hours.",
+    "type": "separable"
+  },
+  {
+    "word": "bring about",
+    "spanish": "provocar, causar",
+    "explanation": "Hacer que algo suceda o generar un cambio.",
+    "example": "New AI tools will bring about big changes in the industry.",
+    "type": "separable"
+  },
+  {
+    "word": "brush up on",
+    "spanish": "repasar, refrescar la memoria",
+    "explanation": "Mejorar un conocimiento o habilidad que se tenía olvidada.",
+    "example": "I need to brush up on my speaking skills before the English exam.",
+    "type": "inseparable"
+  },
+  {
+    "word": "burn out",
+    "spanish": "agotarse (física o mentalmente)",
+    "explanation": "Trabajar tanto que te quedas sin energía y te estresas demasiado.",
+    "example": "Working as a developer can be stressful, so remember to take breaks and not burn out.",
+    "type": "inseparable"
+  },
+  {
+    "word": "cheer up",
+    "spanish": "animar(se)",
+    "explanation": "Hacer que alguien se sienta más feliz o ponerse de mejor humor.",
+    "example": "Playing a good game of chess always cheers me up.",
+    "type": "separable"
+  },
+  {
+    "word": "cross out",
+    "spanish": "tachar",
+    "explanation": "Trazar una línea sobre una palabra escrita para indicar que está mal.",
+    "example": "If you make a mistake on the writing task, just cross it out.",
+    "type": "separable"
+  },
+  {
+    "word": "do over",
+    "spanish": "hacer de nuevo",
+    "explanation": "Repetir una tarea porque la primera vez no salió bien.",
+    "example": "The UI design wasn't what I wanted, so I had to do it over.",
+    "type": "separable"
+  },
+  {
+    "word": "fall behind",
+    "spanish": "rezagarse, atrasarse",
+    "explanation": "No mantener el mismo ritmo o nivel que los demás, o retrasarse en una tarea.",
+    "example": "If you don't practice regularly, you might fall behind in your studies.",
+    "type": "inseparable"
+  },
+  {
+    "word": "give in",
+    "spanish": "ceder, rendirse",
+    "explanation": "Aceptar hacer algo que no querías, o dejar de resistirse.",
+    "example": "After hours of debugging, I finally gave in and asked my tech lead for help.",
+    "type": "inseparable"
+  },
+  {
+    "word": "hang out",
+    "spanish": "pasar el rato",
+    "explanation": "Pasar tiempo libre de forma relajada, usualmente con amigos.",
+    "example": "I like to hang out and play Halo on the weekends.",
+    "type": "inseparable"
+  },
+  {
+    "word": "keep up with",
+    "spanish": "mantenerse al tanto / seguir el ritmo",
+    "explanation": "Ir a la misma velocidad que algo o estar informado de las novedades.",
+    "example": "It is hard to keep up with the latest updates in Golang and Java.",
+    "type": "inseparable"
+  },
+  {
+    "word": "look over",
+    "spanish": "revisar (rápidamente)",
+    "explanation": "Examinar algo, como un documento o código, para ver si hay errores.",
+    "example": "Can you look over my code before I push it to the repository?",
+    "type": "separable"
+  },
+  {
+    "word": "pay back",
+    "spanish": "devolver dinero",
+    "explanation": "Retornar el dinero que alguien te ha prestado o que pagó por ti.",
+    "example": "I will pay you back tomorrow for the pizza we ordered.",
+    "type": "separable"
+  },
+  {
+    "word": "point out",
+    "spanish": "señalar, hacer notar",
+    "explanation": "Llamar la atención de alguien sobre un detalle específico o información.",
+    "example": "My mentor pointed out a better way to structure the API.",
+    "type": "separable"
+  },
+  {
+    "word": "put away",
+    "spanish": "guardar (en su lugar)",
+    "explanation": "Poner algo en el lugar donde normalmente se guarda tras usarlo.",
+    "example": "Please put away the tools when you finish the DIY project.",
+    "type": "separable"
+  },
+  {
+    "word": "put on",
+    "spanish": "ponerse (ropa)",
+    "explanation": "Vestirse con una prenda o accesorio.",
+    "example": "I put on my favorite hoodie because it was getting cold.",
+    "type": "separable"
+  },
+  {
+    "word": "run into",
+    "spanish": "toparse con (un problema o persona)",
+    "explanation": "Encontrarse de frente con una dificultad o cruzarse con alguien sin planearlo.",
+    "example": "I ran into a complex problem while configuring the Linux server.",
+    "type": "inseparable"
+  },
+  {
+    "word": "show off",
+    "spanish": "presumir",
+    "explanation": "Intentar impresionar a los demás mostrando lo que tienes o puedes hacer.",
+    "example": "He loves to show off his new high-performance laptop.",
+    "type": "separable"
+  },
+  {
+    "word": "sleep in",
+    "spanish": "dormir hasta tarde",
+    "explanation": "Dormir más allá de tu hora habitual de despertar de manera intencional.",
+    "example": "On Sundays, I usually sleep in and relax with my cats.",
+    "type": "inseparable"
+  },
+  {
+    "word": "take over",
+    "spanish": "tomar el control, asumir el mando",
+    "explanation": "Ganar control sobre un proceso, empresa o responsabilidad.",
+    "example": "The new module will take over the automated fraud detection process.",
+    "type": "separable"
+  },
+  {
+    "word": "think over",
+    "spanish": "pensar detenidamente",
+    "explanation": "Considerar una idea o plan con mucho cuidado antes de tomar una decisión.",
+    "example": "I need to think over the architecture before I start writing the backend.",
+    "type": "separable"
+  },
+  {
+    "word": "try on",
+    "spanish": "probarse (ropa o calzado)",
+    "explanation": "Ponerse algo para ver si te queda bien antes de comprarlo o usarlo.",
+    "example": "I want to try on these new sneakers to see if they fit.",
+    "type": "separable"
+  },
+  {
+    "word": "turn down",
+    "spanish": "rechazar / bajar (el volumen)",
+    "explanation": "No aceptar una oferta, o disminuir la intensidad de un sonido o luz.",
+    "example": "I had to turn down the invitation because I had to study.",
+    "type": "separable"
+  },
+  {
+    "word": "turn into",
+    "spanish": "convertirse en",
+    "explanation": "Transformarse de una cosa a otra distinta.",
+    "example": "The small side project turned into a complete web platform.",
+    "type": "inseparable"
+  },
+  {
+    "word": "turn on",
+    "spanish": "encender",
+    "explanation": "Hacer que una máquina, sistema o dispositivo empiece a funcionar.",
+    "example": "Turn on the console so we can play Fortnite.",
+    "type": "separable"
+  },
+  {
+    "word": "wake up",
+    "spanish": "despertar",
+    "explanation": "Dejar de dormir.",
+    "example": "My husky always wakes me up early in the morning.",
+    "type": "separable"
+  },
+  {
+    "word": "warm up",
+    "spanish": "calentar",
+    "explanation": "Preparar el cuerpo antes del ejercicio o dejar que un motor tome temperatura.",
+    "example": "It is important to warm up the engine of a sports car before driving fast.",
+    "type": "separable"
+  },
+  {
+    "word": "wrap up",
+    "spanish": "concluir, terminar",
+    "explanation": "Dar por finalizada una actividad o evento, o abrigarse bien.",
+    "example": "Let's wrap up this meeting so we can get back to coding.",
+    "type": "separable"
+  },
+  {
+    "word": "ask out",
+    "spanish": "invitar a salir",
+    "explanation": "Invitar a alguien a una cita romántica.",
+    "example": "He was nervous to ask her out for a drink.",
+    "type": "separable"
+  },
+  {
+    "word": "blow up",
+    "spanish": "explotar, inflar",
+    "explanation": "Estallar por una explosión, o llenar algo de aire (como un globo).",
+    "example": "The balloon will blow up if you put too much air in it.",
+    "type": "separable"
+  },
+  {
+    "word": "break in",
+    "spanish": "entrar a la fuerza, interrumpir",
+    "explanation": "Entrar a un lugar ilegalmente, o interrumpir una conversación.",
+    "example": "Someone tried to break in while we were away.",
+    "type": "inseparable"
+  },
+  {
+    "word": "bring down",
+    "spanish": "deprimir, derribar",
+    "explanation": "Hacer que alguien se sienta triste, o reducir el nivel de algo.",
+    "example": "That sad movie really brought me down.",
+    "type": "separable"
+  },
+  {
+    "word": "call back",
+    "spanish": "devolver la llamada",
+    "explanation": "Llamar por teléfono a alguien que te llamó antes.",
+    "example": "I'm busy deploying code right now, can I call you back later?",
+    "type": "separable"
+  },
+  {
+    "word": "carry out",
+    "spanish": "llevar a cabo, realizar",
+    "explanation": "Completar una tarea, plan o experimento.",
+    "example": "We need to carry out more tests on the new Java microservice.",
+    "type": "separable"
+  },
+  {
+    "word": "catch on",
+    "spanish": "entender, ponerse de moda",
+    "explanation": "Comprender algo después de un rato, o volverse popular.",
+    "example": "I didn't understand the joke at first, but then I caught on.",
+    "type": "inseparable"
+  },
+  {
+    "word": "clean up",
+    "spanish": "limpiar, ordenar",
+    "explanation": "Dejar un lugar ordenado y sin suciedad.",
+    "example": "Princess and Missy made a mess, so I have to clean up the living room.",
+    "type": "separable"
+  },
+  {
+    "word": "come apart",
+    "spanish": "deshacerse, romperse en pedazos",
+    "explanation": "Separarse en varias partes porque está roto o mal hecho.",
+    "example": "The cheap toy started to come apart after just one day.",
+    "type": "inseparable"
+  },
+  {
+    "word": "come down with",
+    "spanish": "enfermarse de",
+    "explanation": "Empezar a sufrir una enfermedad leve.",
+    "example": "I think I am coming down with a cold.",
+    "type": "inseparable"
+  },
+  {
+    "word": "cut off",
+    "spanish": "cortar, interrumpir (comunicación)",
+    "explanation": "Detener el suministro de algo o que se caiga una llamada.",
+    "example": "We were disconnected when the call got cut off.",
+    "type": "separable"
+  },
+  {
+    "word": "do without",
+    "spanish": "arreglárselas sin",
+    "explanation": "Sobrevivir o funcionar sin tener algo que normalmente se necesita.",
+    "example": "If we don't have milk, we'll just have to do without it.",
+    "type": "inseparable"
+  },
+  {
+    "word": "eat out",
+    "spanish": "comer fuera",
+    "explanation": "Comer en un restaurante o lugar de comida en lugar de cocinar en casa.",
+    "example": "Instead of cooking, let's eat out and get some Little Caesars pizza.",
+    "type": "inseparable"
+  },
+  {
+    "word": "fall for",
+    "spanish": "enamorarse de, creerse (un engaño)",
+    "explanation": "Sentir atracción repentina por alguien o ser engañado por una broma o estafa.",
+    "example": "I can't believe I fell for such an obvious trick.",
+    "type": "inseparable"
+  },
+  {
+    "word": "get by",
+    "spanish": "arreglárselas, sobrevivir",
+    "explanation": "Tener lo justo para salir adelante (en dinero, conocimiento o habilidad).",
+    "example": "My vocabulary is good enough to get by on the IELTS speaking test.",
+    "type": "inseparable"
+  },
+  {
+    "word": "get in",
+    "spanish": "entrar, llegar",
+    "explanation": "Llegar a un lugar o entrar a un vehículo cerrado (como un coche).",
+    "example": "What time did you get in last night?",
+    "type": "inseparable"
+  },
+  {
+    "word": "give away",
+    "spanish": "regalar, revelar (un secreto)",
+    "explanation": "Dar algo gratis a alguien o delatar información oculta.",
+    "example": "I decided to give away some of my old clothes.",
+    "type": "separable"
+  },
+  {
+    "word": "go off",
+    "spanish": "sonar (alarma), explotar",
+    "explanation": "Cuando una alarma empieza a hacer ruido o una bomba estalla.",
+    "example": "My alarm went off at 6 AM, but I wanted to sleep more.",
+    "type": "inseparable"
+  },
+  {
+    "word": "hand in",
+    "spanish": "entregar (un trabajo)",
+    "explanation": "Darle una tarea, ensayo o documento a una persona de autoridad.",
+    "example": "Don't forget to hand in your assignment before the deadline.",
+    "type": "separable"
+  },
+  {
+    "word": "hold back",
+    "spanish": "contener, retener",
+    "explanation": "Evitar hacer o mostrar algo, como una emoción.",
+    "example": "She wanted to cry, but she held back her tears.",
+    "type": "separable"
+  },
+  {
+    "word": "let down",
+    "spanish": "decepcionar",
+    "explanation": "No cumplir con las expectativas o promesas que se le hicieron a alguien.",
+    "example": "I promised I would help him, and I didn't want to let him down.",
+    "type": "separable"
+  },
+  {
+    "word": "make out",
+    "spanish": "entender, descifrar (con dificultad)",
+    "explanation": "Lograr ver, escuchar o comprender algo que no está claro.",
+    "example": "The handwriting was so messy that I couldn't make out the words.",
+    "type": "separable"
+  },
+  {
+    "word": "pass on",
+    "spanish": "transmitir, pasar (un mensaje)",
+    "explanation": "Dar información o un objeto a la siguiente persona.",
+    "example": "Please pass on the message to the rest of the team.",
+    "type": "separable"
+  },
+  {
+    "word": "put up with",
+    "spanish": "soportar, tolerar",
+    "explanation": "Aceptar una situación molesta o a una persona difícil sin quejarse.",
+    "example": "I don't know how you put up with such a slow internet connection while playing Fortnite.",
+    "type": "inseparable"
+  },
+  {
+    "word": "run away",
+    "spanish": "escapar, huir",
+    "explanation": "Alejarse rápidamente de un lugar o persona.",
+    "example": "Toby saw a squirrel and tried to run away.",
+    "type": "inseparable"
+  },
+  {
+    "word": "set off",
+    "spanish": "partir, salir de viaje",
+    "explanation": "Iniciar un trayecto o viaje.",
+    "example": "We packed our bags and set off early in the morning.",
+    "type": "inseparable"
+  },
+  {
+    "word": "take after",
+    "spanish": "parecerse a (un familiar)",
+    "explanation": "Tener un parecido físico o de personalidad con un pariente mayor.",
+    "example": "He takes after his older brothers in many ways.",
+    "type": "inseparable"
+  },
+  {
+    "word": "take up",
+    "spanish": "empezar (un pasatiempo), ocupar (espacio/tiempo)",
+    "explanation": "Comenzar una nueva actividad o consumir un recurso.",
+    "example": "I decided to take up chess to improve my concentration and strategy.",
+    "type": "separable"
+  },
+  {
+    "word": "wear out",
+    "spanish": "desgastar(se)",
+    "explanation": "Arruinar algo por usarlo demasiado o agotarse mucho.",
+    "example": "Those running shoes will wear out quickly if you use them every day.",
+    "type": "separable"
+  },
+  {
+    "word": "work on",
+    "spanish": "trabajar en, mejorar",
+    "explanation": "Dedicar esfuerzo a un proyecto o para mejorar una habilidad.",
+    "example": "I plan to spend the weekend working on my React Three Fiber project.",
+    "type": "inseparable"
   }
 ]

@@ -103,7 +103,7 @@ export default function VocabularyPage() {
         setIsAnalyzing(false);
         clearInterval(intervalId);
       }
-    }, 2000); // Check every 2 secs
+    }, 10000); // Check every 10 secs
   };
 
   return (

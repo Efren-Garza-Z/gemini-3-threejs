@@ -85,7 +85,7 @@ export default function ChatClient() {
                     await simulateTyping(lastMsg.response, tempId)
                     fetchTodayHistory(token) // Sincronizamos historial real
                 }
-            }, 2500)
+            }, 10000)
         } catch (error) {
             setIsWaitingResponse(false)
         }

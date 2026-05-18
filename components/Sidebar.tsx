@@ -1,6 +1,6 @@
 "use client";
 
-import {Home, BookOpen, PenTool, CheckSquare, User, LogOut, Menu, X, Book, TestTube, Bot} from "lucide-react";
+import {Home, BookOpen, PenTool, CheckSquare, User, LogOut, Menu, X, Book, TestTube, Bot, MessageSquare} from "lucide-react";
 import { useRouter, usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 
@@ -28,6 +28,7 @@ export default function Sidebar() {
         { name: "IELTS", path: "/ielts", icon: <BookOpen size={24} /> },
         { name: "Test", path: "/test-nivelacion", icon: <TestTube size={24} /> },
         { name: "Chat", path: "/chat", icon: <Bot size={24} /> },
+        { name: "Tutor Activities", path: "/tutor-activities", icon: <MessageSquare size={24} /> },
         { name: "Perfil", path: "/profile", icon: <User size={24} /> },
     ];
 
